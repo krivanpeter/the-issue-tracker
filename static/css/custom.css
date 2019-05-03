@@ -1,3 +1,7 @@
+body {
+    font-family: sans-serif;
+}
+
 .welcome-page-bg {
     background: url('../img/open_bump.jpg') no-repeat center center fixed;
     -webkit-background-size: cover;
@@ -9,25 +13,61 @@
 }
 
 .jumbotron {
+    padding-top: 0;
     height: 100vh;
+}
+
+.welcome-page-bg.jumbotron h1 {
+    padding-top: 100px;
 }
 
 .white-text {
     color: white;
 }
 
-.btn-sign-up{
+.btn-sign-up {
     color: white;
-    border-color: white;
-    background-color: #ED6214;
+    border: none;
+    background-color: #e54725;
 }
 
-.btn-sign-up:hover{
+.btn-sign-up:hover {
     color: white;
-    border-color: white;
+    border: none;
     background-color: #BE4E10;
 }
 
-.fas{
+.navbar {
+    margin-bottom: 0px;
+}
+
+.nav.navbar {
+    border: 0;
+}
+
+.navbar.navbar-default {
+    background-color: transparent;
+}
+
+.nav-item{
+    color: white;
+}
+.fas {
+    color: white;
     margin-right: 5px;
+}
+
+.community-pages-footer {
+    background-color: grey;
+}
+
+a .fab {
+    color: black;
+    margin: 10px;
+}
+
+@media(min-width: 768px) {
+    .navbar.navbar-default {
+    background-color: transparent;
+}
 }
