@@ -32,13 +32,18 @@ body {
 }
 
 .btn-sign-up:hover {
-    color: white;
+    color: #BEBEBE;
     border: none;
-    background-color: #BE4E10;
+    background-color: #b7381d;
+}
+/*-----------------NAVBAR-----------------*/
+.navbar-container {
+    max-width: 100%;
 }
 
 .navbar {
     margin-bottom: 0px;
+    padding: 0;
 }
 
 .nav.navbar {
@@ -47,11 +52,17 @@ body {
 
 .navbar.navbar-default {
     background-color: transparent;
+    width: 100%;
 }
 
-.nav-item{
+.nav-item {
     color: white;
 }
+
+.navbar-collapse {
+    background-color: rgba(0, 0, 0, 0.45);
+}
+
 .fas {
     color: white;
     margin-right: 5px;
@@ -68,6 +79,12 @@ a .fab {
 
 @media(min-width: 768px) {
     .navbar.navbar-default {
-    background-color: transparent;
-}
+        background-color: transparent;
+    }
+    .navbar-collapse {
+        background-color: transparent;
+    }
+    .navbar-container {
+        max-width: 90%;
+    }
 }
