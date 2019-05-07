@@ -1,5 +1,49 @@
 {% extends 'base.html' %} {% load static from staticfiles %} {% block content %}
-<nav class="navbar-container sticky-top">
+<!-------------SMALL SCREEN------------->
+<section class="jumbotron-fluid text-center white-text welcome-page-bg d-block d-md-none">
+    <nav class="navbar-container">
+        <div class="navbar navbar-expand-md navbar-default navbar-dark">
+            <div class="container">
+                <a class="navbar-brand logo" href="{% url 'index' %}"></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarToggler">
+                    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'index' %}"><i class="fas fa-home"></i>Home</a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav navbar-right">
+                        {% if user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'profile' %}">Profile</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'logout' %}">Log Out</a>
+                        </li>
+                        {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'register' %}"><i class="fas fa-user"></i>Register</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'login' %}"><i class="fas fa-sign-in-alt"></i>Log In</a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <h1><strong>Software Development</strong></h1>
+    <p class="lead"><b>We love coding, we love building new features, and we love solving bugs</b></p>
+    <p class="lead"><b>Join our community and support us</b></p>
+    <p><a class="btn btn-primary btn-lg btn-sign-up" role="button" href="/accounts/register/">Sign Up!</a></p>
+    <p class="text-muted"><small class="white-text">We promise never to share, trade, sell, deliver, reveal, publicize, or market your email address in any way, shape, or form.</small></p>
+    </div>
+</section>
+<!-------------MEDIUM SCREEN------------->
+<nav class="navbar-container sticky-top d-none d-md-block">
     <div class="navbar navbar-expand-md navbar-default navbar-dark">
         <div class="container">
             <a class="navbar-brand logo" href="{% url 'index' %}"></a>
@@ -33,7 +77,7 @@
         </div>
     </div>
 </nav>
-<section class="jumbotron-fluid text-center white-text welcome-page-bg">
+<section class="jumbotron-fluid text-center white-text welcome-page-bg d-none d-md-block">
     <h1><strong>Software Development</strong></h1>
     <p class="lead"><b>We love coding, we love building new features, and we love solving bugs</b></p>
     <p class="lead"><b>Join our community and support us</b></p>
