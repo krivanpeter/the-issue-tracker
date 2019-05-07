@@ -1,74 +1,78 @@
 {% extends 'base.html' %} {% load static from staticfiles %} {% block content %}
-<header class="jumbotron text-center white-text welcome-page-bg">
-    <div class="navbar-container">
-        <nav class="navbar navbar-expand-md navbar-default navbar-dark">
-            <div class="container">
-                <a class="navbar-brand" href="{% url 'index' %}"><img src="{% static 'img/logo.png' %}" alt="Unicorn Attractor Logo"></img></a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-                <div class="collapse navbar-collapse" id="navbarToggler">
-                    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'index' %}"><i class="fas fa-home"></i>Home</a>
-                        </li>
-                    </ul>
-                    <ul class="navbar-nav navbar-right">
-                        {% if user.is_authenticated %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'profile' %}">Profile</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'logout' %}">Log Out</a>
-                        </li>
-                        {% else %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'register' %}"><i class="fas fa-user"></i>Register</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'login' %}"><i class="fas fa-sign-in-alt"></i>Log In</a>
-                        </li>
-                        {% endif %}
-                    </ul>
-                </div>
+<nav class="navbar-container sticky-top">
+    <div class="navbar navbar-expand-md navbar-default navbar-dark">
+        <div class="container">
+            <a class="navbar-brand logo" href="{% url 'index' %}"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            <div class="collapse navbar-collapse" id="navbarToggler">
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'index' %}"><i class="fas fa-home"></i>Home</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav navbar-right">
+                    {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'profile' %}">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'logout' %}">Log Out</a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'register' %}"><i class="fas fa-user"></i>Register</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'login' %}"><i class="fas fa-sign-in-alt"></i>Log In</a>
+                    </li>
+                    {% endif %}
+                </ul>
             </div>
-        </nav>
-        <h1><strong>Software Development</strong></h1>
-        <p class="lead"><b>We love coding, we love building new features, and we love solving bugs</b></p>
-        <p class="lead"><b>Join our community and support us</b></p>
-        <p><a class="btn btn-primary btn-lg btn-sign-up" role="button" href="/accounts/register/">Sign Up!</a></p>
-        <p class="text-muted"><small class="white-text">We promise never to share, trade, sell, deliver, reveal, publicize, or market your email address in any way, shape, or form.</small></p>
+        </div>
     </div>
-</header>
+</nav>
+<section class="jumbotron-fluid text-center white-text welcome-page-bg">
+    <h1><strong>Software Development</strong></h1>
+    <p class="lead"><b>We love coding, we love building new features, and we love solving bugs</b></p>
+    <p class="lead"><b>Join our community and support us</b></p>
+    <p><a class="btn btn-primary btn-lg btn-sign-up" role="button" href="/accounts/register/">Sign Up!</a></p>
+    <p class="text-muted"><small class="white-text">We promise never to share, trade, sell, deliver, reveal, publicize, or market your email address in any way, shape, or form.</small></p>
+    </div>
+</section>
 {% endblock %} {% block footer %}
-<div class="container">
-    <div class="row">
-        <div class="col-xs-12">
-            <div class="page-header">
+<div class="who-are-we">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xs-12">
                 <h2 class="text-uppercase">Who are we?</h2>
                 <hr class="block-divider block-divider--short block-divider--white">
             </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-            <div class="feature">
-                <h3><span class="glyphicon glyphicon-user hidden-xs"></span>Community <span class="label label-warning hidden-xs">New!</span></h3>
-                <p>
-                    Our new online community allows users report bugs, or suggest features you’d like to see, on our softwares.
-                </p>
-                <p><a class="btn btn-lg btn--cta btn--red btn-sm" href="/graphs/">Read more</a></p>
+        <div class="row justify-content-center">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 feature-container">
+                <div class="feature text-center">
+                    <i class="fas fa-user-friends"></i>
+                    <h3><span class="glyphicon glyphicon-user hidden-xs"></span>Community</h3>
+                    <p>
+                        Our new online community allows users report bugs, or suggest features you’d like to see, on our softwares.
+                    </p>
+                    <p><a class="btn btn-lg btn-sm">Read more</a></p>
+                </div>
             </div>
-        </div>
-        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-            <div class="feature">
-                <h3><span class="glyphicon glyphicon-question-sign hidden-xs"></span>About Us</h3>
-                <p>
-                    Learn more about our new concept!
-                </p>
-                <p><a class="btn btn-lg btn--cta btn--red btn-sm" data-toggle="modal" data-target="#aboutUsModal">Read more</a></p>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 feature-container">
+                <div class="feature text-center">
+                    <i class="fas fa-question-circle"></i>
+                    <h3><span class="glyphicon glyphicon-question-sign hidden-xs"></span>About Us</h3>
+                    <p>
+                        Learn more about our new concept!
+                    </p>
+                    <p><a class="btn btn-lg btn-sm">Read more</a></p>
+                </div>
             </div>
         </div>
     </div>
 </div>
+
 {% endblock %}
