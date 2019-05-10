@@ -10,7 +10,7 @@ $(window).resize(function() {
 /*Function to change the navbar behavior depends on the size of the screen*/
 function changeNavBar() {
     $(document).on("scroll", function() {
-        if ($(window).width() > 767) {
+        if ($(window).width() >= 768) {
             if ($(window).scrollTop() === 0) {
                 $('.navbar').addClass('navbar-transparent');
                 $('.navbar').removeClass('navbar-white');
@@ -19,7 +19,7 @@ function changeNavBar() {
                 $('.nav-item a').addClass('white-text');
                 $('.nav-item a').removeClass('black-text');
                 $('.nav-link i').addClass('white-text');
-                $('.nav-link i').removeClass('black-text');
+                $('.nav-link i').removeClass('orange-fa');
             }
             else {
                 $('.navbar').removeClass('navbar-transparent');
@@ -29,7 +29,7 @@ function changeNavBar() {
                 $('.nav-item a').removeClass('white-text');
                 $('.nav-item a').addClass('black-text');
                 $('.nav-link i').removeClass('white-text');
-                $('.nav-link i').addClass('black-text');
+                $('.nav-link i').addClass('orange-fa');
             }
         }
         else {
