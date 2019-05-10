@@ -27,7 +27,7 @@
                             <a type="button" class="nav-link" data-toggle="modal" data-target="#registerModal"><i class="fas fa-user"></i>Register</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'login' %}"><i class="fas fa-sign-in-alt"></i>Log In</a>
+                            <a type="button" class="nav-link" data-toggle="modal" data-target="#loginModal"><i class="fas fa-sign-in-alt"></i>Log In</a>
                         </li>
                         {% endif %}
                     </ul>
@@ -154,7 +154,7 @@
         </div>
     </div>
 </section>
-<!-- Register Modal -->
+<!-- Login Modal -->
 <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -166,13 +166,36 @@
             </div>
             <form method="post" action="{% url 'login' %}?next={{ next }}" class="accountform">
                 <fieldset class="form-group">
-                    {% csrf_token %} {{ user_form | as_bootstrap }}
+                    {% csrf_token %} {{ login_form | as_bootstrap }}
 
                     <p><a href="{% url 'password_reset' %}">Forgot my password</a></p>
                 </fieldset>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-sign-up">Login</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- Register Modal -->
+<div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Create a new account</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form method="post" action="{% url 'register' %}" class="accountform">
+                <fieldset class="form-group">
+                    <p>Already got an account? <a href="{% url 'login' %}">Sign In</a></p>
+                    {% csrf_token %} {{ reg_form | as_bootstrap }}
+                </fieldset>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-sign-up">Create account</button>
                 </div>
             </form>
         </div>
