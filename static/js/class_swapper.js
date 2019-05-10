@@ -1,9 +1,13 @@
+/*After page loaded, run the ,,changeNavBar()" function*/
 $(document).ready(function() {
     changeNavBar();
 })
+/*If window resized, run the ,,changeNavBar()" function*/
 $(window).resize(function () { 
     changeNavBar();
 });
+
+/*Function to change the navbar behavior depends on the size of the screen*/
 function changeNavBar() {
     if ($(window).width() > 768) {
         $(document).scroll(function() {
