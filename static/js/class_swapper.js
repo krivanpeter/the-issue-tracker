@@ -1,7 +1,9 @@
 $(document).ready(function() {
     changeNavBar();
 })
-
+$(window).resize(function () { 
+    changeNavBar();
+});
 function changeNavBar() {
     if ($(window).width() > 768) {
         $(document).scroll(function() {
