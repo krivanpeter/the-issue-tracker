@@ -9,7 +9,9 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 def index(request):
     """A view that displays the index page"""
-    return render(request, "index.html")
+    user_form = UserLoginForm()
+    args = {'user_form': user_form, 'next': request.GET.get('next', '')}
+    return render(request, "index.html", args)
 
 
 def logout(request):
