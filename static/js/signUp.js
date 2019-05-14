@@ -1,5 +1,7 @@
-//This function is responsible for checking the given username is either in the database or not
-//It shows a message to the user if username exists and prevent from submitting if username is taken
+//This function is responsible for checking the given username and e-mail address are either in the database or not
+//It shows a message to the user if username and/or email exist(s) and prevent from submitting if username is taken
+var usernameTaken = false;
+var emailTaken = false;
 $("#id_username").change(function() {
 	var username = $(this).val();
 	$.ajax({
@@ -11,9 +13,11 @@ $("#id_username").change(function() {
 		success: function(data) {
 			if (data.username_is_taken) {
 				$('#usernameAlert').fadeIn();
+				usernameTaken = true;
 			}
 			else{
 				$('#usernameAlert').fadeOut();
+				usernameTaken = false;
 			}
 		}
 	});
@@ -31,10 +35,18 @@ $("#id_email").change(function() {
 		success: function(data) {
 			if (data.email_is_taken) {
 				$('#emailAlert').fadeIn();
+				emailTaken = true;
 			}
 			else{
 				$('#emailAlert').fadeOut();
+				emailTaken = false;
 			}
 		}
 	});
 });
+
+function submitChecker(){
+	if (usernameTaken && emailTaken){
+		event.preventDefault();
+	}
+}

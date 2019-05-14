@@ -187,7 +187,7 @@
                   <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form method="POST" class="registerform" action="{% url 'register' %}">
+            <form method="POST" class="registerform" onsubmit="submitChecker()">
                 <fieldset class="form-group">
                     {% csrf_token %} {% for field in reg_form %}
                     <div class="form-group">
