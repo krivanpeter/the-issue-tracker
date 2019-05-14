@@ -38,7 +38,7 @@
     <h1><strong>Software Development</strong></h1>
     <p class="lead"><b>We love coding, we love building new features, and we love solving bugs</b></p>
     <p class="lead"><b>Join our community and support us</b></p>
-    <p><a class="btn btn-primary btn-lg btn-sign-up" role="button" href="/accounts/register/">Sign Up!</a></p>
+    <p><a type="button" class="btn btn-primary btn-lg btn-sign-up" data-toggle="modal" data-target="#registerModal">Sign Up!</a></p>
     <p class="text-muted"><small class="white-text">We promise never to share, trade, sell, deliver, reveal, publicize, or market your email address in any way, shape, or form.</small></p>
     </div>
 </section>
@@ -82,7 +82,7 @@
         <h1><strong>Software Development</strong></h1>
         <p class="lead"><b>We love coding, we love building new features, and we love solving bugs</b></p>
         <p class="lead"><b>Join our community and support us</b></p>
-        <p><a class="btn btn-primary btn-lg btn-sign-up" role="button" href="/accounts/register/">Sign Up!</a></p>
+        <p><a type="button" class="btn btn-primary btn-lg btn-sign-up" data-toggle="modal" data-target="#registerModal">Sign Up!</a></p>
         <p class="text-muted"><small class="white-text">We promise never to share, trade, sell, deliver, reveal, publicize, or market your email address in any way, shape, or form.</small></p>
     </div>
 </section>
@@ -166,10 +166,9 @@
             </div>
             <form method="POST" class="loginform">
                 <fieldset class="form-group">
-                    {% csrf_token %}
-                    {{ login_form | as_bootstrap }}
+                    {% csrf_token %} {{ login_form | as_bootstrap }}
                     <div class="alert alert-danger" role="alert" id="username_or_password_error" style="display:none;">Your username or password are incorrect</div>
-                    <p><a href="{% url 'password_reset' %}">Forgot my password</a></p>
+                    <p><a type="button" data-dismiss="modal" data-toggle="modal" data-target="#forgottenPasswordModal" style="color:blue;">Forgot My Password</a></p>
                 </fieldset>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -191,27 +190,29 @@
             </div>
             <form method="POST" class="registerform" onsubmit="regFormSubmitChecker()" action="{% url 'register' %}">
                 <fieldset class="form-group">
-                    {% csrf_token %} {% for field in reg_form %}
+                    {% csrf_token %} {% for field in reg_form %} {% if field.label == 'Username' %}
                     <div class="form-group">
-                        {% if field.label == 'Username' %}
-                        {{ field.label_tag }}
-                        {{ field }}
+                        {{ field.label_tag }} {{ field }}
                         <div class="alert alert-danger" role="alert" id="usernameAlert" style="display:none;">Username is already in use</div>
                     </div>
+
                     {% elif field.label == 'Email' %}
                     <div class="form-group">
-                        {{ field.label_tag }}
-                        {{ field }}
+                        {{ field.label_tag }} {{ field }}
                         <div class="alert alert-danger" role="alert" id="emailAlert" style="display:none;">Email is already in use</div>
+                    </div>
+
+                    {% elif field.label == "Password Confirmation" %}
+                    <div class="form-group">
+                        {{ field.label_tag }} {{ field }}
+                        <div class="alert alert-danger" role="alert" id="passwordAlert" style="display:none;">Passwords do not match</div>
                     </div>
                     {% else %}
                     <div class="form-group">
-                        {{ field.label_tag }}
-                        {{ field }}
+                        {{ field.label_tag }} {{ field }}
                     </div>
-                    {% endif %}
-                    {% endfor %}
-                    <p>Already got an account? <a href="{% url 'login' %}">Sign In</a></p>
+                    {% endif %} {% endfor %}
+                    <p>Already got an account? <a type="button" data-dismiss="modal" data-toggle="modal" data-target="#loginModal" style="color:blue;">Sign In</a></p>
                 </fieldset>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -221,4 +222,48 @@
         </div>
     </div>
 </div>
+<!-- Forgotten Password Modal -->
+<div class="modal fade" id="forgottenPasswordModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"><b>Forgotten Password</b></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form method="POST" class="forgottenpassform">
+                <p>Please specify your email address to receive instructions for resetting it</p>
+                <div style="display:none">
+                    <input type="hidden" value="{{ csrf_token }}" name="csrfmiddlewaretoken">
+                </div>
+                <label for="id_email" class="control-label required-field">E-mail address:</label> {{ forg_pass_form.email }}
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-sign-up" data-toggle="modal" data-target="#emailSendModal">Reset Password</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- Email Sent Modal 
+<div class="modal fade" id="emailSendModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"><b>Forgotten Password</b></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="email-sent">
+                <p>We've e-mailed you instructions for setting your password to the e-mail address you submitted.</p>
+                <p>You should be receiving it shortly.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-sign-up" data-dismiss="modal">Ok</button>
+            </div>
+        </div>
+    </div>
+</div>-->
 {% endblock %}

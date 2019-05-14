@@ -100,9 +100,12 @@ body {
     width: 150px;
     height: 75px;
 }
-/*-----------------SIGN UP MODAL-----------------*/
-.registerform,
-.loginform{
+/*-----------------MODALS-----------------*/
+form{
+    margin: 10px;
+}
+
+.email-sent{
     margin: 10px;
 }
 
