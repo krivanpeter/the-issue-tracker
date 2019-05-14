@@ -14,7 +14,6 @@ from django.contrib.auth.tokens import default_token_generator
 def index(request):
     data = {'data': False}
     if request.method == "POST":
-        print(request.POST['email'])
         password_reset(request,
                    template_name='registration/password_reset_form.html',
                    email_template_name='registration/password_reset_email.html',
