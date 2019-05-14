@@ -87,8 +87,7 @@ def register(request):
             else:
                 messages.error(request, "Unable to log you in at this time!")
         else:
-            args = {'user_form': user_form, 'next': request.GET.get('next', '')}
-            return render(request, 'login.html', args)
+            return login(request)
     else:
         user_form = UserRegistrationForm()
 
