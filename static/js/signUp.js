@@ -2,6 +2,8 @@
 //It shows a message to the user if username and/or email exist(s) and prevent from submitting if username is taken
 var usernameTaken = false;
 var emailTaken = false;
+var passwordDifferent = false;
+
 $("#id_username").change(function() {
 	var username = $(this).val();
 	$.ajax({
@@ -15,7 +17,7 @@ $("#id_username").change(function() {
 				$('#usernameAlert').fadeIn();
 				usernameTaken = true;
 			}
-			else{
+			else {
 				$('#usernameAlert').fadeOut();
 				usernameTaken = false;
 			}
@@ -25,7 +27,6 @@ $("#id_username").change(function() {
 
 $("#id_email").change(function() {
 	var email = $(this).val();
-	console.log(email);
 	$.ajax({
 		url: '/accounts/check_email/',
 		data: {
@@ -37,7 +38,7 @@ $("#id_email").change(function() {
 				$('#emailAlert').fadeIn();
 				emailTaken = true;
 			}
-			else{
+			else {
 				$('#emailAlert').fadeOut();
 				emailTaken = false;
 			}
@@ -45,8 +46,31 @@ $("#id_email").change(function() {
 	});
 });
 
-function regFormSubmitChecker(){
-	if (usernameTaken && emailTaken){
+$("#id_password2").change(function() {
+	passwordIdentity();
+});
+
+$("#id_password1").change(function() {
+	passwordIdentity();
+});
+
+function passwordIdentity() {
+	var password1 = $("#id_password1").val();
+	var password2 = $("#id_password2").val();
+	if (password1 != password2) {
+		if (password2 != "") {
+			$('#passwordAlert').fadeIn();
+		}
+		passwordDifferent = true;
+	}
+	else {
+		$('#passwordAlert').fadeOut();
+		passwordDifferent = false;
+	}
+}
+
+function regFormSubmitChecker() {
+	if (usernameTaken || emailTaken || passwordDifferent) {
 		event.preventDefault();
 	}
 }
