@@ -12,7 +12,9 @@ from django.contrib.auth.tokens import default_token_generator
 
 """A view that displays the index page"""
 def index(request):
+    data = {'data': False}
     if request.method == "POST":
+        print(request.POST['email'])
         password_reset(request,
                    template_name='registration/password_reset_form.html',
                    email_template_name='registration/password_reset_email.html',
@@ -23,11 +25,14 @@ def index(request):
                    from_email=None,
                    extra_context=None,
                    html_email_template_name=None)
-    login_form = UserLoginForm()
-    reg_form = UserRegistrationForm()
-    forg_pass_form = PasswordResetForm()
-    args = {'login_form': login_form, 'reg_form': reg_form, 'forg_pass_form':forg_pass_form, 'next': request.GET.get('next', '')}
-    return render(request, "index.html", args)
+        data['data'] = True
+        return JsonResponse(data)
+    else:
+        login_form = UserLoginForm()
+        reg_form = UserRegistrationForm()
+        forg_pass_form = PasswordResetForm()
+        args = {'login_form': login_form, 'reg_form': reg_form, 'forg_pass_form':forg_pass_form, 'next': request.GET.get('next', '')}
+        return render(request, "index.html", args)
 
 def logout(request):
     """A view that logs the user out and redirects back to the index page"""

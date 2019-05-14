@@ -11,7 +11,7 @@ $("#id_username").change(function() {
 		data: {
 			'username': username
 		},
-		dataType: 'json',
+		dataType: 'JSON',
 		success: function(data) {
 			if (data.username_is_taken) {
 				$('#usernameAlert').fadeIn();
