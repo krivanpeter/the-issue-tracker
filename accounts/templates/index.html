@@ -155,19 +155,18 @@
     </div>
 </section>
 <!-- Login Modal -->
-<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Login</h5>
+                <h5 class="modal-title"><b>Sign In</b></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form method="post" action="{% url 'login' %}?next={{ next }}" class="accountform">
+            <form method="post" action="{% url 'login' %}?next={{ next }}" class="loginform">
                 <fieldset class="form-group">
                     {% csrf_token %} {{ login_form | as_bootstrap }}
-
                     <p><a href="{% url 'password_reset' %}">Forgot my password</a></p>
                 </fieldset>
                 <div class="modal-footer">
@@ -179,19 +178,38 @@
     </div>
 </div>
 <!-- Register Modal -->
-<div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Create a new account</h5>
+                <h5 class="modal-title"><b>Create a new account</b></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form method="post" action="{% url 'register' %}" class="accountform">
+            <form method="POST" class="registerform" action="{% url 'register' %}">
                 <fieldset class="form-group">
+                    {% csrf_token %} {% for field in reg_form %}
+                    <div class="form-group">
+                        {% if field.label == 'Username' %}
+                        {{ field.label_tag }}
+                        {{ field }}
+                        <div class="alert alert-danger" role="alert" id="usernameAlert" style="display:none;">Username is already in use</div>
+                    </div>
+                    {% elif field.label == 'Email' %}
+                    <div class="form-group">
+                        {{ field.label_tag }}
+                        {{ field }}
+                        <div class="alert alert-danger" role="alert" id="emailAlert" style="display:none;">Email is already in use</div>
+                    </div>
+                    {% else %}
+                    <div class="form-group">
+                        {{ field.label_tag }}
+                        {{ field }}
+                    </div>
+                    {% endif %}
+                    {% endfor %}
                     <p>Already got an account? <a href="{% url 'login' %}">Sign In</a></p>
-                    {% csrf_token %} {{ reg_form | as_bootstrap }}
                 </fieldset>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

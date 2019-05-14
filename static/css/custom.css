@@ -100,7 +100,17 @@ body {
     width: 150px;
     height: 75px;
 }
+/*-----------------SIGN UP MODAL-----------------*/
+.registerform,
+.loginform{
+    margin: 10px;
+}
 
+.username_helper{
+    display: none;
+}
+
+/*-----------------------------------------*/
 .community-pages-footer {
     background-color: #383838;
 }
@@ -141,6 +151,8 @@ a .fab {
     color: #E54725;
     font-size: 35px;
 }
+
+/*-----------------MEDIA QUERIES-----------------*/
 
 @media(min-width: 768px) {
     .navbar-container {

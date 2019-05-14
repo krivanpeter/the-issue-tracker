@@ -1,9 +1,11 @@
 from django.shortcuts import render, redirect, HttpResponseRedirect
+from django.http import JsonResponse
 from django.contrib import messages, auth
 from django.core.urlresolvers import reverse
 from .forms import UserLoginForm, UserRegistrationForm
 from django.template.context_processors import csrf
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 
 
 # Create your views here.
@@ -11,9 +13,7 @@ def index(request):
     """A view that displays the index page"""
     login_form = UserLoginForm()
     reg_form = UserRegistrationForm()
-    
     args = {'login_form': login_form, 'reg_form': reg_form, 'next': request.GET.get('next', '')}
-    
     return render(request, "index.html", args)
 
 
@@ -55,7 +55,20 @@ def profile(request):
     """A view that displays the profile page of a logged in user"""
     return render(request, 'profile.html')
 
-
+def check_username(request):
+    username = request.GET.get('username', None)
+    data = {
+        'username_is_taken': User.objects.filter(username__iexact=username).exists()
+    }
+    return JsonResponse(data)
+    
+def check_email(request):
+    email = request.GET.get('email', None)
+    data = {
+        'email_is_taken': User.objects.filter(email__iexact=email).exists()
+    }
+    return JsonResponse(data)
+    
 def register(request):
     """A view that manages the registration form"""
     if request.method == 'POST':
@@ -72,7 +85,10 @@ def register(request):
                 return redirect(reverse('index'))
 
             else:
-                messages.error(request, "unable to log you in at this time!")
+                messages.error(request, "Unable to log you in at this time!")
+        else:
+            args = {'user_form': user_form, 'next': request.GET.get('next', '')}
+            return render(request, 'login.html', args)
     else:
         user_form = UserRegistrationForm()
 
