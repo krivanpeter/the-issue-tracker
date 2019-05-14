@@ -164,9 +164,11 @@
                   <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form method="post" action="{% url 'login' %}?next={{ next }}" class="loginform">
+            <form method="POST" class="loginform">
                 <fieldset class="form-group">
-                    {% csrf_token %} {{ login_form | as_bootstrap }}
+                    {% csrf_token %}
+                    {{ login_form | as_bootstrap }}
+                    <div class="alert alert-danger" role="alert" id="username_or_password_error" style="display:none;">Your username or password are incorrect</div>
                     <p><a href="{% url 'password_reset' %}">Forgot my password</a></p>
                 </fieldset>
                 <div class="modal-footer">
@@ -187,7 +189,7 @@
                   <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form method="POST" class="registerform" onsubmit="submitChecker()" action="{% url 'register' %}">
+            <form method="POST" class="registerform" onsubmit="regFormSubmitChecker()" action="{% url 'register' %}">
                 <fieldset class="form-group">
                     {% csrf_token %} {% for field in reg_form %}
                     <div class="form-group">

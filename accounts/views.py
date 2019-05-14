@@ -23,31 +23,45 @@ def logout(request):
     messages.success(request, 'You have successfully logged out')
     return redirect(reverse('index'))
 
+def authentication(request):
+    user_form = UserLoginForm(request.POST)
+    if user_form.is_valid():
+        print("VALID")
+        user = auth.authenticate(request.POST['username_or_email'],
+                                 password=request.POST['password'])
+        if user:
+            auth.login(request, user)
+            messages.success(request, "You have successfully logged in")
+            if request.GET and request.GET['next'] !='':
+                next = request.GET['next']
+                return HttpResponseRedirect(next)
+            else:
+                return redirect(reverse('index'))
+        else:
+            data = {
+                'username_or_password_error': True
+            }
+            return JsonResponse(data)
+    return index(request)
 
 def login(request):
+    data = {'username_or_password_error': False}
     """A view that manages the login form"""
     if request.method == 'POST':
         user_form = UserLoginForm(request.POST)
         if user_form.is_valid():
             user = auth.authenticate(request.POST['username_or_email'],
                                      password=request.POST['password'])
-
             if user:
                 auth.login(request, user)
-                messages.error(request, "You have successfully logged in")
-
-                if request.GET and request.GET['next'] !='':
-                    next = request.GET['next']
-                    return HttpResponseRedirect(next)
-                else:
-                    return redirect(reverse('index'))
+                messages.success(request, "You have successfully logged in")
+                return JsonResponse(data)
             else:
-                user_form.add_error(None, "Your username or password are incorrect")
+                data['username_or_password_error'] = True
+                return JsonResponse(data)
     else:
         user_form = UserLoginForm()
-
-    args = {'user_form': user_form, 'next': request.GET.get('next', '')}
-    return render(request, 'login.html', args)
+    return index(request)
 
 
 @login_required

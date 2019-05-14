@@ -31,7 +31,7 @@ $("#id_email").change(function() {
 		data: {
 			'email': email
 		},
-		dataType: 'json',
+		dataType: 'JSON',
 		success: function(data) {
 			if (data.email_is_taken) {
 				$('#emailAlert').fadeIn();
@@ -45,7 +45,7 @@ $("#id_email").change(function() {
 	});
 });
 
-function submitChecker(){
+function regFormSubmitChecker(){
 	if (usernameTaken && emailTaken){
 		event.preventDefault();
 	}
