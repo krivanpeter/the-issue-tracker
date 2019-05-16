@@ -21,18 +21,21 @@ from django.views.decorators.cache import never_cache
 def index(request):
     data = {'data': False}
     if request.method == "POST":
-        password_reset(request,
-                   template_name='registration/password_reset_form.html',
-                   email_template_name='registration/password_reset_email.html',
-                   subject_template_name='registration/password_reset_subject.txt',
-                   password_reset_form=PasswordResetForm,
-                   token_generator=default_token_generator,
-                   post_reset_redirect=None,
-                   from_email=None,
-                   extra_context=None,
-                   html_email_template_name=None)
-        data['data'] = True
-        return JsonResponse(data)
+        if 'reset_password' in request.POST:
+            password_reset(request,
+                       template_name='registration/password_reset_form.html',
+                       email_template_name='registration/password_reset_email.html',
+                       subject_template_name='registration/password_reset_subject.txt',
+                       password_reset_form=PasswordResetForm,
+                       token_generator=default_token_generator,
+                       post_reset_redirect=None,
+                       from_email=None,
+                       extra_context=None,
+                       html_email_template_name=None)
+            data['data'] = True
+            return JsonResponse(data)
+        elif 'create_new_account' in request.POST:
+            return register(request)
     else:
         login_form = UserLoginForm()
         reg_form = UserRegistrationForm()
