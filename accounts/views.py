@@ -1,14 +1,21 @@
-from django.shortcuts import render, redirect, HttpResponseRedirect
+from django.shortcuts import render, redirect, HttpResponseRedirect, resolve_url
 from django.http import JsonResponse
-from django.contrib import messages, auth
-from django.core.urlresolvers import reverse
+from django.utils.http import is_safe_url, urlsafe_base64_decode
 from .forms import UserLoginForm, UserRegistrationForm
+from django.template.response import TemplateResponse
+from django.utils.encoding import force_text
+from django.contrib import messages, auth
+from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm, PasswordResetForm, SetPasswordForm
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
-from django.core.mail import send_mail
 from django.contrib.auth.views import password_reset
 from django.contrib.auth.tokens import default_token_generator
+from django.core.urlresolvers import reverse
+from django.core.mail import send_mail
+from django.views.decorators.debug import sensitive_post_parameters
+from django.views.decorators.cache import never_cache
+
 
 """A view that displays the index page"""
 def index(request):
@@ -58,6 +65,13 @@ def login(request):
         user_form = UserLoginForm()
     return index(request)
 
+def login_from_password_change(request):
+    login_from_pass_change = True
+    login_form = UserLoginForm()
+    reg_form = UserRegistrationForm()
+    forg_pass_form = PasswordResetForm()
+    args = {'login_from_pass_change': login_from_pass_change, 'login_form': login_form, 'reg_form': reg_form, 'forg_pass_form':forg_pass_form, 'next': request.GET.get('next', '')}
+    return render(request, "index.html", args)
 
 @login_required
 def profile(request):
@@ -103,3 +117,54 @@ def register(request):
     args = {'user_form': user_form}
     return render(request, 'register.html', args)
 
+
+@sensitive_post_parameters()
+@never_cache
+def password_reset_confirm(request, uidb64=None, token=None,
+                           template_name='registration/password_reset_confirm.html',
+                           token_generator=default_token_generator,
+                           set_password_form=SetPasswordForm,
+                           post_reset_redirect=None,
+                           current_app=None, extra_context=None):
+    """
+    View that checks the hash in a password reset link and presents a
+    form for entering a new password.
+    """
+    login_form = UserLoginForm()
+    UserModel = get_user_model()
+    assert uidb64 is not None and token is not None  # checked by URLconf
+    if post_reset_redirect is None:
+        post_reset_redirect = reverse('password_reset_complete')
+    else:
+        post_reset_redirect = resolve_url(post_reset_redirect)
+    try:
+        # urlsafe_base64_decode() decodes to bytestring on Python 3
+        uid = force_text(urlsafe_base64_decode(uidb64))
+        user = UserModel._default_manager.get(pk=uid)
+    except (TypeError, ValueError, OverflowError, UserModel.DoesNotExist):
+        user = None
+
+    if user is not None and token_generator.check_token(user, token):
+        validlink = True
+        if request.method == 'POST':
+            form = set_password_form(user, request.POST)
+            if form.is_valid():
+                form.save()
+                return HttpResponseRedirect(post_reset_redirect)
+        else:
+            form = set_password_form(user)
+    else:
+        validlink = False
+        form = None
+    context = {
+        'login_form': login_form,
+        'form': form,
+        'validlink': validlink,
+    }
+    if extra_context is not None:
+        context.update(extra_context)
+
+    if current_app is not None:
+        request.current_app = current_app
+
+    return TemplateResponse(request, template_name, context)

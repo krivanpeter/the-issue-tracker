@@ -7,6 +7,11 @@ $.ajaxSetup({
         }
     }
 });
+
+if ($('#login_from_pass_change').val() == 'True'){
+    $('#loginModal').modal();
+}
+
 $("#id_username_or_email").change(function() {
     var id_username_or_email = $(this).val().trim();
     $(this).val(id_username_or_email);

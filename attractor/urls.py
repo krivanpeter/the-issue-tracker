@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-from accounts.views import index
+from accounts.views import index, login_from_password_change
 from accounts import urls as urls_accounts
 from django.views import static
 
@@ -23,4 +23,5 @@ urlpatterns = [
     url(r'^$', index, name='index'),
     url(r'^admin/', admin.site.urls),
     url(r'^accounts/', include(urls_accounts)),
+    url(r'^index/$', login_from_password_change, name="login_from_password_change")
 ]
