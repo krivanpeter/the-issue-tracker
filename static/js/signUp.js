@@ -6,6 +6,7 @@ var passwordDifferent = false;
 
 $("#id_username").change(function() {
 	var username = $(this).val().trim();
+	$(this).val(username);
 	$.ajax({
 		url: '/accounts/check_username/',
 		data: {
@@ -27,6 +28,7 @@ $("#id_username").change(function() {
 
 $("#id_email").change(function() {
 	var email = $(this).val().trim();
+	$(this).val(email);
 	$.ajax({
 		url: '/accounts/check_email/',
 		data: {
@@ -70,8 +72,7 @@ function passwordIdentity() {
 }
 
 function regFormSubmitChecker() {
-	var username = $("#id_username").val().trim();
-	if (usernameTaken || emailTaken || passwordDifferent || username == "") {
+	if (usernameTaken || emailTaken || passwordDifferent) {
 		event.preventDefault();
 	}
 }
