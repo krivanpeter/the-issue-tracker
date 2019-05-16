@@ -7,6 +7,10 @@ $.ajaxSetup({
         }
     }
 });
+$("#id_username_or_email").change(function() {
+    var id_username_or_email = $(this).val().trim();
+    $(this).val(id_username_or_email);
+});
 
 $('.loginform').on('submit', function(event) {
     var username_or_email = $('#id_username_or_email').val();
@@ -21,14 +25,14 @@ $('.loginform').on('submit', function(event) {
         url: '/accounts/login/',
         success: function(data) {
             console.log(data)
-			if (data.username_or_password_error) {
-				$('#username_or_password_error').fadeIn();
-			}
-			else{
-			    window.location.reload();
-			    $('#username_or_password_error').hide();
-			}
-		}
+            if (data.username_or_password_error) {
+                $('#username_or_password_error').fadeIn();
+            }
+            else {
+                window.location.reload();
+                $('#username_or_password_error').hide();
+            }
+        }
     })
     event.preventDefault();
 });
