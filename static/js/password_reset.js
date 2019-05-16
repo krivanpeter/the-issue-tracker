@@ -10,8 +10,10 @@ $.ajaxSetup({
 
 $('.forgottenpassform').on('submit', function(event) {
     var email = $('.forgottenpassform').children('#id_email').val();
+    var reset_password = 'reset_password';
     $.ajax({
         data: {
+            'reset_password': reset_password,
             'email': email,
             csrftoken: csrftoken
         },
