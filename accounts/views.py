@@ -69,11 +69,17 @@ def login(request):
     return index(request)
 
 def login_from_password_change(request):
-    login_from_pass_change = True
-    login_form = UserLoginForm()
-    reg_form = UserRegistrationForm()
-    forg_pass_form = PasswordResetForm()
-    args = {'login_from_pass_change': login_from_pass_change, 'login_form': login_form, 'reg_form': reg_form, 'forg_pass_form':forg_pass_form, 'next': request.GET.get('next', '')}
+    if request.user.is_authenticated:
+        login_form = UserLoginForm()
+        reg_form = UserRegistrationForm()
+        forg_pass_form = PasswordResetForm()
+        args = {'login_form': login_form, 'reg_form': reg_form, 'forg_pass_form':forg_pass_form, 'next': request.GET.get('next', '')}
+    else:
+        login_from_pass_change = True
+        login_form = UserLoginForm()
+        reg_form = UserRegistrationForm()
+        forg_pass_form = PasswordResetForm()
+        args = {'login_from_pass_change': login_from_pass_change, 'login_form': login_form, 'reg_form': reg_form, 'forg_pass_form':forg_pass_form, 'next': request.GET.get('next', '')}
     return render(request, "index.html", args)
 
 @login_required
