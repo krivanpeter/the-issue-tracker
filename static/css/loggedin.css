@@ -1,3 +1,50 @@
+/*-----------------NAVBAR-----------------*/
+.nav.navbar {
+    border: 0;
+}
+
+.nav-item {
+    color: white;
+}
+
+.navbar-collapse {
+    background-color: rgba(0, 0, 0, 0.45);
+}
+
+.navbar-dark .navbar-nav .nav-link{
+    color: white;
+}
+.navbar-dark .navbar-nav .nav-link:hover{
+    color: rgba(255, 255, 255, 0.5);
+}
+.logo {
+    background: url("../img/logo.png") no-repeat;
+    display: block;
+    width: 150px;
+    height: 75px;
+}
+
+.navbar-collapse{
+    background-color: transparent;
+}
+
+.navbar-nav{
+    text-align: center;
+}
+
+.fas{
+    margin-right: 10px;
+}
+/*-----------------FOOTER-----------------*/
+.community-pages-footer{
+    background-color: #343a40;
+}
+
+.fab {
+margin: 15px;
+    color: white;
+}
+/*-----------------NEWS-----------------*/
 .news_image{
     width:auto;
     max-height:300px;
