@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+{% for new in news %}
+<img class="row">
+    <div class="col-12">
+        {{ new.title }}
+    </div>
+    <div class="col-12">
+        {{ new.content}}
+    </div>
+    <img class="news_image col-12" src="{{ MEDIA_URL }}{{ new.image }}" alt="{{new.title}}">
+    <div class="col-12">
+        {{ new.tag}}
+    </div>
+    <div class="col-12">
+        {{ new.views}}
+    </div>
+    <div class="col-12">
+        {{ new.published_date}}
+    </div>
+</div>
+{% endfor %} {% endblock %}
+{% block class_swapper %}{% endblock %}
