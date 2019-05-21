@@ -10,7 +10,11 @@ $("#id_username_or_email").change(function() {
     $(this).val(id_username_or_email);
 });
 
-
+$('#id_username_or_email').on('keypress',function(e) {
+    if(e.which == 13) {
+    $('#login_button').click();
+    }
+});
 $('#id_password').on('keypress',function(e) {
     if(e.which == 13) {
     $('#login_button').click();
