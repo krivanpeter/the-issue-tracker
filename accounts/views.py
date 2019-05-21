@@ -1,23 +1,23 @@
 from django.shortcuts import render, redirect, HttpResponseRedirect, resolve_url
 from django.http import JsonResponse
-from django.utils.http import is_safe_url, urlsafe_base64_decode
+from django.utils.http import urlsafe_base64_decode
 from .forms import UserLoginForm, UserRegistrationForm
 from django.template.response import TemplateResponse
 from django.utils.encoding import force_text
 from django.contrib import messages, auth
 from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
-from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm, PasswordResetForm, SetPasswordForm
+from django.contrib.auth.forms import PasswordResetForm, SetPasswordForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import password_reset
 from django.contrib.auth.tokens import default_token_generator
 from django.core.urlresolvers import reverse
-from django.core.mail import send_mail
 from django.views.decorators.debug import sensitive_post_parameters
 from django.views.decorators.cache import never_cache
 
 
 """A view that displays the index page"""
+
 def index(request):
     data = {'data': False}
     if request.method == "POST":
@@ -36,6 +36,8 @@ def index(request):
             return JsonResponse(data)
         elif 'create_new_account' in request.POST:
             return register(request)
+        elif 'login' in request.POST:
+            return login(request)
     else:
         login_form = UserLoginForm()
         reg_form = UserRegistrationForm()
@@ -43,11 +45,6 @@ def index(request):
         args = {'login_form': login_form, 'reg_form': reg_form, 'forg_pass_form':forg_pass_form, 'next': request.GET.get('next', '')}
         return render(request, "index.html", args)
 
-def logout(request):
-    """A view that logs the user out and redirects back to the index page"""
-    auth.logout(request)
-    messages.success(request, "You have successfully logged out")
-    return redirect(reverse('index'))
 
 def login(request):
     data = {'username_or_password_error': False}
@@ -59,14 +56,33 @@ def login(request):
                                      password=request.POST['password'])
             if user:
                 auth.login(request, user)
-                messages.success(request, "You have successfully logged in")
-                return JsonResponse(data)
+                return redirect('news')
             else:
                 data['username_or_password_error'] = True
                 return JsonResponse(data)
     else:
-        user_form = UserLoginForm()
-    return index(request)
+        return index(request)
+
+def check_userdata(request):
+    data = {'username_or_password_error': False}
+    user = auth.authenticate(request.POST['username_or_email'],
+                             password=request.POST['password'])
+    if user:
+        data['username_or_password_error'] = False
+        print("PASSWORD ERROR FALSE IN CHECK_USERDATA")
+        return JsonResponse(data)
+    else:
+        data['username_or_password_error'] = True
+        print("PASSWORD ERROR TRUE IN CHECK_USERDATA")
+        return JsonResponse(data)
+
+
+def logout(request):
+    """A view that logs the user out and redirects back to the index page"""
+    auth.logout(request)
+    messages.success(request, "You have successfully logged out")
+    return redirect(reverse('index'))
+
 
 def login_from_password_change(request):
     if request.user.is_authenticated:
@@ -82,10 +98,12 @@ def login_from_password_change(request):
         args = {'login_from_pass_change': login_from_pass_change, 'login_form': login_form, 'reg_form': reg_form, 'forg_pass_form':forg_pass_form, 'next': request.GET.get('next', '')}
     return render(request, "index.html", args)
 
+
 @login_required
 def profile(request):
     """A view that displays the profile page of a logged in user"""
     return render(request, 'profile.html')
+
 
 def check_username(request):
     username = request.GET.get('username', None)
@@ -93,14 +111,16 @@ def check_username(request):
         'username_is_taken': User.objects.filter(username__iexact=username).exists()
     }
     return JsonResponse(data)
-    
+
+
 def check_email(request):
     email = request.GET.get('email', None)
     data = {
         'email_is_taken': User.objects.filter(email__iexact=email).exists()
     }
     return JsonResponse(data)
-    
+
+
 def register(request):
     """A view that manages the registration form"""
     if request.method == 'POST':

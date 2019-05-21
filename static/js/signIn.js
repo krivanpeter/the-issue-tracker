@@ -1,12 +1,5 @@
 var csrftoken = getCookie('csrftoken');
-
-$.ajaxSetup({
-    beforeSend: function(xhr, settings) {
-        if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
-            xhr.setRequestHeader("X-CSRFToken", csrftoken);
-        }
-    }
-});
+var beprevented = false;
 
 if ($('#login_from_pass_change').val() == 'True'){
     $('#loginModal').modal();
@@ -17,7 +10,42 @@ $("#id_username_or_email").change(function() {
     $(this).val(id_username_or_email);
 });
 
+
+$('#id_password').on('keypress',function(e) {
+    if(e.which == 13) {
+    $('#login_button').click();
+    }
+});
+
+$('#login_button').on('click', function(e) {
+    var username_or_email = $("#id_username_or_email").val().trim();
+    var password = $('#id_password').val();
+        $.ajax({
+            data: {
+                'username_or_email': username_or_email,
+                'password': password,
+                csrftoken: csrftoken
+            },
+            type: 'POST',
+            url: '/accounts/check_userdata/',
+            async: false,
+            success: function(data) {
+                if (data.username_or_password_error) {
+                $('#username_or_password_error').fadeIn();
+                    beprevented = true;
+                }
+                else {
+                    beprevented = false;
+                }
+            }
+        });
+});
+
+
 $('.loginform').on('submit', function(event) {
+    if (beprevented){
+        event.preventDefault();
+    }
     var username_or_email = $('#id_username_or_email').val();
     var password = $('#id_password').val();
     $.ajax({
@@ -27,20 +55,10 @@ $('.loginform').on('submit', function(event) {
             csrftoken: csrftoken
         },
         type: 'POST',
-        url: '/accounts/login/',
-        success: function(data) {
-            console.log(data)
-            if (data.username_or_password_error) {
-                $('#username_or_password_error').fadeIn();
-            }
-            else {
-                window.location.reload();
-                $('#username_or_password_error').hide();
-            }
-        }
-    })
-    event.preventDefault();
+        url: '/accounts/login/'
+    });
 });
+
 
 function getCookie(name) {
     var cookieValue = null;
@@ -62,3 +80,11 @@ function csrfSafeMethod(method) {
     // these HTTP methods do not require CSRF protection
     return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
 }
+
+$.ajaxSetup({
+    beforeSend: function(xhr, settings) {
+        if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+            xhr.setRequestHeader("X-CSRFToken", csrftoken);
+        }
+    }
+});
