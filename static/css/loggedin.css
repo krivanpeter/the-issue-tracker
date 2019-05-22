@@ -1,4 +1,7 @@
 /*-----------------NAVBAR-----------------*/
+.navbar-custom{
+    background-color: rgb(74, 74, 79);
+}
 .nav.navbar {
     border: 0;
 }
@@ -24,6 +27,12 @@
     height: 75px;
 }
 
+.logo-white-orange {
+    background: url("../img/logo_white_orange.png") no-repeat;
+    display: block;
+    width: 150px;
+    height: 75px;
+}
 .navbar-collapse{
     background-color: transparent;
 }
@@ -35,9 +44,30 @@
 .fas{
     margin-right: 10px;
 }
+
+.fas.fa-bug{
+    color: black;
+}
+
+.fas.fa-bug span {
+    font-weight: 500;
+    color: black;
+    padding-left: 5px;
+}
+
+.bugs-button{
+    background-color: #e54725;
+    color: black;
+}
+
+.bugs-button:hover{
+    background-color: #b7381d;;
+    color: #BEBEBE;
+
+}
 /*-----------------FOOTER-----------------*/
 .community-pages-footer{
-    background-color: #343a40;
+    background-color: rgb(74, 74, 79);
 }
 
 .fab {

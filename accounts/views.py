@@ -38,6 +38,8 @@ def index(request):
         elif 'login' in request.POST:
             return login(request)
     else:
+        if request.user.is_authenticated():
+            return redirect('news')
         login_form = UserLoginForm()
         reg_form = UserRegistrationForm()
         forg_pass_form = PasswordResetForm()

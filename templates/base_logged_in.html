@@ -15,9 +15,9 @@
 </head>
 
 <body>
-<nav class="navbar navbar-dark bg-dark navbar-expand-md">
+<nav class="navbar navbar-dark navbar-custom navbar-expand-md">
     <div class="container">
-        <a class="navbar-brand logo" href="{% url 'news' %}"></a>
+        <a class="navbar-brand logo-white-orange" href="{% url 'news' %}"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler"
                 aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -30,7 +30,7 @@
             </ul>
             <ul class="navbar-nav navbar-right">
                 <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fas fa-bug"></i></i>Bugs</a>
+                    <a type="button" class="btn bugs-button"><i class="fas fa-bug"><span>Bugs</span></i></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#"><i class="fas fa-laptop-code"></i>Features</a>
