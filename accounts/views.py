@@ -65,15 +65,14 @@ def login(request):
 
 def check_userdata(request):
     data = {'username_or_password_error': False}
-    user = auth.authenticate(request.POST['username_or_email'],
-                             password=request.POST['password'])
+    username_or_email = request.POST.get('username_or_email', None)
+    password = request.POST.get('password', None)
+    user = auth.authenticate(username_or_email, password=password)
     if user:
         data['username_or_password_error'] = False
-        print("PASSWORD ERROR FALSE IN CHECK_USERDATA")
         return JsonResponse(data)
     else:
         data['username_or_password_error'] = True
-        print("PASSWORD ERROR TRUE IN CHECK_USERDATA")
         return JsonResponse(data)
 
 

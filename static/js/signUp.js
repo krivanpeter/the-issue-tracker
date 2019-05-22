@@ -4,6 +4,7 @@ var usernameTaken = false;
 var emailTaken = false;
 var passwordDifferent = false;
 
+//It sends the selected username to the server, if it is already taken shows an error
 $("#id_username").change(function() {
 	var username = $(this).val().trim();
 	$(this).val(username);
@@ -26,7 +27,8 @@ $("#id_username").change(function() {
 	});
 });
 
-$("#id_email").change(function() {
+//It sends the selected email address to the server, if it is already taken shows an error
+$("#id_registration_email").change(function() {
 	var email = $(this).val().trim();
 	$(this).val(email);
 	$.ajax({
@@ -48,6 +50,7 @@ $("#id_email").change(function() {
 	});
 });
 
+//Everytime the passwords change it calls the passwordIdentity() function
 $("#id_password2").change(function() {
 	passwordIdentity();
 });
@@ -56,6 +59,7 @@ $("#id_password1").change(function() {
 	passwordIdentity();
 });
 
+//Checks if the 2 passwords are the same, if not shows an error
 function passwordIdentity() {
 	var password1 = $("#id_password1").val();
 	var password2 = $("#id_password2").val();
@@ -71,6 +75,8 @@ function passwordIdentity() {
 	}
 }
 
+//When registration form submitted, it prevents the submit if username/email address is/are taken,
+//or the passwords are different
 function regFormSubmitChecker() {
 	if (usernameTaken || emailTaken || passwordDifferent) {
 		event.preventDefault();

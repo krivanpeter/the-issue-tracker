@@ -10,18 +10,18 @@ $("#id_username_or_email").change(function() {
     $(this).val(id_username_or_email);
 });
 
-$('#id_username_or_email').on('keypress',function(e) {
+$('#id_username_or_email').on('keypress', function(event) {
     if(e.which == 13) {
-    $('#login_button').click();
+        $('#login_button').click();
     }
 });
-$('#id_password').on('keypress',function(e) {
+$('#id_password').on('keypress', function(event){
     if(e.which == 13) {
-    $('#login_button').click();
+        $('#login_button').click();
     }
 });
 
-$('#login_button').on('click', function(e) {
+$('#login_button').on('click', function(event) {
     var username_or_email = $("#id_username_or_email").val().trim();
     var password = $('#id_password').val();
         $.ajax({
@@ -59,7 +59,7 @@ $('.loginform').on('submit', function(event) {
             csrftoken: csrftoken
         },
         type: 'POST',
-        url: '/accounts/login/'
+        url: '/accounts/login/',
     });
 });
 
