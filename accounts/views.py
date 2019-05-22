@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, HttpResponseRedirect, resolve_url
-from django.http import JsonResponse
+from django.http import JsonResponse, Http404
 from django.utils.http import urlsafe_base64_decode
 from .forms import UserLoginForm, UserRegistrationForm
 from django.template.response import TemplateResponse
@@ -73,16 +73,19 @@ Necessary to be able to prevent to submit the loginform
 if user's data are incorrect
 """
 def check_userdata(request):
-    data = {'username_or_password_error': False}
-    username_or_email = request.POST.get('username_or_email', None)
-    password = request.POST.get('password', None)
-    user = auth.authenticate(username_or_email, password=password)
-    if user:
-        data['username_or_password_error'] = False
-        return JsonResponse(data)
+    if request.method == "POST":
+        data = {'username_or_password_error': False}
+        username_or_email = request.POST.get('username_or_email', None)
+        password = request.POST.get('password', None)
+        user = auth.authenticate(username_or_email, password=password)
+        if user:
+            data['username_or_password_error'] = False
+            return JsonResponse(data)
+        else:
+            data['username_or_password_error'] = True
+            return JsonResponse(data)
     else:
-        data['username_or_password_error'] = True
-        return JsonResponse(data)
+        raise Http404()
 
 
 """A view which logouts the user"""
@@ -116,20 +119,27 @@ def profile(request):
 
 """A view that checks if username exists in database"""
 def check_username(request):
-    username = request.GET.get('username', None)
-    data = {
-        'username_is_taken': User.objects.filter(username__iexact=username).exists()
-    }
-    return JsonResponse(data)
+    if request.method == "POST":
+        username = request.GET.get('username', None)
+        data = {
+            'username_is_taken': User.objects.filter(username__iexact=username).exists()
+        }
+        return JsonResponse(data)
+
+    else:
+        raise Http404()
 
 
 """A view that checks if email address exists in database"""
 def check_email(request):
-    email = request.GET.get('email', None)
-    data = {
-        'email_is_taken': User.objects.filter(email__iexact=email).exists()
-    }
-    return JsonResponse(data)
+    if request.method == "POST":
+        email = request.GET.get('email', None)
+        data = {
+            'email_is_taken': User.objects.filter(email__iexact=email).exists()
+        }
+        return JsonResponse(data)
+    else:
+        raise Http404()
 
 
 """A view that manages the registration form"""
@@ -145,17 +155,14 @@ def register(request):
             if user:
                 auth.login(request, user)
                 messages.success(request, "You have successfully registered")
-                return redirect(reverse('index'))
+                return redirect('news')
 
             else:
                 messages.error(request, "Unable to log you in at this time!")
         else:
             return login(request)
     else:
-        user_form = UserRegistrationForm()
-
-    args = {'user_form': user_form}
-    return render(request, 'register.html', args)
+        raise Http404()
 
 
 """
