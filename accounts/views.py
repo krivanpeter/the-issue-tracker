@@ -17,7 +17,6 @@ from django.views.decorators.cache import never_cache
 
 
 """A view that displays the index page"""
-
 def index(request):
     data = {'data': False}
     if request.method == "POST":
@@ -46,6 +45,10 @@ def index(request):
         return render(request, "index.html", args)
 
 
+"""
+A view checks the user's username and password
+If correct redirect to page of the logged in users
+"""
 def login(request):
     data = {'username_or_password_error': False}
     """A view that manages the login form"""
@@ -63,6 +66,12 @@ def login(request):
     else:
         return index(request)
 
+
+"""
+A view checks the user's username and password
+Necessary to be able to prevent to submit the loginform
+if user's data are incorrect
+"""
 def check_userdata(request):
     data = {'username_or_password_error': False}
     username_or_email = request.POST.get('username_or_email', None)
@@ -76,6 +85,7 @@ def check_userdata(request):
         return JsonResponse(data)
 
 
+"""A view which logouts the user"""
 def logout(request):
     """A view that logs the user out and redirects back to the index page"""
     auth.logout(request)
@@ -83,6 +93,9 @@ def logout(request):
     return redirect(reverse('index'))
 
 
+"""
+A view which logouts the user
+"""
 def login_from_password_change(request):
     if request.user.is_authenticated:
         login_form = UserLoginForm()
@@ -98,12 +111,13 @@ def login_from_password_change(request):
     return render(request, "index.html", args)
 
 
+"""A view that displays the profile page of a logged in user"""
 @login_required
 def profile(request):
-    """A view that displays the profile page of a logged in user"""
     return render(request, 'profile.html')
 
 
+"""A view that checks if username exists in database"""
 def check_username(request):
     username = request.GET.get('username', None)
     data = {
@@ -112,6 +126,7 @@ def check_username(request):
     return JsonResponse(data)
 
 
+"""A view that checks if email address exists in database"""
 def check_email(request):
     email = request.GET.get('email', None)
     data = {
@@ -120,8 +135,8 @@ def check_email(request):
     return JsonResponse(data)
 
 
+"""A view that manages the registration form"""
 def register(request):
-    """A view that manages the registration form"""
     if request.method == 'POST':
         user_form = UserRegistrationForm(request.POST)
         if user_form.is_valid():
@@ -146,6 +161,11 @@ def register(request):
     return render(request, 'register.html', args)
 
 
+"""
+View that checks the hash in a password reset link and presents a
+form for entering a new password.
+(Code from django's webpage)
+"""
 @sensitive_post_parameters()
 @never_cache
 def password_reset_confirm(request, uidb64=None, token=None,
@@ -154,10 +174,6 @@ def password_reset_confirm(request, uidb64=None, token=None,
                            set_password_form=SetPasswordForm,
                            post_reset_redirect=None,
                            current_app=None, extra_context=None):
-    """
-    View that checks the hash in a password reset link and presents a
-    form for entering a new password.
-    """
     login_form = UserLoginForm()
     UserModel = get_user_model()
     assert uidb64 is not None and token is not None  # checked by URLconf

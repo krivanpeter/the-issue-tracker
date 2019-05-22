@@ -2,11 +2,10 @@ from django.db import models
 from django.utils import timezone
 
 
-# Create your models here.
+'''
+A piece of the News
+'''
 class New(models.Model):
-    '''
-    A piece of the News
-    '''
     title = models.CharField(max_length=254, default="")
     content = models.TextField()
     created_date = models.DateTimeField(auto_now_add=True)

@@ -2,7 +2,7 @@
 $(document).ready(function() {
     changeNavBar();
 })
-/*If window resized, run the ,,changeNavBar()" function*/
+/*If window was resized, run the ,,changeNavBar()" function*/
 $(window).resize(function() {
     changeNavBar();
 });

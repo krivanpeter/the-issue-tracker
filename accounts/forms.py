@@ -3,12 +3,12 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
 
-
+# User Login Form
 class UserLoginForm(forms.Form):
     username_or_email = forms.CharField()
     password = forms.CharField(widget=forms.PasswordInput)
 
-
+# User Registration Form
 class UserRegistrationForm(UserCreationForm):
     email = forms.EmailField(required=True, label='Email', widget=forms.TextInput(
         attrs={'id': 'id_registration_email'}))
