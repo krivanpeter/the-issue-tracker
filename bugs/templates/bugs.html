@@ -1,0 +1,24 @@
+{% extends "base_logged_in.html" %}
+{% block content %}
+{% for bug in bugs %}
+<div class="row">
+    <div class="col-12">
+        {{ bug.title }}
+    </div>
+    <img class="news_image col-12" src="{{ MEDIA_URL }}{{ bug.image }}" alt="{{bug.title}}">
+    <div class="col-12">
+        {{ bug.content}}
+    </div>
+    <div class="col-12">
+        <div class="col-12">
+            {{ bug.views}}
+        </div>
+        <div class="col-12">
+            {{ bug.upvotes}}
+        </div>
+    </div>
+    <div class="col-12">
+        {{ bug.published_date}}
+    </div>
+</div>
+{% endfor %} {% endblock %}

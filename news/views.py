@@ -10,3 +10,5 @@ A view which shows all the news
 def all_news(request):
     news = New.objects.all()
     return render(request, "news.html", {"news": news})
+
+
