@@ -1,19 +1,54 @@
 {% extends "base_logged_in.html" %}
 {% block content %}
 {% for new in news %}
-<img class="row">
-    <div class="col-12">
-        {{ new.title }}
+<!-------------SMALL SCREEN------------->
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h2>{{ new.title }}</h2>
+        </div>
+        <img class="news_image col-12" src="{{ MEDIA_URL }}{{ new.image }}" alt="{{new.title}}">
+        <div class="col-12">
+            <span>{{ new.content|truncatewords:30}}<a style="color: blue;"> More</a></span>
+        </div>
     </div>
-    <div class="col-12">
-        {{ new.content}}
-    </div>
-    <img class="news_image col-12" src="{{ MEDIA_URL }}{{ new.image }}" alt="{{new.title}}">
-    <div class="col-12">
-        {{ new.views}}
-    </div>
-    <div class="col-12">
-        {{ new.published_date}}
+    <div class="row news-footer">
+        <div class="col-6 ">
+            <span>Views: {{ new.views}}</span>
+        </div>
+        <div class="col-6 ">
+            {{ new.published_date|date:"SHORT_DATE_FORMAT"}}
+        </div>
     </div>
 </div>
-{% endfor %} {% endblock %}
+{% if not forloop.last %}
+<hr class="featurette-divider">
+{% endif %}
+{% endfor %}
+{% if news.has_other_pages %}
+<div class="container">
+    <nav class="row page-nav" aria-label="News Page Navigation">
+        <ul class="col-12 pagination justify-content-center">
+            {% if news.has_previous %}
+            <li class="page-item"><a class="page-link" href="?page={{ news.previous_page_number }}">Previous</a></li>
+            {% else %}
+            <li class="page-item disabled"><a class="page-link">Previous</a></li>
+            {% endif %}
+            {% for i in news.paginator.page_range %}
+            {% if news.number == i %}
+            <li class="page-item active"><span class="page-link">{{ i }} <span class="sr-only">(current)</span></span>
+            </li>
+            {% else %}
+            <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+            {% endif %}
+            {% endfor %}
+            {% if news.has_next %}
+            <li class="page-item"><a class="page-link" href="?page={{ news.next_page_number }}">Next</a></li>
+            {% else %}
+            <li class="page-item disabled"><a class="page-link">Next</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+</div>
+{% endif %}
+{% endblock %}

@@ -65,6 +65,36 @@
     color: #BEBEBE;
 
 }
+/*-----------------NEWS-----------------*/
+.news-footer{
+    text-align: center;
+    margin-top: 10px;
+}
+/*-----------------PAGINATION------------*/
+.page-nav{
+    margin-top: 20px;
+}
+
+.pagination a {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+
+.page-item.active .page-link {
+    color: #fff;
+    background-color: #e54725;
+    border-color: transparent;
+}
+
+.page-link:hover {
+    color: black;
+    text-decoration: none;
+    background-color: #e9ecef;
+    border-color: #dee2e6;
+
+}
 /*-----------------FOOTER-----------------*/
 .community-pages-footer{
     background-color: rgb(74, 74, 79);
