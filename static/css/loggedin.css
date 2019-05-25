@@ -4,6 +4,13 @@ body{
     padding: 0;
     height: 100%;
 }
+.wrapper{
+    position: relative;
+    min-height: 100%;
+}
+.content{
+    padding-bottom: 70px;
+}
 /*-----------------NAVBAR-----------------*/
 .navbar-custom{
     background-color: rgb(74, 74, 79);
@@ -72,12 +79,8 @@ body{
 
 }
 /*-----------------NEWS-----------------*/
-.wrapper{
-    position: relative;
-    min-height: 100%;
-}
-.content{
-    padding-bottom: 70px;
+.title{
+    margin-bottom: 10px;
 }
 
 .news-footer{
@@ -127,11 +130,14 @@ margin: 15px;
 /*-----------------NEWS-----------------*/
 .news-image{
     width:auto;
-    max-height:300px;
+    max-height:225px;
 }
 /*-------------MEDIA QUERIES------------*/
 @media(min-width: 768px) {
     .news-container{
         margin-top: 30px;
     }
+    .title{
+    margin-bottom: 30px;
+}
 }
