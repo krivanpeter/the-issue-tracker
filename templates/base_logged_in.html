@@ -15,48 +15,51 @@
 </head>
 
 <body>
-<nav class="navbar navbar-dark navbar-custom navbar-expand-md">
-    <div class="container">
-        <a class="navbar-brand logo-white-orange" href="{% url 'news' %}"></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler"
-                aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarToggler">
-            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'news' %}"><i class="fas fa-home"></i>Home</a>
-                </li>
-            </ul>
-            <ul class="navbar-nav navbar-right">
-                <li class="nav-item">
-                    <a type="button" class="btn bugs-button" href="{% url 'bugs' %}"><i class="fas fa-bug"><span>Bugs</span></i></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fas fa-laptop-code"></i>Features</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'profile' %}"><i class="fas fa-address-card"></i>Profile</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i>Log Out</a>
-                </li>
-            </ul>
+<div class="wrapper">
+    <nav class="navbar navbar-dark navbar-custom navbar-expand-md">
+        <div class="container">
+            <a class="navbar-brand logo-white-orange" href="{% url 'news' %}"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler"
+                    aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarToggler">
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'news' %}"><i class="fas fa-home"></i>Home</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav navbar-right">
+                    <li class="nav-item">
+                        <a type="button" class="btn bugs-button" href="{% url 'bugs' %}"><i class="fas fa-bug"><span>Bugs</span></i></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fas fa-laptop-code"></i>Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'profile' %}"><i class="fas fa-address-card"></i>Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i>Log Out</a>
+                    </li>
+                </ul>
+            </div>
         </div>
+    </nav>
+    <div class="content">
+        {% block content %}
+        {% endblock %}
     </div>
-</nav>
-{% block content %}
-{% endblock %}
-
-<footer class="community-pages-footer">
-    <div class="d-flex justify-content-center">
-        <div>
-            <a href="#"><i class="fab fa-facebook-f fa-2x"></i></a>
-            <a href="#"><i class="fab fa-twitter fa-2x"></i></a>
-            <a href="#"><i class="fab fa-linkedin fa-2x"></i></a>
+    <footer class="community-pages-footer">
+        <div class="d-flex justify-content-center">
+            <div>
+                <a href="#"><i class="fab fa-facebook-f fa-2x"></i></a>
+                <a href="#"><i class="fab fa-twitter fa-2x"></i></a>
+                <a href="#"><i class="fab fa-linkedin fa-2x"></i></a>
+            </div>
         </div>
-    </div>
-</footer>
+    </footer>
+</div>
 </body>
 <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
         crossorigin="anonymous"></script>
