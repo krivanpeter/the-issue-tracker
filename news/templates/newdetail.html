@@ -9,20 +9,19 @@
         <a href="{% url 'new_detail' new.id %}"><img class="news_image col-12" src="{{ MEDIA_URL }}{{ new.image }}"
                                                      alt="{{new.title}}"></a>
         <div class="col-12">
-            <p>{{ new.content}}</p>
+            <div class="newdetail-content">{{ new.content|linebreaks}}</div>
         </div>
     </div>
-    <div class="row news-footer">
-        <div class="col-6 ">
-            <span>Views: {{ new.views}}</span>
+    <div class="row">
+        <div class="col-6">
+            <button type="button" class="btn btn-back" style="float: left;">Back to news</button>
         </div>
-        <div class="col-6 ">
-            {{ new.published_date|date:"SHORT_DATE_FORMAT"}}
+        <div class="col-6">
+            <span style="float: right;">{{ new.published_date|date:"SHORT_DATE_FORMAT"}}</span>
         </div>
     </div>
 </div>
 <!-------------BIG SCREEN------------->
-
 <div class="container news-container d-none d-sm-block">
     <div class="row">
         <div class="col-12">
@@ -37,6 +36,9 @@
             <img class="float-left news-detail-image" src="{{ MEDIA_URL }}{{ new.image }}" alt="{{new.title}}">
             <div class="newdetail-content">{{ new.content|linebreaks}}</div>
         </div>
+    </div>
+    <div class="row">
+        <button type="button" class="btn btn-back">Back to news</button>
     </div>
 </div>
 {% endblock %}
