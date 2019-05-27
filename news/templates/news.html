@@ -2,7 +2,7 @@
 {% block content %}
 {% for new in news %}
 <!-------------SMALL SCREEN------------->
-<div class="container news-container d-block d-sm-none">
+<div class="container news-container d-block d-md-none">
     <div class="row">
         <div class="col-12">
             <h2 class="title">{{ new.title }}</h2>
@@ -22,12 +22,12 @@
     </div>
 </div>
 {% if not forloop.last %}
-<hr class="featurette-divider d-block d-sm-none">
+<hr class="featurette-divider d-block d-md-none">
 {% endif %}
 {% endfor %}
 <!-------------BIG SCREEN------------->
 {% for new in news %}
-<div class="container news-container d-none d-sm-block">
+<div class="container news-container d-none d-md-block">
     <div class="row">
         <a class="col-4" href="{% url 'new_detail' new.id %}"><img class="news-image" src="{{ MEDIA_URL }}{{ new.image }}" alt="{{new.title}}"></a>
         <div class="col-8">
@@ -45,7 +45,7 @@
     </div>
 </div>
 {% if not forloop.last %}
-<hr class="featurette-divider d-none d-sm-block">
+<hr class="featurette-divider d-none d-md-block">
 {% endif %}
 {% endfor %}
 <!-------------PAGINATION------------->
