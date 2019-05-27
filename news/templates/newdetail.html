@@ -6,7 +6,8 @@
         <div class="col-12">
             <h2 class="title">{{ new.title }}</h2>
         </div>
-        <a href="{% url 'new_detail' new.id %}"><img class="news_image col-12" src="{{ MEDIA_URL }}{{ new.image }}" alt="{{new.title}}"></a>
+        <a href="{% url 'new_detail' new.id %}"><img class="news_image col-12" src="{{ MEDIA_URL }}{{ new.image }}"
+                                                     alt="{{new.title}}"></a>
         <div class="col-12">
             <p>{{ new.content}}</p>
         </div>
@@ -21,22 +22,21 @@
     </div>
 </div>
 <!-------------BIG SCREEN------------->
+
 <div class="container news-container d-none d-sm-block">
     <div class="row">
-        <a class="col-4" href="{% url 'new_detail' new.id %}"><img class="news-image" src="{{ MEDIA_URL }}{{ new.image }}" alt="{{new.title}}"></a>
-        <div class="col-8">
-            <h2 class="col-12 title">{{ new.title }}</h2>
-            <p class="col-12">{{ new.content}}</p>
+        <div class="col-12">
+            <h2>{{ new.title }}</h2>
+            <span class="float-right">
+                {{ new.published_date|date:"SHORT_DATE_FORMAT"}}
+            </span>
         </div>
     </div>
-    <div class="row news-footer">
-        <div class="offset-sm-4 col-4 ">
-            <span>Views: {{ new.views}}</span>
-        </div>
-        <div class="col-4">
-            {{ new.published_date|date:"SHORT_DATE_FORMAT"}}
+    <div class="row">
+        <div class="col-12">
+            <img class="float-left news-detail-image" src="{{ MEDIA_URL }}{{ new.image }}" alt="{{new.title}}">
+            <div class="newdetail-content">{{ new.content|linebreaks}}</div>
         </div>
     </div>
 </div>
-
 {% endblock %}

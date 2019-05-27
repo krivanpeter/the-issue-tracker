@@ -132,6 +132,20 @@ margin: 15px;
     width:auto;
     max-height:225px;
 }
+
+.news-detail-image{
+    width:500px;
+    max-height:auto;
+    margin: 0 10px;
+}
+
+.newdetail-content{
+    margin: 5px 10px;
+}
+
+.newdetail-content p{
+    text-align: justify;
+}
 /*-------------MEDIA QUERIES------------*/
 @media(min-width: 768px) {
     .news-container{
