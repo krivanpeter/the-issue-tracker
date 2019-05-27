@@ -160,7 +160,7 @@ margin: 15px;
     border-color: #dee2e6;
 }
 /*-------------MEDIA QUERIES------------*/
-@media(min-width: 768px) {
+@media(min-width: 767px) {
     .title{
         margin-bottom: 30px;
     }
