@@ -1,7 +1,15 @@
 {% extends "base_logged_in.html" %}
 {% block content %}
-<div>
-    <h2>Success!</h2>
-    <p>{{ user }} </p>
+<div class="container">
+    <div class="row">
+        <h2>Profile</h2>
+    </div>
+    <p><b>Username: </b>{{ user.userprofile }} </p>
+    <p><b>First name: </b>{{ user.first_name }} </p>
+    <p><b>Last name: </b>{{ user.last_name }} </p>
+    <p><b>E-mail address: </b>{{ user.email }} </p>
+    <p><b>Gender: </b>{{ user.userprofile.gender }} </p>
+    <p><b>Short Description: </b>{{ user.userprofile.description }} </p>
+
 </div>
 {% endblock %}

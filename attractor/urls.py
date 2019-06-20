@@ -1,6 +1,6 @@
 from django.conf.urls import url, include
 from django.contrib import admin
-from accounts.views import index, login_from_password_change
+from accounts.views import index, login_from_password_change, profile
 from accounts import urls as urls_accounts
 from news import urls as urls_news
 from bugs import urls as urls_bugs
@@ -11,6 +11,7 @@ urlpatterns = [
     url(r'^$', index, name='index'),
     url(r'^admin/', admin.site.urls),
     url(r'^accounts/', include(urls_accounts)),
+    url(r'^profile/$', profile, name='profile'),
     url(r'^index/$', login_from_password_change, name="login_from_password_change"),
     url(r'^news/', include(urls_news)),
     url(r'^bugs/', include(urls_bugs)),

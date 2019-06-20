@@ -109,14 +109,16 @@ def login_from_password_change(request):
         login_form = UserLoginForm()
         reg_form = UserRegistrationForm()
         forg_pass_form = PasswordResetForm()
-        args = {'login_from_pass_change': login_from_pass_change, 'login_form': login_form, 'reg_form': reg_form, 'forg_pass_form':forg_pass_form, 'next': request.GET.get('next', '')}
+        args = {'login_from_pass_change': login_from_pass_change, 'login_form': login_form,
+                'reg_form': reg_form, 'forg_pass_form': forg_pass_form, 'next': request.GET.get('next', '')}
         return render(request, "index.html", args)
 
 
 """A view that displays the profile page of a logged in user"""
 @login_required
 def profile(request):
-    return render(request, 'profile.html')
+    args = {'user': request.user}
+    return render(request, 'profile.html', args)
 
 
 """A view that checks if username exists in database"""
