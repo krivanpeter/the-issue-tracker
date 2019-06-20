@@ -87,6 +87,17 @@ body{
     text-align: center;
     margin-top: 10px;
 }
+
+.no-decor,
+.no-decor:hover,
+.no-decor:focus
+{
+    text-decoration: none;
+}
+
+.no-decor h2{
+    color: black;
+}
 /*-----------------PAGINATION------------*/
 .page-nav{
     margin-top: 20px;

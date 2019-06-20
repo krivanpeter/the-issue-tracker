@@ -5,7 +5,7 @@
 <div class="container news-container d-block d-lg-none">
     <div class="row">
         <div class="col-12">
-            <h2 class="title">{{ new.title }}</h2>
+            <a class="no-decor" href="{% url 'new_detail' new.id %}"><h2 class="title">{{ new.title }}</h2></a>
         </div>
         <a href="{% url 'new_detail' new.id %}"><img class="news_image col-12" src="{{ MEDIA_URL }}{{ new.image }}" alt="{{new.title}}"></a>
         <div class="col-12">
@@ -31,7 +31,7 @@
     <div class="row">
         <a class="col-4" href="{% url 'new_detail' new.id %}"><img class="news-image" src="{{ MEDIA_URL }}{{ new.image }}" alt="{{new.title}}"></a>
         <div class="col-8">
-            <h2 class="col-12 title">{{ new.title }}</h2>
+            <a class="no-decor" href="{% url 'new_detail' new.id %}"><h2 class="col-12 title">{{ new.title }}</h2></a>
             <p class="col-12">{{ new.content|truncatewords:30}}<a href="{% url 'new_detail' new.id %}" style="color: blue;">More</a></p>
         </div>
     </div>
