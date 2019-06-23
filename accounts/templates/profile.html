@@ -10,6 +10,7 @@
     <p><b>E-mail address: </b>{{ user.email }} </p>
     <p><b>Gender: </b>{{ user.userprofile.gender }} </p>
     <p><b>Short Description: </b>{{ user.userprofile.description }} </p>
+    <a class="btn btn-primary" type="button" href="{% url 'edit_profile' %}">Edit Profile</a>
 
 </div>
 {% endblock %}

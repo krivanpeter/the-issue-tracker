@@ -13,7 +13,7 @@ urlpatterns = [
     url(r'^accounts/', include(urls_accounts)),
     url(r'^profile/$', view_profile, name='view_profile'),
     url(r'^profile/edit$', edit_profile, name='edit_profile'),
-    url(r'^profile/change-password', change_password, name='change_password'),
+    url(r'^profile/change-password/$', change_password, name='change_password'),
     url(r'^index/$', login_from_password_change, name="login_from_password_change"),
     url(r'^news/', include(urls_news)),
     url(r'^bugs/', include(urls_bugs)),

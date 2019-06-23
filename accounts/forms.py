@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserCreationForm, UserChangeForm
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm, ReadOnlyPasswordHashField
 from django.core.exceptions import ValidationError
 
 
@@ -49,7 +49,10 @@ class UserRegistrationForm(UserCreationForm):
 
 # User Profile EditForm
 class EditProfileForm(UserChangeForm):
-
+    password = ReadOnlyPasswordHashField(label=("Password"),
+                                         help_text=("Raw passwords are not stored, so there is no way to see "
+                                                     "the password, but you can change it "
+                                                     "using <a href=\"/profile/change-password/\">this form</a>."))
     class Meta:
         model = User
         fields = (

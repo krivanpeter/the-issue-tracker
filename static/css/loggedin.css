@@ -170,6 +170,10 @@ margin: 15px;
     background-color: #e9ecef;
     border-color: #dee2e6;
 }
+/*--------------------------------------*/
+#id_password {
+    display: none;
+}
 /*-------------MEDIA QUERIES------------*/
 @media(min-width: 767px) {
     .title{
