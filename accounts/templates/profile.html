@@ -4,12 +4,12 @@
     <div class="row">
         <h2>Profile</h2>
     </div>
+    <p><img src="{{ user.userprofile.avatar.url }}" height="250"></p>
     <p><b>Username: </b>{{ user.userprofile }} </p>
     <p><b>First name: </b>{{ user.first_name }} </p>
     <p><b>Last name: </b>{{ user.last_name }} </p>
     <p><b>E-mail address: </b>{{ user.email }} </p>
     <p><b>Gender: </b>{{ user.userprofile.gender }} </p>
-    <p><b>Short Description: </b>{{ user.userprofile.description }} </p>
     <a class="btn btn-primary" type="button" href="{% url 'edit_profile' %}">Edit Profile</a>
 
 </div>

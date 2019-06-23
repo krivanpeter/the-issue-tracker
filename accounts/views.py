@@ -9,9 +9,14 @@ from django.contrib.auth.forms import (
     SetPasswordForm,
     PasswordChangeForm
 )
+from .forms import (
+    UserLoginForm,
+    UserRegistrationForm,
+    EditProfileForm,
+    EditUserForm
+)
 from django.http import JsonResponse, Http404
 from django.utils.http import urlsafe_base64_decode
-from .forms import UserLoginForm, UserRegistrationForm, EditProfileForm
 from django.template.response import TemplateResponse
 from django.utils.encoding import force_text
 from django.contrib import messages, auth
@@ -134,13 +139,22 @@ def view_profile(request):
 @login_required
 def edit_profile(request):
     if request.method == "POST":
-        form = EditProfileForm(request.POST, instance=request.user)
-        if form.is_valid():
-            form.save()
+        user_form = EditProfileForm(request.POST, instance=request.user)
+        profile_form = EditUserForm(request.POST, request.FILES, instance=request.user.userprofile)
+        if user_form.is_valid() and profile_form.is_valid():
+            profile_form.avatar = profile_form.cleaned_data['avatar']
+            user_form.save()
+            profile_form.save()
             return redirect('/profile/')
+        else:
+            return redirect('/profile/edit')
     else:
-        form = EditProfileForm(instance=request.user)
-        args = {'form': form}
+        user_form = EditProfileForm(instance=request.user)
+        profile_form = EditUserForm(instance=request.user.userprofile)
+        args = {
+            'user_form': user_form,
+            'profile_form': profile_form
+        }
         return render(request, 'editprofile.html', args)
 
 
@@ -203,6 +217,7 @@ def register(request):
 
             else:
                 messages.error(request, "Unable to log you in at this time!")
+                return redirect('index')
         else:
             return login(request)
     else:

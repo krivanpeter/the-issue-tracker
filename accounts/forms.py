@@ -2,6 +2,7 @@ from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm, ReadOnlyPasswordHashField
 from django.core.exceptions import ValidationError
+from accounts.models import UserProfile
 
 
 # User Login Form
@@ -29,7 +30,6 @@ class UserRegistrationForm(UserCreationForm):
             'username': "<span class='username_helper'>30 characters or fewer. Letters, digits and @/./+/-/_ only</span>",
         }
 
-
     def clean_email(self):
         email = self.cleaned_data.get('email')
         username = self.cleaned_data.get('username')
@@ -56,8 +56,17 @@ class EditProfileForm(UserChangeForm):
     class Meta:
         model = User
         fields = (
-            'email',
             'first_name',
             'last_name',
+            'email',
             'password'
+        )
+
+
+class EditUserForm(forms.ModelForm):
+    class Meta:
+        model = UserProfile
+        fields = (
+            'avatar',
+            'gender'
         )
