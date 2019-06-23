@@ -1,13 +1,22 @@
-from django.shortcuts import render, redirect, HttpResponseRedirect, resolve_url
+from django.shortcuts import (
+    render,
+    redirect,
+    HttpResponseRedirect,
+    resolve_url
+)
+from django.contrib.auth.forms import (
+    PasswordResetForm,
+    SetPasswordForm,
+    PasswordChangeForm
+)
 from django.http import JsonResponse, Http404
 from django.utils.http import urlsafe_base64_decode
-from .forms import UserLoginForm, UserRegistrationForm
+from .forms import UserLoginForm, UserRegistrationForm, EditProfileForm
 from django.template.response import TemplateResponse
 from django.utils.encoding import force_text
 from django.contrib import messages, auth
 from django.contrib.auth.models import User
-from django.contrib.auth import get_user_model
-from django.contrib.auth.forms import PasswordResetForm, SetPasswordForm
+from django.contrib.auth import get_user_model, update_session_auth_hash
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import password_reset
 from django.contrib.auth.tokens import default_token_generator
@@ -116,9 +125,40 @@ def login_from_password_change(request):
 
 """A view that displays the profile page of a logged in user"""
 @login_required
-def profile(request):
+def view_profile(request):
     args = {'user': request.user}
     return render(request, 'profile.html', args)
+
+
+"""A view that lets a logged in user to change the profile"""
+@login_required
+def edit_profile(request):
+    if request.method == "POST":
+        form = EditProfileForm(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            return redirect('/profile/')
+    else:
+        form = EditProfileForm(instance=request.user)
+        args = {'form': form}
+        return render(request, 'editprofile.html', args)
+
+
+"""A view that lets a logged in user to change the profile"""
+@login_required
+def change_password(request):
+    if request.method == "POST":
+        form = PasswordChangeForm(data=request.POST, user=request.user)
+        if form.is_valid():
+            form.save()
+            update_session_auth_hash(request, form.user)
+            return redirect('/profile/')
+        else:
+            return redirect('/profile/change-password/')
+    else:
+        form = PasswordChangeForm(user=request.user)
+        args = {'form': form}
+        return render(request, 'change_password.html', args)
 
 
 """A view that checks if username exists in database"""
