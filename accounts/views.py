@@ -85,7 +85,7 @@ def login(request):
 
 """
 A view checks the user's username and password
-Necessary to be able to prevent to submit the loginform
+Necessary to be able to prevent the submiting of the loginform
 if user's data are incorrect
 """
 def check_userdata(request):
@@ -177,20 +177,19 @@ def change_password(request):
 
 """A view that checks if username exists in database"""
 def check_username(request):
-    if request.method == "POST":
+    if request.method == "GET":
         username = request.GET.get('username', None)
         data = {
             'username_is_taken': User.objects.filter(username__iexact=username).exists()
         }
         return JsonResponse(data)
-
     else:
         raise Http404()
 
 
 """A view that checks if email address exists in database"""
 def check_email(request):
-    if request.method == "POST":
+    if request.method == "GET":
         email = request.GET.get('email', None)
         data = {
             'email_is_taken': User.objects.filter(email__iexact=email).exists()
