@@ -29,7 +29,8 @@
 {% for bug in bugs %}
 <div class="container news-container d-none d-lg-block">
     <div class="row">
-        <a class="col-4" href="#"><img class="news-image" src="{{ MEDIA_URL }}{{ bug.image }}" alt="{{bug.title}}"></a>
+        <p class="col-12">{{ bug.reported_by.user }}</p>
+        <a class="col-4" href="#"><img class="news-image" src="{{ MEDIA_URL }}{{ bug.reported_by.avatar }}" alt="{{bug.title}}"></a>
         <div class="col-8">
             <a class="no-decor" href="#"><h2 class="col-12 title">{{ bug.title }}</h2></a>
             <p class="col-12">{{ bug.content }}<a href="#" style="color: blue;">More</a></p>
