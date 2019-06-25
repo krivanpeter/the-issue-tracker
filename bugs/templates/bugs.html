@@ -1,5 +1,12 @@
 {% extends "base_logged_in.html" %}
 {% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-3">
+            <a type="button" class="btn btn-primary" href="{% url 'report_bug' %}"><span>Report Bug</span></a>
+        </div>
+    </div>
+</div>
 {% for bug in bugs %}
 <!-------------SMALL SCREEN------------->
 <div class="container news-container d-block d-lg-none">
@@ -7,7 +14,7 @@
         <div class="col-12">
             <a class="no-decor" href="#"><h2 class="title">{{ bug.title }}</h2></a>
         </div>
-        <a href="#"><img class="news_image col-12" src="{{ MEDIA_URL }}{{ bug.image }}" alt="{{bug.title}}"></a>
+        <a href="#"><img class="news_image col-12" src="{{ MEDIA_URL }}{{ bug.reported_by.avatar }}" alt="{{bug.title}}"></a>
         <div class="col-12">
             <p>{{ bug.content}}<a href="#" style="color: blue;">More</a></p>
         </div>
