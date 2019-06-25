@@ -11,6 +11,17 @@
     <p><b>E-mail address: </b>{{ user.email }} </p>
     <p><b>Gender: </b>{{ user.userprofile.gender }} </p>
     <a class="btn btn-primary" type="button" href="{% url 'edit_profile' %}">Edit Profile</a>
-
 </div>
+{% if bugs %}
+<div class="container">
+    <div class="row">
+        <h2>Reported Bugs</h2>
+    </div>
+    {% for bug in bugs %}
+    <div class="row">
+    {{ bug.title }}
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
 {% endblock %}
