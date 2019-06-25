@@ -1,0 +1,44 @@
+{% extends "base_logged_in.html" %}
+{% block content %}
+<!-------------SMALL SCREEN------------->
+<div class="container news-container d-block d-lg-none">
+    <div class="row">
+        <div class="col-12">
+            <h2 class="title">{{ bug.title }}</h2>
+        </div>
+        <a href="{% url 'bug_detail' bug.id %}"><img class="news_image col-12" src="{{ MEDIA_URL }}{{ bug.reported_by.avatar }}"
+                                                     alt="{{bug.title}}"></a>
+        <div class="col-12">
+            <div class="newdetail-content">{{ bug.content|linebreaks}}</div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <button type="button" class="btn btn-back" style="float: left;">Back to bugs</button>
+        </div>
+        <div class="col-6">
+            <span style="float: right;">{{ bug.published_date|date:"SHORT_DATE_FORMAT"}}</span>
+        </div>
+    </div>
+</div>
+<!-------------BIG SCREEN------------->
+<div class="container news-container d-none d-lg-block">
+    <div class="row">
+        <div class="col-12">
+            <h2>{{ bug.title }}</h2>
+            <span class="float-right">
+                {{ bug.published_date|date:"SHORT_DATE_FORMAT"}}
+            </span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <img class="float-left news-detail-image" src="{{ MEDIA_URL }}{{ bug.reported_by.avatar }}" alt="{{bug.title}}">
+            <div class="newdetail-content">{{ bug.content|linebreaks}}</div>
+        </div>
+    </div>
+    <div class="row">
+        <button type="button" class="btn btn-back">Back to bugs</button>
+    </div>
+</div>
+{% endblock %}
