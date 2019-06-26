@@ -10,9 +10,7 @@ class Bug(models.Model):
     content = models.TextField()
     created_date = models.DateTimeField(auto_now_add=True)
     published_date = models.DateTimeField(blank=True, null=True, default=timezone.now)
-    views = models.IntegerField(default=0)
     upvotes = models.IntegerField(default=0)
-    comments = models.TextField()
     reported_by = models.ForeignKey(UserProfile, on_delete=models.CASCADE, null=True)
 
     def __str__(self):

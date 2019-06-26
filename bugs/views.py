@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.contrib.contenttypes.models import ContentType
 from accounts.models import UserProfile
+from comments.models import Comment
 from .models import Bug
 from .forms import BugReportForm
 
@@ -19,9 +21,14 @@ A view which returs a single Bug object based on the ID(pk)
 '''
 def bug_detail(request, pk):
     bug = get_object_or_404(Bug, pk=pk)
-    bug.views += 1
-    bug.save()
-    return render(request, "bugdetail.html", {'bug':bug})
+    content_type = ContentType.objects.get_for_model(Bug)
+    obj_id = bug.id
+    comments = Comment.objects.filter(content_type=content_type, object_id=obj_id)
+    args = {
+        'bug': bug,
+        'comments': comments,
+    }
+    return render(request, "bugdetail.html", args)
 
 
 '''
