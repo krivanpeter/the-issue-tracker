@@ -1,6 +1,8 @@
 from django.db import models
 from django.utils import timezone
+from django.contrib.contenttypes.models import ContentType
 from accounts.models import UserProfile
+from comments.models import Comment
 
 '''
 A piece of Bug
@@ -15,4 +17,16 @@ class Bug(models.Model):
 
     def __str__(self):
         return self.title
+
+    @property
+    def comments(self):
+        instance = self
+        qs = Comment.objects.filter_by_instance(instance)
+        return qs
+
+    @property
+    def get_content_type(self):
+        instance = self
+        content_type = ContentType.objects.get_for_model(instance.__class__)
+        return content_type
 

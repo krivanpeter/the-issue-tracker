@@ -68,4 +68,9 @@
     </div>
 </div>
 {% endfor %}
+<form method="POST">
+    {% csrf_token%}
+    {{ comment_form }}
+    <input type="submit" value="Send">
+</form>
 {% endblock %}

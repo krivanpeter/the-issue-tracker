@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.contenttypes.models import ContentType
 from accounts.models import UserProfile
+from comments.forms import CommentForm
 from comments.models import Comment
 from .models import Bug
 from .forms import BugReportForm
@@ -21,12 +22,31 @@ A view which returs a single Bug object based on the ID(pk)
 '''
 def bug_detail(request, pk):
     bug = get_object_or_404(Bug, pk=pk)
-    content_type = ContentType.objects.get_for_model(Bug)
-    obj_id = bug.id
-    comments = Comment.objects.filter(content_type=content_type, object_id=obj_id)
+    comments = bug.comments
+    initial_data = {
+        "content_type": bug.get_content_type,
+        "object_id": bug.id
+    }
+    form = CommentForm(request.POST or None, initial=initial_data)
+    if form.is_valid():
+        user = UserProfile.objects.get(user=request.user)
+        c_type = form.cleaned_data.get("content_type")
+        content_type = ContentType.objects.get(model=c_type)
+        obj_id = form.cleaned_data.get("object_id")
+        content_data = form.cleaned_data.get("content")
+        new_comment, created = Comment.objects.get_or_create(
+                                user=user,
+                                content_type=content_type,
+                                object_id=obj_id,
+                                content=content_data
+                            )
+        if created:
+            print("Yeah, it worked!!!")
+
     args = {
         'bug': bug,
         'comments': comments,
+        'comment_form': form,
     }
     return render(request, "bugdetail.html", args)
 
