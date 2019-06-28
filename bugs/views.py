@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.contenttypes.models import ContentType
+from django.http import HttpResponseRedirect
 from accounts.models import UserProfile
 from comments.forms import CommentForm
 from comments.models import Comment
@@ -40,6 +41,7 @@ def bug_detail(request, pk):
                                 object_id=obj_id,
                                 content=content_data
                             )
+        return HttpResponseRedirect(new_comment.content_object.get_absolute_url())
     args = {
         'bug': bug,
         'comments': comments,

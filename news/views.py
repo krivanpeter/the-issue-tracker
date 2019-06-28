@@ -22,7 +22,6 @@ def all_news(request):
         news = paginator.page(1)
     except EmptyPage:
         news = paginator.page(paginator.num_pages)
-
     return render(request, 'news.html', {'news': news})
 
 

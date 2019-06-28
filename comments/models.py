@@ -22,3 +22,19 @@ class Comment(models.Model):
     published_date = models.DateTimeField(blank=True, null=True, default=timezone.now)
     upvotes = models.IntegerField(default=0)
     objects = CommentManager()
+    parent = models.ForeignKey("self", null=True, blank=True)
+
+    class Meta:
+        ordering = ['-published_date']
+
+    def __str__(self):
+        return str(self.user) + str(self.published_date.strftime('- %d %B - %H:%M'))
+
+    # Replies
+    def children(self):
+        return Comment.objects.filter(parent=self)
+
+    def is_parent(self):
+        if self.parent is not None:
+            return False
+        return True

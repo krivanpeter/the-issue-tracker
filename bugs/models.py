@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from django.core.urlresolvers import reverse
 from django.contrib.contenttypes.models import ContentType
 from accounts.models import UserProfile
 from comments.models import Comment
@@ -17,6 +18,9 @@ class Bug(models.Model):
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse("bug_detail", kwargs={"pk": self.pk})
 
     @property
     def comments(self):
