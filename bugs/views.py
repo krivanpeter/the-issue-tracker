@@ -40,9 +40,6 @@ def bug_detail(request, pk):
                                 object_id=obj_id,
                                 content=content_data
                             )
-        if created:
-            print("Yeah, it worked!!!")
-
     args = {
         'bug': bug,
         'comments': comments,
