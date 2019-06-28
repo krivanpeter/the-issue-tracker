@@ -172,23 +172,37 @@ margin: 15px;
 }
 
 /*-------------COMMENTS------------*/
+.comment-input {
+        resize: none;
+}
+
 .img-circle {
     border-radius: 50%;
 }
+
 .comment-wrapper .panel-body {
-    max-height:650px;
     overflow:auto;
 }
 
+.comment-wrapper .media-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
 .comment-wrapper .media-list .media img {
-    width:64px;
-    height:64px;
+    width:75px;
+    height:75px;
     border:2px solid #e5e7e8;
 }
 
 .comment-wrapper .media-list .media {
     border-bottom:1px dashed #efefef;
     margin-bottom:25px;
+}
+
+.comment-wrapper .media-list .media-body{
+    margin-left: 20px;
 }
 
 /*--------------------------------------*/
@@ -206,5 +220,10 @@ margin: 15px;
     .newdetail-content{
     margin: 5px 10px;
     }
-
+    .comment-container{
+    padding-left: 15px;
+    }
+    .comment-wrapper .media-list {
+    list-style-type: none;
+    }
 }

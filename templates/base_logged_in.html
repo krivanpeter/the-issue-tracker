@@ -54,40 +54,49 @@
     </div>
     {% if comments %}
     <!-------------COMMENTS------------->
-    <div class="content container">
+    <div class="content container comment-container">
         <div class="row">
-            <div class="col-md-6 offset-md-2">
+            <div class="col-12">
                 <div class="comment-wrapper">
                     <div class="panel panel-info">
-                        <div class="panel-heading">
-                            Comment panel
-                        </div>
-                        <div class="panel-body">
-                            <form method="POST">
-                                {% csrf_token%}
-                                {{ comment_form | as_bootstrap }}
-                                <input type="submit" class="btn btn-info pull-right" value="Send">
-                            </form>
-                            <br>
-                            <div class="clearfix"></div>
+                        <h4 class="panel-heading">
                             <hr>
+                            Comments
+                            <hr>
+                        </h4>
+                        <div class="panel-body">
+                            <br>
                             <ul class="media-list">
                                 {% for comment in comments %}
                                 <li class="media">
-                                    <a href="#" class="pull-left">
+                                    <a class="d-none d-md-block" href="#">
                                         <img src="{{ MEDIA_URL }}{{ comment.user.avatar }}" alt="" class="img-circle">
                                     </a>
                                     <div class="media-body">
-                                <span class="text-muted pull-right">
-                                    <small class="text-muted">{{ comment.published_date|timesince}} ago</small>
-                                </span>
-                                        <strong class="text-success">@{{ comment.user.user }}</strong>
-                                        <p>
-                                            {{ comment.content }}</a>.
-                                        </p>
+                                        <strong><a class="no-decor" style="color: #e54725;" href="#">@{{ comment.user.user }}</a></strong>
+                                        <span class="text-muted">
+                                            <small class="text-muted">{{ comment.published_date|timesince}} ago</small>
+                                        </span>
+                                        <p>{{ comment.content }}</p>
                                     </div>
                                 </li>
                                 {% endfor %}
+                                <hr>
+                                <li class="media">
+                                    <a class="d-none d-md-block" href="#">
+                                        <img src="{{ MEDIA_URL }}{{ user.userprofile.avatar }}" alt=""
+                                             class="img-circle">
+                                    </a>
+                                    <div class="media-body">
+                                        <p>
+                                        <form method="POST">
+                                            {% csrf_token%}
+                                            {{ comment_form | as_bootstrap }}
+                                            <input type="submit" class="btn bugs-button" style="color: white;" value="Send">
+                                        </form>
+                                        </p>
+                                    </div>
+                                </li>
                             </ul>
                         </div>
                     </div>
