@@ -16,7 +16,6 @@ def all_news(request):
     news_list = New.objects.all().order_by('-published_date')
     page = request.GET.get('page', 1)
     paginator = Paginator(news_list, 5)
-
     try:
         news = paginator.page(page)
     except PageNotAnInteger:

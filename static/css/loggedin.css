@@ -170,6 +170,27 @@ margin: 15px;
     background-color: #e9ecef;
     border-color: #dee2e6;
 }
+
+/*-------------COMMENTS------------*/
+.img-circle {
+    border-radius: 50%;
+}
+.comment-wrapper .panel-body {
+    max-height:650px;
+    overflow:auto;
+}
+
+.comment-wrapper .media-list .media img {
+    width:64px;
+    height:64px;
+    border:2px solid #e5e7e8;
+}
+
+.comment-wrapper .media-list .media {
+    border-bottom:1px dashed #efefef;
+    margin-bottom:25px;
+}
+
 /*--------------------------------------*/
 #id_password {
     display: none;

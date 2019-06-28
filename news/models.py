@@ -20,7 +20,7 @@ class New(models.Model):
     @property
     def comments(self):
         instance = self
-        qs = Comment.objects.filter_by_instance(instance)
+        qs = Comment.objects.filter_by_instance(instance).order_by('-published_date')
         return qs
 
     @property

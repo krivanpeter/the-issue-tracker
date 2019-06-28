@@ -41,36 +41,4 @@
         <button type="button" class="btn btn-back">Back to bugs</button>
     </div>
 </div>
-<!-------------COMMENTS------------->
-<div class="container">
-    <div class="row">
-        <div class="col-12">
-            <h2 class="title">Comments</h2>
-        </div>
-    </div>
-</div>
-{% for comment in comments %}
-<div class="container">
-    <div class="row">
-        <p class="col-12">{{ comment.user.user }}</p>
-        <img class="news-image" src="{{ MEDIA_URL }}{{ comment.user.avatar }}"></a>
-        <div class="col-8">
-            <p class="col-12">{{ comment.content }}</p>
-        </div>
-    </div>
-    <div class="row news-footer">
-        <div class="offset-sm-4 col-4 ">
-            <span>Upvotes: {{ comment.upvotes}}</span>
-        </div>
-        <div class="col-4">
-            {{ comment.published_date|timesince}} ago
-        </div>
-    </div>
-</div>
-{% endfor %}
-<form method="POST">
-    {% csrf_token%}
-    {{ comment_form }}
-    <input type="submit" value="Send">
-</form>
 {% endblock %}

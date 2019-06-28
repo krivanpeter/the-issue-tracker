@@ -1,4 +1,5 @@
 {% load staticfiles %}
+{% load bootstrap_tags %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -37,7 +38,8 @@
                         <a class="nav-link" href="#"><i class="fas fa-laptop-code"></i>Features</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'view_profile' %}"><i class="fas fa-address-card"></i>Profile</a>
+                        <a class="nav-link" href="{% url 'view_profile' %}"><i
+                                class="fas fa-address-card"></i>Profile</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i>Log Out</a>
@@ -50,6 +52,51 @@
         {% block content %}
         {% endblock %}
     </div>
+    {% if comments %}
+    <!-------------COMMENTS------------->
+    <div class="content container">
+        <div class="row">
+            <div class="col-md-6 offset-md-2">
+                <div class="comment-wrapper">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            Comment panel
+                        </div>
+                        <div class="panel-body">
+                            <form method="POST">
+                                {% csrf_token%}
+                                {{ comment_form | as_bootstrap }}
+                                <input type="submit" class="btn btn-info pull-right" value="Send">
+                            </form>
+                            <br>
+                            <div class="clearfix"></div>
+                            <hr>
+                            <ul class="media-list">
+                                {% for comment in comments %}
+                                <li class="media">
+                                    <a href="#" class="pull-left">
+                                        <img src="{{ MEDIA_URL }}{{ comment.user.avatar }}" alt="" class="img-circle">
+                                    </a>
+                                    <div class="media-body">
+                                <span class="text-muted pull-right">
+                                    <small class="text-muted">{{ comment.published_date|timesince}} ago</small>
+                                </span>
+                                        <strong class="text-success">@{{ comment.user.user }}</strong>
+                                        <p>
+                                            {{ comment.content }}</a>.
+                                        </p>
+                                    </div>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-------------------------->
+    {% endif %}
     <footer class="community-pages-footer">
         <div class="d-flex justify-content-center">
             <div>
