@@ -104,7 +104,44 @@
             </div>
         </div>
     </div>
+    {% endif %}
     <!-------------------------->
+    {% if comment_form and not comments %}
+        <div class="content container comment-container">
+        <div class="row">
+            <div class="col-12">
+                <div class="comment-wrapper">
+                    <div class="panel panel-info">
+                        <h4 class="panel-heading">
+                            <hr>
+                            Comments
+                            <hr>
+                        </h4>
+                        <div class="panel-body">
+                            <br>
+                            <ul class="media-list">
+                                <li class="media">
+                                    <a class="d-none d-md-block" href="#">
+                                        <img src="{{ MEDIA_URL }}{{ user.userprofile.avatar }}" alt=""
+                                             class="img-circle">
+                                    </a>
+                                    <div class="media-body">
+                                        <p>
+                                        <form method="POST">
+                                            {% csrf_token%}
+                                            {{ comment_form | as_bootstrap }}
+                                            <input type="submit" class="btn bugs-button" style="color: white;" value="Send">
+                                        </form>
+                                        </p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     {% endif %}
     <footer class="community-pages-footer">
         <div class="d-flex justify-content-center">

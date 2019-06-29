@@ -21,8 +21,8 @@ def all_bugs(request):
 '''
 A view which returs a single Bug object based on the ID(pk)
 '''
-def bug_detail(request, pk):
-    bug = get_object_or_404(Bug, pk=pk)
+def bug_detail(request, slug=None):
+    bug = get_object_or_404(Bug, slug=slug)
     comments = bug.comments
     initial_data = {
         "content_type": bug.get_content_type,
