@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.contenttypes.models import ContentType
@@ -6,6 +6,7 @@ from accounts.models import UserProfile
 from comments.forms import CommentForm
 from comments.models import Comment
 from .models import New
+from .forms import CreateNewForm
 
 
 '''
@@ -25,10 +26,8 @@ def all_news(request):
     return render(request, 'news.html', {'news': news})
 
 
-'''
-A view which returs a single New object based on the ID(pk)
-'''
 def new_detail(request, pk):
+    # A view which returns a single New object based on the ID(pk)
     new = get_object_or_404(New, pk=pk)
     comments = new.comments
     new.views += 1
@@ -56,3 +55,20 @@ def new_detail(request, pk):
         'comment_form': form,
     }
     return render(request, "newdetail.html", args)
+
+
+def create_new(request):
+    if request.method == "POST":
+        new_form = CreateNewForm(request.POST)
+        if new_form.is_valid():
+            new_form = new_form.save(commit=False)
+            new_form.save()
+            return redirect('/news/')
+        else:
+            return redirect('/news/')
+    else:
+        new_form = CreateNewForm()
+        args = {
+            'new_form': new_form
+        }
+        return render(request, 'create_new.html', args)

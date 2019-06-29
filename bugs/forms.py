@@ -2,7 +2,7 @@ from django import forms
 from bugs.models import Bug
 
 
-# User Login Form
+# Bug Report Form
 class BugReportForm(forms.ModelForm):
     class Meta:
         model = Bug

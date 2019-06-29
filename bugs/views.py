@@ -64,8 +64,8 @@ def report_bug(request):
         else:
             return redirect('/bugs/')
     else:
-        new_bug_from = BugReportForm()
+        new_bug_form = BugReportForm()
         args = {
-            'new_bug_from': new_bug_from
+            'new_bug_form': new_bug_form
         }
         return render(request, 'reportbug.html', args)
