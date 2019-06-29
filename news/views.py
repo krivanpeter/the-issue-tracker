@@ -26,9 +26,9 @@ def all_news(request):
     return render(request, 'news.html', {'news': news})
 
 
-def new_detail(request, pk):
+def new_detail(request, slug=None):
     # A view which returns a single New object based on the ID(pk)
-    new = get_object_or_404(New, pk=pk)
+    new = get_object_or_404(New, slug=slug)
     comments = new.comments
     new.views += 1
     new.save()
@@ -59,13 +59,14 @@ def new_detail(request, pk):
 
 def create_new(request):
     if request.method == "POST":
-        new_form = CreateNewForm(request.POST)
+        new_form = CreateNewForm(request.POST, request.FILES)
         if new_form.is_valid():
-            new_form = new_form.save(commit=False)
-            new_form.save()
-            return redirect('/news/')
+            form = new_form.save(commit=False)
+            form.save()
+            return redirect('/create-new/')
         else:
-            return redirect('/news/')
+            print(new_form.errors)
+            return redirect('/create-new/')
     else:
         new_form = CreateNewForm()
         args = {

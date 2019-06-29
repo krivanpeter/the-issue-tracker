@@ -62,7 +62,7 @@ def report_bug(request):
             form.save()
             return redirect('/bugs/')
         else:
-            return redirect('/bugs/')
+            return redirect('/reportbug/')
     else:
         new_bug_form = BugReportForm()
         args = {

@@ -21,7 +21,7 @@ class New(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return reverse("new_detail", kwargs={"pk": self.pk})
+        return reverse("new_detail", kwargs={"slug": self.slug})
 
     @property
     def comments(self):
