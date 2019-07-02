@@ -78,23 +78,31 @@
                                             <small class="text-muted">{{ comment.published_date|timesince}} ago</small>
                                         </span>
                                         <p>{{ comment.content }}</p>
+                                        <a class="comment-reply-btn no-decor" href="#">
+                                            <i class="fas fa-reply"></i>
+                                            {% if comment.children.count > 0 %}
+                                                Comment{% if comment.children.count > 1 %}s{% endif %}
+                                                    {{ comment.children.count }}
+                                            {% endif %}
+                                        </a>
                                     </div>
                                 </li>
-                                {% for child_comment in comment.children %}
+                                <div class="comment-reply" style="display: none">
+                                    {% for child_comment in comment.children %}
+                                        <li class="media offset-1">
+                                            <a class="d-none d-md-block" href="#">
+                                                <img src="{{ MEDIA_URL }}{{ child_comment.user.avatar }}" alt="" class="img-circle">
+                                            </a>
+                                            <div class="media-body">
+                                                <strong><a class="no-decor" style="color: #e54725;" href="#">@{{ child_comment.user.user }}</a></strong>
+                                                <span class="text-muted">
+                                                    <small class="text-muted">{{ child_comment.published_date|timesince}} ago</small>
+                                                </span>
+                                                <p>{{ child_comment.content }}</p>
+                                            </div>
+                                        </li>
+                                    {% endfor %}
                                 <li class="media offset-1">
-                                    <a class="d-none d-md-block" href="#">
-                                        <img src="{{ MEDIA_URL }}{{ child_comment.user.avatar }}" alt="" class="img-circle">
-                                    </a>
-                                    <div class="media-body">
-                                        <strong><a class="no-decor" style="color: #e54725;" href="#">@{{ child_comment.user.user }}</a></strong>
-                                        <span class="text-muted">
-                                            <small class="text-muted">{{ child_comment.published_date|timesince}} ago</small>
-                                        </span>
-                                        <p>{{ child_comment.content }}</p>
-                                    </div>
-                                </li>
-                                {% endfor %}
-                                <li class="media">
                                     <a class="d-none d-md-block" href="#">
                                         <img src="{{ MEDIA_URL }}{{ user.userprofile.avatar }}" alt=""
                                              class="img-circle">
@@ -110,6 +118,7 @@
                                         </p>
                                     </div>
                                 </li>
+                                </div>
                                 {% endfor %}
                                 <hr>
                                 <li class="media">
@@ -192,5 +201,5 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
-<script src="{% static 'js/back_button.js'%}"></script>
+<script src="{% static 'js/buttons.js'%}"></script>
 </html>
