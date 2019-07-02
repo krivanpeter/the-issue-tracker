@@ -80,6 +80,36 @@
                                         <p>{{ comment.content }}</p>
                                     </div>
                                 </li>
+                                {% for child_comment in comment.children %}
+                                <li class="media offset-1">
+                                    <a class="d-none d-md-block" href="#">
+                                        <img src="{{ MEDIA_URL }}{{ child_comment.user.avatar }}" alt="" class="img-circle">
+                                    </a>
+                                    <div class="media-body">
+                                        <strong><a class="no-decor" style="color: #e54725;" href="#">@{{ child_comment.user.user }}</a></strong>
+                                        <span class="text-muted">
+                                            <small class="text-muted">{{ child_comment.published_date|timesince}} ago</small>
+                                        </span>
+                                        <p>{{ child_comment.content }}</p>
+                                    </div>
+                                </li>
+                                {% endfor %}
+                                <li class="media">
+                                    <a class="d-none d-md-block" href="#">
+                                        <img src="{{ MEDIA_URL }}{{ user.userprofile.avatar }}" alt=""
+                                             class="img-circle">
+                                    </a>
+                                    <div class="media-body">
+                                        <p>
+                                        <form method="POST">
+                                            {% csrf_token%}
+                                            {{ comment_form | as_bootstrap }}
+                                            <input type="hidden" name="parent_id" value="{{ comment.id }}">
+                                            <input type="submit" class="btn bugs-button" style="color: white;" value="Reply">
+                                        </form>
+                                        </p>
+                                    </div>
+                                </li>
                                 {% endfor %}
                                 <hr>
                                 <li class="media">
