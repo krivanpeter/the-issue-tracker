@@ -14,12 +14,13 @@ $("#id_username_or_email").change(function() {
 
 //At login form is 'enter' pushed login_button click event is called
 $('#id_username_or_email').on('keypress', function(event) {
-    if(e.which == 13) {
+    if(event.which == 13 && $(this).val() != "") {
+        console.log($(this).val() != "");
         $('#login_button').click();
     }
 });
 $('#id_password').on('keypress', function(event){
-    if(e.which == 13) {
+    if(event.which == 13 && $(this).val() != "") {
         $('#login_button').click();
     }
 });
@@ -27,33 +28,35 @@ $('#id_password').on('keypress', function(event){
 //Sends the data to the server to check if those were correct
 //Returns true/false to be the value of 'beprevented'
 $('#login_button').on('click', function(event) {
-    var username_or_email = $("#id_username_or_email").val().trim();
-    var password = $('#id_password').val();
-        $.ajax({
-            data: {
-                'username_or_email': username_or_email,
-                'password': password,
-                csrftoken: csrftoken
-            },
-            type: 'POST',
-            url: '/accounts/check_userdata/',
-            async: false,
-            success: function(data) {
-                if (data.username_or_password_error) {
-                $('#username_or_password_error').fadeIn();
-                    beprevented = true;
+    if($('#id_username_or_email').val() != ""){
+        var username_or_email = $("#id_username_or_email").val().trim();
+        var password = $('#id_password').val();
+            $.ajax({
+                data: {
+                    'username_or_email': username_or_email,
+                    'password': password,
+                    csrftoken: csrftoken
+                },
+                type: 'POST',
+                url: '/accounts/check_userdata/',
+                async: false,
+                success: function(data) {
+                    if (data.username_or_password_error) {
+                    $('#username_or_password_error').fadeIn();
+                        beprevented = true;
+                    }
+                    else {
+                        beprevented = false;
+                    }
                 }
-                else {
-                    beprevented = false;
-                }
-            }
-        });
+            });
+        }
 });
 
 //Sends the user's data to the server
 $('.loginform').on('submit', function(event) {
 //If the user's auth failed submit prevented
-    if (beprevented){
+    if (beprevented || $('#id_username_or_email').val() != ""){
         event.preventDefault();
     }
     var username_or_email = $('#id_username_or_email').val();
