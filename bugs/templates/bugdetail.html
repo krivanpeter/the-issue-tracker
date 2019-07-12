@@ -38,6 +38,15 @@
         </div>
     </div>
     <div class="row">
+        {% for bugimage in bug.images.all %}
+            {% if bugimage.image %}
+              <div class="col-md-3">
+                <img src="{{ bugimage.image.url }}" alt="Image Not Found" class="img-thumbnail">
+              </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+    <div class="row">
         <button type="button" class="btn btn-back">Back to bugs</button>
     </div>
 </div>

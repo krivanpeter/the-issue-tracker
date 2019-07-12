@@ -18,6 +18,9 @@ class Bug(models.Model):
     reported_by = models.ForeignKey(UserProfile, on_delete=models.CASCADE, null=True)
     slug = models.SlugField(unique=True)
 
+    class Meta:
+        ordering = ['-upvotes']
+
     def __str__(self):
         return self.title
 
@@ -52,6 +55,14 @@ def create_slug(instance, new_slug=None):
 def pre_save_bug_receiver(sender, instance, *args, **kwargs):
     if not instance.slug:
         instance.slug = create_slug(instance)
+
+
+class BugImages(models.Model):
+    bug = models.ForeignKey(Bug, related_name='images', default="None")
+    image = models.ImageField(upload_to="bugs_images", null=True, blank=True)
+
+    def __str__(self):
+        return str(self.bug.id)
 
 
 pre_save.connect(pre_save_bug_receiver, sender=Bug)

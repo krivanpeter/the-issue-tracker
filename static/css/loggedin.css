@@ -67,7 +67,7 @@ body{
     color: black;
     padding-left: 5px;
 }
-
+/*-----------------BUGS-----------------*/
 .bugs-button{
     background-color: #e54725;
     color: black;
@@ -76,7 +76,9 @@ body{
 .bugs-button:hover{
     background-color: #b7381d;;
     color: #BEBEBE;
-
+}
+#id_content{
+    resize: none;
 }
 /*-----------------NEWS-----------------*/
 .title{
@@ -173,7 +175,7 @@ margin: 15px;
 
 /*-------------COMMENTS------------*/
 .comment-input {
-        resize: none;
+     resize: none;
 }
 
 .img-circle {

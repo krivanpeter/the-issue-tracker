@@ -56,7 +56,7 @@ $('#login_button').on('click', function(event) {
 //Sends the user's data to the server
 $('.loginform').on('submit', function(event) {
 //If the user's auth failed submit prevented
-    if (beprevented || $('#id_username_or_email').val() != ""){
+    if (beprevented || $('#id_username_or_email').val() == ""){
         event.preventDefault();
     }
     var username_or_email = $('#id_username_or_email').val();

@@ -1,12 +1,18 @@
 {% extends "base_logged_in.html" %}
+{% load bootstrap_tags %}
 {% block content %}
 <div class="container">
     <div class="row">
         <h2>Report New Bug</h2>
     </div>
-        <form method="POST">
+        <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
-            {{new_bug_form.as_p}}
+            {{new_bug_form | as_bootstrap}}
+            {{ bug_img_form.management_form }}
+                {% for form in bug_img_form %}
+                    {{ form }}
+                {% endfor %}
+            <br>
             <button type="submit">Submit</button>
         </form>
 </div>
