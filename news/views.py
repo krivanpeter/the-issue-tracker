@@ -30,9 +30,10 @@ def all_news(request):
 def new_detail(request, slug=None):
     # A view which returns a single New object based on the ID(pk)
     new = get_object_or_404(New, slug=slug)
-    comments = new.comments
     new.views += 1
     new.save()
+
+    comments = new.comments
     initial_data = {
         "content_type": new.get_content_type,
         "object_id": new.id
@@ -63,6 +64,7 @@ def new_detail(request, slug=None):
                                 parent=parent_obj,
                             )
         return HttpResponseRedirect(new_comment.content_object.get_absolute_url())
+
     args = {
         'new': new,
         'comments': comments,
