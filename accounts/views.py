@@ -25,7 +25,7 @@ from django.contrib.auth import get_user_model, update_session_auth_hash
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import password_reset
 from django.contrib.auth.tokens import default_token_generator
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.views.decorators.debug import sensitive_post_parameters
 from django.views.decorators.cache import never_cache
 from bugs.models import Bug

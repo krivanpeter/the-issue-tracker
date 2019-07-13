@@ -4,7 +4,7 @@ from django.db.models.signals import post_save
 
 
 class UserProfile(models.Model):
-    user = models.OneToOneField(User)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     GENDER_CHOICES = (
         ('M', 'Male'),
         ('F', 'Female')

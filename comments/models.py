@@ -26,7 +26,7 @@ class Comment(models.Model):
     published_date = models.DateTimeField(blank=True, null=True, default=timezone.now)
     upvotes = models.IntegerField(default=0)
     objects = CommentManager()
-    parent = models.ForeignKey("self", null=True, blank=True)
+    parent = models.ForeignKey("self", on_delete=models.CASCADE, null=True, blank=True)
 
     class Meta:
         ordering = ['-published_date']

@@ -1,7 +1,7 @@
 from accounts.models import UserProfile
 from comments.models import Comment
 from django.contrib.contenttypes.models import ContentType
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.db import models
 from django.db.models.signals import pre_save
 from django.utils import timezone
@@ -58,7 +58,7 @@ def pre_save_bug_receiver(sender, instance, *args, **kwargs):
 
 
 class BugImages(models.Model):
-    bug = models.ForeignKey(Bug, related_name='images', default="None")
+    bug = models.ForeignKey(Bug, on_delete=models.CASCADE, related_name='images', default="None")
     image = models.ImageField(upload_to="bugs_images", null=True, blank=True)
 
     def __str__(self):
