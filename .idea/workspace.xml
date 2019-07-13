@@ -2,13 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="87ce0953-7b2c-41c1-be27-93881aa7f7a8" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/accounts/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/urls_reset.py" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/urls_reset.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/attractor/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/attractor/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bugs/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/bugs/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/comments/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/comments/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/news/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/news/models.py" afterDir="false" />
     </list>
     <ignored path=".idea/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -43,10 +38,10 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/attractor/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="308">
-              <caret line="93" column="5" selection-start-line="88" selection-start-column="4" selection-end-line="93" selection-end-column="5" />
+            <state relative-caret-position="216">
+              <caret line="12" column="2" selection-start-line="12" selection-start-column="2" selection-end-line="12" selection-end-column="2" />
               <folding>
-                <element signature="e#311#321#0" expanded="true" />
+                <element signature="e#324#333#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -734,10 +729,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/attractor/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="93" column="5" selection-start-line="88" selection-start-column="4" selection-end-line="93" selection-end-column="5" />
+        <state relative-caret-position="216">
+          <caret line="12" column="2" selection-start-line="12" selection-start-column="2" selection-end-line="12" selection-end-column="2" />
           <folding>
-            <element signature="e#311#321#0" expanded="true" />
+            <element signature="e#324#333#0" expanded="true" />
           </folding>
         </state>
       </provider>
