@@ -2,11 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="87ce0953-7b2c-41c1-be27-93881aa7f7a8" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/test_forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/test_forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/test_views.py" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/test_views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/accounts/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/attractor/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/attractor/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/js/signIn.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/signIn.js" afterDir="false" />
     </list>
     <ignored path=".idea/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -17,13 +15,34 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/accounts/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="49">
+              <caret line="114" column="28" selection-start-line="114" selection-start-column="28" selection-end-line="114" selection-end-column="28" />
+              <folding>
+                <element signature="e#0#100#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/static/js/signIn.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="409">
+              <caret line="70" column="5" selection-start-line="70" selection-start-column="5" selection-end-line="70" selection-end-column="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/attractor/settings.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="216">
-              <caret line="12" selection-start-line="12" selection-end-line="12" />
+              <caret line="12" column="2" selection-start-line="12" selection-start-column="2" selection-end-line="12" selection-end-column="2" />
               <folding>
-                <element signature="e#312#321#0" expanded="true" />
+                <element signature="e#323#332#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -41,9 +60,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>sender</find>
-      <find>from</find>
-      <find>button</find>
       <find>btn</find>
       <find>create_new</find>
       <find>mess</find>
@@ -70,6 +86,9 @@
       <find>import User</find>
       <find>response</find>
       <find>check_username</find>
+      <find>logout</find>
+      <find>auth</find>
+      <find>check_user</find>
       <find>check_userdata</find>
     </findStrings>
   </component>
@@ -122,13 +141,13 @@
         <option value="$PROJECT_DIR$/bugs/models.py" />
         <option value="$PROJECT_DIR$/accounts/urls_reset.py" />
         <option value="$PROJECT_DIR$/accounts/templates/index.html" />
-        <option value="$PROJECT_DIR$/static/js/signIn.js" />
         <option value="$PROJECT_DIR$/accounts/forms.py" />
         <option value="$PROJECT_DIR$/bugs/test_views.py" />
         <option value="$PROJECT_DIR$/news/test_views.py" />
         <option value="$PROJECT_DIR$/accounts/test_forms.py" />
         <option value="$PROJECT_DIR$/accounts/test_views.py" />
         <option value="$PROJECT_DIR$/accounts/views.py" />
+        <option value="$PROJECT_DIR$/static/js/signIn.js" />
         <option value="$PROJECT_DIR$/attractor/settings.py" />
       </list>
     </option>
@@ -156,28 +175,7 @@
             <path>
               <item name="unicorn-attractor" type="b2602c69:ProjectViewProjectNode" />
               <item name="unicorn-attractor" type="462c0819:PsiDirectoryNode" />
-              <item name="accounts" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="unicorn-attractor" type="b2602c69:ProjectViewProjectNode" />
-              <item name="unicorn-attractor" type="462c0819:PsiDirectoryNode" />
-              <item name="accounts" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="unicorn-attractor" type="b2602c69:ProjectViewProjectNode" />
-              <item name="unicorn-attractor" type="462c0819:PsiDirectoryNode" />
               <item name="attractor" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="unicorn-attractor" type="b2602c69:ProjectViewProjectNode" />
-              <item name="unicorn-attractor" type="462c0819:PsiDirectoryNode" />
-              <item name="bugs" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="unicorn-attractor" type="b2602c69:ProjectViewProjectNode" />
-              <item name="unicorn-attractor" type="462c0819:PsiDirectoryNode" />
-              <item name="news" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="unicorn-attractor" type="b2602c69:ProjectViewProjectNode" />
@@ -311,16 +309,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/.travis.yml">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bugs/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="6" column="63" selection-start-line="6" selection-start-column="63" selection-end-line="6" selection-end-column="63" />
-          <folding>
-            <element signature="e#0#32#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/static/css/loggedin.css">
       <provider selected="true" editor-type-id="text-editor">
@@ -596,13 +584,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/static/js/signIn.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="58" column="19" selection-start-line="58" selection-start-column="19" selection-end-line="58" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/static/js/signUp.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="234">
@@ -625,13 +606,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/news/test_forms.py">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/attractor/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="2" column="74" selection-start-line="2" selection-start-column="67" selection-end-line="2" selection-end-column="74" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/bugs/test_views.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -663,16 +637,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/accounts/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="12" column="25" selection-start-line="12" selection-start-column="11" selection-end-line="12" selection-end-column="25" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/accounts/urls_reset.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="54">
@@ -683,22 +647,56 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/bugs/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="6" column="63" selection-start-line="6" selection-start-column="63" selection-end-line="6" selection-end-column="63" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/attractor/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="25">
+          <caret line="2" column="74" selection-start-line="2" selection-start-column="67" selection-end-line="2" selection-end-column="74" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/accounts/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="12" column="68" lean-forward="true" selection-start-line="12" selection-start-column="68" selection-end-line="12" selection-end-column="68" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/accounts/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="128">
-          <caret line="239" column="40" selection-start-line="239" selection-start-column="40" selection-end-line="239" selection-end-column="40" />
+        <state relative-caret-position="49">
+          <caret line="114" column="28" selection-start-line="114" selection-start-column="28" selection-end-line="114" selection-end-column="28" />
           <folding>
             <element signature="e#0#100#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/static/js/signIn.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="409">
+          <caret line="70" column="5" selection-start-line="70" selection-start-column="5" selection-end-line="70" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/attractor/settings.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="216">
-          <caret line="12" selection-start-line="12" selection-end-line="12" />
+          <caret line="12" column="2" selection-start-line="12" selection-start-column="2" selection-end-line="12" selection-end-column="2" />
           <folding>
-            <element signature="e#312#321#0" expanded="true" />
+            <element signature="e#323#332#0" expanded="true" />
           </folding>
         </state>
       </provider>

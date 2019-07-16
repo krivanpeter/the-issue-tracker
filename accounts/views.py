@@ -80,6 +80,8 @@ def login(request):
             else:
                 data['username_or_password_error'] = True
                 return JsonResponse(data)
+        else:
+            return redirect('index')
     else:
         return index(request)
 
@@ -110,7 +112,7 @@ def logout(request):
     """A view that logs the user out and redirects back to the index page"""
     auth.logout(request)
     messages.success(request, "You have successfully logged out")
-    return redirect(reverse('index'))
+    return redirect('index')
 
 
 """
