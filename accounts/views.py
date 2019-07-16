@@ -236,7 +236,8 @@ def register(request):
 """
 View that checks the hash in a password reset link and presents a
 form for entering a new password.
-(Code from django's webpage)
+(Code from django's webpage.
+Slightly changed: login form added to it)
 """
 @sensitive_post_parameters()
 @never_cache
