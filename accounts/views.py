@@ -21,7 +21,7 @@ from django.template.response import TemplateResponse
 from django.utils.encoding import force_text
 from django.contrib import messages, auth
 from django.contrib.auth.models import User
-from django.contrib.auth import get_user_model, update_session_auth_hash
+from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import password_reset
 from django.contrib.auth.tokens import default_token_generator
@@ -134,63 +134,72 @@ def login_from_password_change(request):
 """A view that displays the profile page of a logged in user"""
 @login_required
 def view_profile(request):
-    if Bug.objects.filter(reported_by=request.user.userprofile).exists():
-        bugs = Bug.objects.filter(reported_by=request.user.userprofile)
-        args = {
-            'user': request.user,
-            'bugs': bugs
-        }
+    if request.user.is_authenticated:
+        if Bug.objects.filter(reported_by=request.user.userprofile).exists():
+            bugs = Bug.objects.filter(reported_by=request.user.userprofile)
+            args = {
+                'user': request.user,
+                'bugs': bugs
+            }
+        else:
+            args = {
+                'user': request.user
+            }
+        return render(request, 'profile.html', args)
     else:
-        args = {
-            'user': request.user
-        }
-    return render(request, 'profile.html', args)
+        return redirect('index')
 
 
 """A view that lets a logged in user to change the profile"""
 @login_required
 def edit_profile(request):
-    if request.method == "POST":
-        user_form = EditProfileForm(request.POST, instance=request.user)
-        profile_form = EditUserForm(request.POST, request.FILES, instance=request.user.userprofile)
-        if user_form.is_valid() and profile_form.is_valid():
-            if request.user.userprofile.avatar == "../media/profile_images/male_def.png" or request.user.userprofile.avatar == "../media/profile_images/female_def.png":
-                if profile_form.cleaned_data['gender'] == "F":
-                    request.user.userprofile.avatar = "../media/profile_images/female_def.png"
-                elif profile_form.cleaned_data['gender'] == "M":
-                    request.user.userprofile.avatar = "../media/profile_images/male_def.png"
+    if request.user.is_authenticated:
+        if request.method == "POST":
+            user_form = EditProfileForm(request.POST, instance=request.user)
+            profile_form = EditUserForm(request.POST, request.FILES, instance=request.user.userprofile)
+            if user_form.is_valid() and profile_form.is_valid():
+                if request.user.userprofile.avatar == "../media/profile_images/male_def.png" or request.user.userprofile.avatar == "../media/profile_images/female_def.png":
+                    if profile_form.cleaned_data['gender'] == "F":
+                        request.user.userprofile.avatar = "../media/profile_images/female_def.png"
+                    elif profile_form.cleaned_data['gender'] == "M":
+                        request.user.userprofile.avatar = "../media/profile_images/male_def.png"
+                else:
+                    profile_form.avatar = profile_form.cleaned_data['avatar']
+                user_form.save()
+                profile_form.save()
+                return redirect('/profile/')
             else:
-                profile_form.avatar = profile_form.cleaned_data['avatar']
-            user_form.save()
-            profile_form.save()
-            return redirect('/profile/')
+                return redirect('/profile/edit')
         else:
-            return redirect('/profile/edit')
+            user_form = EditProfileForm(instance=request.user)
+            profile_form = EditUserForm(instance=request.user.userprofile)
+            args = {
+                'user_form': user_form,
+                'profile_form': profile_form
+            }
+            return render(request, 'editprofile.html', args)
     else:
-        user_form = EditProfileForm(instance=request.user)
-        profile_form = EditUserForm(instance=request.user.userprofile)
-        args = {
-            'user_form': user_form,
-            'profile_form': profile_form
-        }
-        return render(request, 'editprofile.html', args)
+        return redirect('index')
 
 
 """A view that lets a logged in user to change the profile"""
 @login_required
 def change_password(request):
-    if request.method == "POST":
-        form = PasswordChangeForm(data=request.POST, user=request.user)
-        if form.is_valid():
-            form.save()
-            update_session_auth_hash(request, form.user)
-            return redirect('/profile/')
+    if request.user.is_authenticated:
+        if request.method == "POST":
+            form = PasswordChangeForm(data=request.POST, user=request.user)
+            if form.is_valid():
+                form.save()
+                auth.logout(request)
+                return redirect('/index/')
+            else:
+                return redirect('/profile/change-password/')
         else:
-            return redirect('/profile/change-password/')
+            form = PasswordChangeForm(user=request.user)
+            args = {'form': form}
+            return render(request, 'change_password.html', args)
     else:
-        form = PasswordChangeForm(user=request.user)
-        args = {'form': form}
-        return render(request, 'change_password.html', args)
+        return redirect('index')
 
 
 """A view that checks if username exists in database"""
