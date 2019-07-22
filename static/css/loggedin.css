@@ -8,9 +8,6 @@ body{
     position: relative;
     min-height: 100%;
 }
-.content{
-    padding-bottom: 70px;
-}
 /*-----------------NAVBAR-----------------*/
 .navbar-custom{
     background-color: rgb(74, 74, 79);
@@ -127,17 +124,22 @@ body{
 }
 /*-----------------FOOTER-----------------*/
 .community-pages-footer{
-    height: 70px;
+    height: 50px;
 	width: 100%;
 	position: absolute;
 	bottom: 0;
     background-color: rgb(74, 74, 79);
 }
+
+.community-pages-footer .d-flex{
+    height: 35px;
+}
 .content{
     padding-bottom: 70px;
 }
 .fab {
-margin: 15px;
+    margin: 15px;
+    margin-bottom: 15px;
     color: white;
 }
 /*-----------------NEWS-----------------*/
