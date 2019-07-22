@@ -154,7 +154,13 @@ def edit_profile(request):
         user_form = EditProfileForm(request.POST, instance=request.user)
         profile_form = EditUserForm(request.POST, request.FILES, instance=request.user.userprofile)
         if user_form.is_valid() and profile_form.is_valid():
-            profile_form.avatar = profile_form.cleaned_data['avatar']
+            if request.user.userprofile.avatar == "../media/profile_images/male_def.png" or request.user.userprofile.avatar == "../media/profile_images/female_def.png":
+                if profile_form.cleaned_data['gender'] == "F":
+                    request.user.userprofile.avatar = "../media/profile_images/female_def.png"
+                elif profile_form.cleaned_data['gender'] == "M":
+                    request.user.userprofile.avatar = "../media/profile_images/male_def.png"
+            else:
+                profile_form.avatar = profile_form.cleaned_data['avatar']
             user_form.save()
             profile_form.save()
             return redirect('/profile/')
