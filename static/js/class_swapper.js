@@ -16,8 +16,8 @@ function changeNavBar() {
                 $('.navbar').removeClass('navbar-white');
                 $('.navbar-brand').addClass('logo');
                 $('.navbar-brand').removeClass('logo-transparent');
-                $('.nav-item a').addClass('white-text');
-                $('.nav-item a').removeClass('black-text');
+                $('.nav-item button').addClass('white-text');
+                $('.nav-item button').removeClass('black-text');
                 $('.nav-link i').addClass('white-text');
                 $('.nav-link i').removeClass('orange-fa');
             }
@@ -26,8 +26,8 @@ function changeNavBar() {
                 $('.navbar').addClass('navbar-white');
                 $('.navbar-brand').removeClass('logo');
                 $('.navbar-brand').addClass('logo-transparent');
-                $('.nav-item a').removeClass('white-text');
-                $('.nav-item a').addClass('black-text');
+                $('.nav-item button').removeClass('white-text');
+                $('.nav-item button').addClass('black-text');
                 $('.nav-link i').removeClass('white-text');
                 $('.nav-link i').addClass('orange-fa');
             }
@@ -37,8 +37,8 @@ function changeNavBar() {
             $('.navbar').removeClass('navbar-white');
             $('.navbar-brand').addClass('logo');
             $('.navbar-brand').removeClass('logo-transparent');
-            $('.nav-item a').addClass('white-text');
-            $('.nav-item a').removeClass('black-text');
+            $('.nav-item button').addClass('white-text');
+            $('.nav-item button').removeClass('black-text');
             $('.nav-link i').addClass('white-text');
             $('.nav-link i').removeClass('black-text');
         }
