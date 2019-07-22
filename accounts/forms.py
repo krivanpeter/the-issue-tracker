@@ -62,6 +62,22 @@ class EditProfileForm(UserChangeForm):
             'password'
         )
 
+    def first_name(self):
+        first_name = self.cleaned_data.get('first_name')
+        return first_name
+
+    def last_name(self):
+        last_name = self.cleaned_data.get('last_name')
+        return last_name
+
+    def email(self):
+        email = self.cleaned_data.get('email')
+        return email
+
+    def password(self):
+        password = self.cleaned_data.get('password')
+        return password
+
 
 class EditUserForm(forms.ModelForm):
     class Meta:

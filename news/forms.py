@@ -11,3 +11,11 @@ class CreateNewForm(forms.ModelForm):
             'content',
             'image'
         )
+
+    def title(self):
+        title = self.cleaned_data.get('title')
+        return title
+
+    def content(self):
+        content = self.cleaned_data.get('content')
+        return content

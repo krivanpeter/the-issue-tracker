@@ -18,6 +18,13 @@ class BugReportForm(forms.ModelForm):
             'content',
         )
 
+    def title(self):
+        title = self.cleaned_data.get('title')
+        return title
+
+    def content(self):
+        content = self.cleaned_data.get('content')
+        return content
 
 class BugImageForm(forms.ModelForm):
     image = forms.ImageField(label='Image')

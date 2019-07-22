@@ -12,4 +12,3 @@ class CommentForm(forms.Form):
             'rows': '3'}),
         label='')
 
-
