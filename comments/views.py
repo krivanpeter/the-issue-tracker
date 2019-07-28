@@ -5,14 +5,8 @@ from .forms import CommentForm
 from .models import Comment
 
 
-def comments(request, subject):
+def create_comment(request, form):
     # A view which shows all the comments associated with the given object
-    comments = subject.comments
-    initial_data = {
-        "content_type": comments.get_content_type,
-        "object_id": comments.id
-    }
-    form = CommentForm(request.POST or None, initial=initial_data)
     if form.is_valid():
         user = UserProfile.objects.get(user=request.user)
         c_type = form.cleaned_data.get("content_type")

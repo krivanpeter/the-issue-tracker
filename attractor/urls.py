@@ -9,9 +9,12 @@ from bugs import urls as urls_bugs
 from django.views import static
 from .settings import MEDIA_ROOT
 
+admin.site.site_header = "Unicorn Attractor Administration"
+admin.site.site_title = "Unicorn Attractor Administration"
+
 urlpatterns = [
     url(r'^$', index, name='index'),
-    url(r'^admin/', admin.site.urls),
+    url(r'^super-secret/admin/', admin.site.urls),
     url(r'^accounts/', include(urls_accounts)),
     url(r'^profile/$', view_profile, name='view_profile'),
     url(r'^profile/edit$', edit_profile, name='edit_profile'),
