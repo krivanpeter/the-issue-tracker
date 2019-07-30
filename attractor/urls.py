@@ -25,6 +25,6 @@ urlpatterns = [
     url(r'^create-new/$', create_new, name='create_new'),
     url(r'^report-bug/$', report_bug, name='report_bug'),
     url(r'^bugs/', include(urls_bugs)),
-    url(r'^delete-comment/$', comment_delete, name='comment_delete'),
+    url(r'^comment-delete/$', comment_delete, name='comment_delete'),
     url(r'^media/(?P<path>.*)$', static.serve, {'document_root': MEDIA_ROOT}),
 ]

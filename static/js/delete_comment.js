@@ -20,7 +20,7 @@ $('.delete_comment_form').on('submit', function(event) {
             csrftoken: csrftoken
         },
         type: 'POST',
-        url: '/delete-comment/',
+        url: '/comment-delete/',
         success: function(data) {
             if (data.data = true) {
                 $('#delCommModal').modal('hide');

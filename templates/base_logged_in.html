@@ -91,12 +91,15 @@
                                                         {% endif %}
                                                     </a>
                                                 </div>
+                                                {{comment.user}} {{user}}
+                                                {% if comment.user == user %}
                                                 <div class="col-3">
                                                     <input type="hidden" class="comment_id" name="comment_id" value="{{comment.id}}">
                                                     <a class="comment-delete-btn no-decor" data-dismiss="modal" data-toggle="modal" href="#">
                                                         <i class="fas fa-trash"> Delete Comment</i>
                                                     </a>
                                                 </div>
+                                                {% endif %}
                                             </div>
                                         </div>
                                     </div>
