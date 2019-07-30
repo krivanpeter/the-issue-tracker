@@ -1,9 +1,11 @@
+from django.contrib.contenttypes.models import ContentType
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.forms import modelformset_factory
 from accounts.models import UserProfile
 from comments.forms import CommentForm
-from comments.views import create_comment
+from comments.models import Comment
 from .models import Bug, BugImages
 from .forms import BugReportForm, BugImageForm
 
@@ -30,7 +32,33 @@ def bug_detail(request, slug=None):
             "object_id": bug.id
         }
         form = CommentForm(request.POST or None, initial=initial_data)
-        create_comment(request, form)
+
+        if form.is_valid():
+            user = UserProfile.objects.get(user=request.user)
+            c_type = form.cleaned_data.get("content_type")
+            content_type = ContentType.objects.get(model=c_type)
+            obj_id = form.cleaned_data.get("object_id")
+            content_data = form.cleaned_data.get("content")
+            parent_obj = None
+            try:
+                parent_id = int(request.POST.get("parent_id"))
+            except:
+                parent_id = None
+
+            if parent_id:
+                parent_qs = Comment.objects.filter(id=parent_id)
+                if parent_qs.exists() and parent_qs.count() == 1:
+                    parent_obj = parent_qs.first()
+
+            new_comment, created = Comment.objects.get_or_create(
+                user=user,
+                content_type=content_type,
+                object_id=obj_id,
+                content=content_data,
+                parent=parent_obj,
+            )
+            return HttpResponseRedirect(new_comment.content_object.get_absolute_url())
+
         args = {
             'bug': bug,
             'comments': comments,

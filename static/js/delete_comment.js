@@ -14,7 +14,6 @@ $('.comment-delete-btn').on('click', function(event){
 });
 
 $('.delete_comment_form').on('submit', function(event) {
-    console.log("ajax called");
     $.ajax({
         data: {
             'id': comment_id,
@@ -24,7 +23,8 @@ $('.delete_comment_form').on('submit', function(event) {
         url: '/delete-comment/',
         success: function(data) {
             if (data.data = true) {
-                console.log("delete")
+                $('#delCommModal').modal('hide');
+                location.reload();
             }
         }
     })
