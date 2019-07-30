@@ -21,7 +21,7 @@ $('.delete_comment_form').on('submit', function(event) {
             csrftoken: csrftoken
         },
         type: 'POST',
-        url: '/comment_delete/',
+        url: '/delete-comment/',
         success: function(data) {
             if (data.data = true) {
                 console.log("delete")

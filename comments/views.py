@@ -34,8 +34,9 @@ def create_comment(request, form):
         return HttpResponseRedirect(new_comment.content_object.get_absolute_url())
 
 
-def comment_delete(request, id):
+def comment_delete(request):
     if request.method == "POST":
+        id = request.POST.get('id')
         obj = get_object_or_404(Comment, id=id)
         parent_obj_url = obj.content_object.get_absolute_url()
         obj.delete()
