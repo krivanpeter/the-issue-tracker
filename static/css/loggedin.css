@@ -219,6 +219,13 @@ body{
 .comment-delete-btn:hover{
     color: #990000;
 }
+
+.children-comment-delete-btn{
+    color: #FF0000;
+}
+.children-comment-delete-btn:hover{
+    color: #990000;
+}
 /*--------------------------------------*/
 #id_password {
     display: none;

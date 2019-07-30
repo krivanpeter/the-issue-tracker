@@ -2,6 +2,18 @@ var csrftoken = getCookie('csrftoken');
 var comment_id;
 var actual_comment;
 
+
+$('.children-comment-delete-btn').on('click', function(event){
+    comment_id = $(this).siblings('.comment_id').val();
+    $('#copied_comment').empty();
+    actual_comment = $(this).parent().parent('.media-body').parent('.media').clone();
+    actual_comment.find('.children-comment-delete-btn').parent('div').remove();
+    actual_comment.find('.img-circle').addClass('thumbnail-img');
+    actual_comment.find('.media-body').css('margin-left', '10px');
+    $(actual_comment).appendTo($('#copied_comment'));
+    $('#delCommModal').modal();
+});
+
 $('.comment-delete-btn').on('click', function(event){
     comment_id = $(this).siblings('.comment_id').val();
     $('#copied_comment').empty();

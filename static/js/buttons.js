@@ -5,6 +5,6 @@ $(document).ready(function() {
 
     $('.comment-reply-btn').on('click', function(event) {
         event.preventDefault();
-        $(this).parent().parent().next('.comment-reply').fadeToggle();
+        $(this).parent('.col-2').parent('.row').parent('.container').parent('.media-body').parent('.media').next('.comment-reply').fadeToggle();
     });
 })

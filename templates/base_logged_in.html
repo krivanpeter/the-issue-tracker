@@ -59,11 +59,9 @@
             <div class="col-12">
                 <div class="comment-wrapper">
                     <div class="panel panel-info">
-                        <h4 class="panel-heading">
-                            <hr>
-                            Comments
-                            <hr>
-                        </h4>
+                        <hr>
+                        <h4 class="panel-heading">Comments</h4>
+                        <hr>
                         <div class="panel-body">
                             <br>
                             <ul class="media-list">
@@ -81,18 +79,17 @@
                                         <div class="container">
                                             <div class="row">
                                                 <div class="col-2">
-                                                    <a class="no-decor" href="#">
+                                                    <a class="comment-reply-btn no-decor" href="#">
                                                         <i class="fas fa-reply"></i>
                                                         {% if comment.children.count > 0 %}
-                                                            Comment{% if comment.children.count > 1 %}s{% endif %}
-                                                                {{ comment.children.count }}
+                                                            <span>Comment{% if comment.children.count > 1 %}s{% endif %}
+                                                                {{ comment.children.count }}</span>
                                                             {% else %}
-                                                            Reply
+                                                            <span>Reply</span>
                                                         {% endif %}
                                                     </a>
                                                 </div>
-                                                {{comment.user}} {{user}}
-                                                {% if comment.user == user %}
+                                                {% if comment.user.user == user %}
                                                 <div class="col-3">
                                                     <input type="hidden" class="comment_id" name="comment_id" value="{{comment.id}}">
                                                     <a class="comment-delete-btn no-decor" data-dismiss="modal" data-toggle="modal" href="#">
@@ -116,6 +113,14 @@
                                                     <small class="text-muted">{{ child_comment.published_date|timesince}} ago</small>
                                                 </span>
                                                 <p>{{ child_comment.content }}</p>
+                                                {% if child_comment.user.user == user %}
+                                                <div>
+                                                    <input type="hidden" class="comment_id" name="comment_id" value="{{child_comment.id}}">
+                                                    <a class="children-comment-delete-btn no-decor" data-dismiss="modal" data-toggle="modal" href="#">
+                                                        <i class="fas fa-trash"> Delete Comment</i>
+                                                    </a>
+                                                </div>
+                                                {% endif %}
                                             </div>
                                         </li>
                                     {% endfor %}
