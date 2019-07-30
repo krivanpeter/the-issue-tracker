@@ -5,6 +5,7 @@ from accounts import urls as urls_accounts
 from news import urls as urls_news
 from news.views import create_new
 from bugs.views import report_bug
+from comments.views import comment_delete
 from bugs import urls as urls_bugs
 from django.views import static
 from .settings import MEDIA_ROOT
@@ -24,5 +25,6 @@ urlpatterns = [
     url(r'^create-new/$', create_new, name='create_new'),
     url(r'^report-bug/$', report_bug, name='report_bug'),
     url(r'^bugs/', include(urls_bugs)),
+    url(r'^delete-comment/<id>$', comment_delete, name='comment_delete'),
     url(r'^media/(?P<path>.*)$', static.serve, {'document_root': MEDIA_ROOT}),
 ]

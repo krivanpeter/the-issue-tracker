@@ -1,4 +1,3 @@
-var csrftoken = getCookie('csrftoken');
 var beprevented = false;
 
 // If user wants to login from password_change page login modal shows
@@ -27,6 +26,7 @@ $('#id_password').on('keypress', function(event){
 //Sends the data to the server to check if those were correct
 //Returns true/false to be the value of 'beprevented'
 $('#login_button').on('click', function(event) {
+    var csrftoken = getCookie('csrftoken');
     var username_or_email = $("#id_username_or_email").val().trim();
     var password = $('#id_password').val();
         $.ajax({
@@ -52,6 +52,7 @@ $('#login_button').on('click', function(event) {
 
 //Sends the user's data to the server
 $('.loginform').on('submit', function(event) {
+    var csrftoken = getCookie('csrftoken');
 //If the user's auth failed submit prevented
     if (beprevented){
         event.preventDefault();
@@ -68,35 +69,5 @@ $('.loginform').on('submit', function(event) {
         type: 'POST',
         url: '/accounts/login/',
     });
-    }
-});
-
-//CSRFToken acquiring (code from Django's webpage)
-function getCookie(name) {
-    var cookieValue = null;
-    if (document.cookie && document.cookie !== '') {
-        var cookies = document.cookie.split(';');
-        for (var i = 0; i < cookies.length; i++) {
-            var cookie = cookies[i].trim();
-            // Does this cookie string begin with the name we want?
-            if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                break;
-            }
-        }
-    }
-    return cookieValue;
-}
-
-function csrfSafeMethod(method) {
-    // these HTTP methods do not require CSRF protection
-    return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
-}
-
-$.ajaxSetup({
-    beforeSend: function(xhr, settings) {
-        if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
-            xhr.setRequestHeader("X-CSRFToken", csrftoken);
-        }
     }
 });

@@ -194,6 +194,11 @@ body{
     padding: 0;
 }
 
+.thumbnail-img {
+    width:75px;
+    height:75px;
+}
+
 .comment-wrapper .media-list .media img {
     width:75px;
     height:75px;
@@ -208,7 +213,12 @@ body{
 .comment-wrapper .media-list .media-body{
     margin-left: 20px;
 }
-
+.comment-delete-btn{
+    color: #FF0000;
+}
+.comment-delete-btn:hover{
+    color: #990000;
+}
 /*--------------------------------------*/
 #id_password {
     display: none;

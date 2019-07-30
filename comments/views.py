@@ -1,7 +1,7 @@
 from accounts.models import UserProfile
 from django.contrib.contenttypes.models import ContentType
-from django.http import HttpResponseRedirect
-from .forms import CommentForm
+from django.http import HttpResponseRedirect, Http404
+from django.shortcuts import get_object_or_404
 from .models import Comment
 
 
@@ -32,3 +32,13 @@ def create_comment(request, form):
             parent=parent_obj,
         )
         return HttpResponseRedirect(new_comment.content_object.get_absolute_url())
+
+
+def comment_delete(request, id):
+    if request.method == "POST":
+        obj = get_object_or_404(Comment, id=id)
+        parent_obj_url = obj.content_object.get_absolute_url()
+        obj.delete()
+        return HttpResponseRedirect(parent_obj_url)
+    else:
+        raise Http404()

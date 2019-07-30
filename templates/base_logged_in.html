@@ -77,14 +77,28 @@
                                         <span class="text-muted">
                                             <small class="text-muted">{{ comment.published_date|timesince}} ago</small>
                                         </span>
-                                        <p>{{ comment.content }}</p>
-                                        <a class="comment-reply-btn no-decor" href="#">
-                                            <i class="fas fa-reply"></i>
-                                            {% if comment.children.count > 0 %}
-                                                Comment{% if comment.children.count > 1 %}s{% endif %}
-                                                    {{ comment.children.count }}
-                                            {% endif %}
-                                        </a>
+                                        <p class="actual-comment">{{ comment.content }}</p>
+                                        <div class="container">
+                                            <div class="row">
+                                                <div class="col-2">
+                                                    <a class="no-decor" href="#">
+                                                        <i class="fas fa-reply"></i>
+                                                        {% if comment.children.count > 0 %}
+                                                            Comment{% if comment.children.count > 1 %}s{% endif %}
+                                                                {{ comment.children.count }}
+                                                            {% else %}
+                                                            Reply
+                                                        {% endif %}
+                                                    </a>
+                                                </div>
+                                                <div class="col-3">
+                                                    <input type="hidden" class="comment_id" name="comment_id" value="{{comment.id}}">
+                                                    <a class="comment-delete-btn no-decor" data-dismiss="modal" data-toggle="modal" href="#">
+                                                        <i class="fas fa-trash"> Delete Comment</i>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </li>
                                 <div class="comment-reply" style="display: none">
@@ -192,6 +206,29 @@
         </div>
     </footer>
 </div>
+<!-- Delete Comment Modal -->
+<div class="modal fade" id="delCommModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+             <div class="modal-header">
+                <input type="hidden" value="{{ login_from_pass_change }}" id="login_from_pass_change" name="login_from_pass_change">
+                <h6 class="modal-title"><b>Are you sure you want to delete this comment?</b></h6>
+            </div>
+            <div class="panel-body">
+                <ul class="media-list" style="margin-top: 1rem;">
+                    <div id="copied_comment"></div>
+                </ul>
+            </div>
+            <form method="POST" class="delete_comment_form">
+                {% csrf_token%}
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-danger" id="delete_comment_button" name="delete_comment">Delete</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 </body>
 <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
         crossorigin="anonymous"></script>
@@ -201,5 +238,7 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+<script src="{% static 'js/csrftoken.js'%}"></script>
 <script src="{% static 'js/buttons.js'%}"></script>
+<script src="{% static 'js/delete_comment.js'%}"></script>
 </html>
