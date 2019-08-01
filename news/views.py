@@ -3,7 +3,6 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-
 from accounts.models import UserProfile
 from comments.forms import CommentForm
 from comments.models import Comment
@@ -35,8 +34,6 @@ def new_detail(request, slug=None):
     if request.user.is_authenticated:
         # A view which returns a single New object based on the ID(pk)
         new = get_object_or_404(New, slug=slug)
-        new.views += 1
-        new.save()
         comments = new.comments
         initial_data = {
             "content_type": new.get_content_type,

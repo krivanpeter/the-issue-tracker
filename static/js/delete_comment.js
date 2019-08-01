@@ -17,8 +17,8 @@ $('.children-comment-delete-btn').on('click', function(event){
 $('.comment-delete-btn').on('click', function(event){
     comment_id = $(this).siblings('.comment_id').val();
     $('#copied_comment').empty();
-    actual_comment = $(this).parent('.col-3').parent('.row').parent('.container').parent('.media-body').parent('.media').clone();
-    actual_comment.find('.comment-delete-btn').parent('.col-3').parent('.row').remove();
+    actual_comment = $(this).parent().parent('.row').parent('.container').parent('.media-body').parent('.media').clone();
+    actual_comment.find('.comment-delete-btn').parent().parent('.row').remove();
     actual_comment.find('.img-circle').addClass('thumbnail-img');
     actual_comment.find('.media-body').css('margin-left', '10px');
     $(actual_comment).appendTo($('#copied_comment'));
