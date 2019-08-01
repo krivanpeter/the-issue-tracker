@@ -78,7 +78,7 @@
                                         <p class="actual-comment">{{ comment.content }}</p>
                                         <div class="container">
                                             <div class="row">
-                                                <div class="col-6 col-md-2">
+                                                <div class="col-6 col-md-3">
                                                     <a class="comment-reply-btn no-decor" href="#">
                                                         <i class="fas fa-reply"></i>
                                                         {% if comment.children.count > 0 %}
@@ -117,7 +117,7 @@
                                                 <div>
                                                     <input type="hidden" class="comment_id" name="comment_id" value="{{child_comment.id}}">
                                                     <a class="children-comment-delete-btn no-decor" data-dismiss="modal" data-toggle="modal" href="#">
-                                                        <i class="fas fa-trash"> Delete Comment</i>
+                                                        <i class="fas fa-trash"><span>Delete</span></i>
                                                     </a>
                                                 </div>
                                                 {% endif %}

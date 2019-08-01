@@ -14,12 +14,13 @@ class Bug(models.Model):
     content = models.TextField()
     created_date = models.DateTimeField(auto_now_add=True)
     published_date = models.DateTimeField(blank=True, null=True, default=timezone.now)
+    open = models.BooleanField(default=True)
     upvotes = models.IntegerField(default=0)
     reported_by = models.ForeignKey(UserProfile, on_delete=models.CASCADE, null=True)
     slug = models.SlugField(unique=True)
 
     class Meta:
-        ordering = ['-upvotes']
+        ordering = ['-published_date']
 
     def __str__(self):
         return self.title

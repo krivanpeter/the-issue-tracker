@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm, ReadOnlyPasswordHashField
 from django.core.exceptions import ValidationError
 from accounts.models import UserProfile
+import re
 
 
 # User Login Form
@@ -31,15 +32,15 @@ class UserRegistrationForm(UserCreationForm):
         }
 
     def clean_email(self):
-        email = self.cleaned_data.get('email')
-        username = self.cleaned_data.get('username')
+        email = re.sub(' +', ' ', self.cleaned_data.get('email'))
+        username = re.sub(' +', ' ', self.cleaned_data.get('username'))
         if User.objects.filter(email=email).exclude(username=username):
             raise forms.ValidationError(u'Email addresses must be unique.')
         return email
 
     def clean_password2(self):
-        password1 = self.cleaned_data.get('password1')
-        password2 = self.cleaned_data.get('password2')
+        password1 = re.sub(' +', ' ', self.cleaned_data.get('password1'))
+        password2 = re.sub(' +', ' ', self.cleaned_data.get('password2'))
         if not password1 or not password2:
             raise ValidationError("Password must not be empty")
         if password1 != password2:
@@ -62,16 +63,16 @@ class EditProfileForm(UserChangeForm):
             'password'
         )
 
-    def first_name(self):
-        first_name = self.cleaned_data.get('first_name')
+    def clean_first_name(self):
+        first_name = re.sub(' +', ' ', self.cleaned_data.get('first_name').strip())
         return first_name
 
-    def last_name(self):
-        last_name = self.cleaned_data.get('last_name')
+    def clean_last_name(self):
+        last_name = re.sub(' +', ' ', self.cleaned_data.get('last_name').strip())
         return last_name
 
-    def email(self):
-        email = self.cleaned_data.get('email')
+    def clean_email(self):
+        email = re.sub(' +', ' ', self.cleaned_data.get('email').strip())
         return email
 
 

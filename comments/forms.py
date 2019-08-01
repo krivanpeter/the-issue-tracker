@@ -1,4 +1,5 @@
 from django import forms
+import re
 
 
 class CommentForm(forms.Form):
@@ -12,3 +13,6 @@ class CommentForm(forms.Form):
             'rows': '3'}),
         label='')
 
+    def clean_content(self):
+        content = re.sub(' +', ' ', self.cleaned_data.get('content').strip())
+        return content
