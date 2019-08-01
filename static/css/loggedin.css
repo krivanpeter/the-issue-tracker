@@ -290,7 +290,4 @@ a.bug-link{
     .comment-wrapper .media-list {
         list-style-type: none;
     }
-    .bug-table th, .bug-table td {
-        padding: 25px;
-    }
 }
