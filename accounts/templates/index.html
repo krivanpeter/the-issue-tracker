@@ -5,7 +5,8 @@
         <div class="navbar navbar-expand-md navbar-default navbar-dark">
             <div class="container">
                 <a class="navbar-brand logo" href="{% url 'index' %}"></a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler"
+                        aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarToggler">
@@ -13,23 +14,16 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'index' %}"><i class="fas fa-home"></i>Home</a>
                         </li>
-                    </ul>
-                    <ul class="navbar-nav navbar-right">
-                        {% if user.is_authenticated %}
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'view_profile' %}">Profile</a>
+                            <a class="nav-link" data-toggle="modal" data-target="#registerModal">
+                                <i class="fas fa-user"></i><span>Register</span>
+                            </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'logout' %}">Log Out</a>
+                            <a class="nav-link" data-toggle="modal" data-target="#loginModal">
+                                <i class="fas fa-sign-in-alt"></i><span>Log In</span>
+                            </a>
                         </li>
-                        {% else %}
-                        <li class="nav-item">
-                            <button type="button" class="btn nav-link" data-toggle="modal" data-target="#registerModal"><i class="fas fa-user"></i>Register</button>
-                        </li>
-                        <li class="nav-item">
-                            <button type="button" class="btn nav-link" data-toggle="modal" data-target="#loginModal"><i class="fas fa-sign-in-alt"></i>Log In</button>
-                        </li>
-                        {% endif %}
                     </ul>
                 </div>
             </div>
@@ -38,8 +32,14 @@
     <h1><strong>Software Development</strong></h1>
     <p class="lead"><b>We love coding, we love building new features, and we love solving bugs</b></p>
     <p class="lead"><b>Join our community and support us</b></p>
-    <p><a type="button" class="btn btn-primary btn-lg btn-sign-up" data-toggle="modal" data-target="#registerModal">Sign Up!</a></p>
-    <p class="text-muted"><small class="white-text">We promise never to share, trade, sell, deliver, reveal, publicize, or market your email address in any way, shape, or form.</small></p>
+    <p>
+        <button type="button" class="btn btn-primary btn-lg btn-sign-up" data-toggle="modal"
+                data-target="#registerModal">
+            Sign Up!
+        </button>
+    </p>
+    <p class="text-muted"><small class="white-text">We promise never to share, trade, sell, deliver, reveal, publicize,
+        or market your email address in any way, shape, or form.</small></p>
     </div>
 </section>
 <!-------------MEDIUM SCREEN------------->
@@ -47,9 +47,10 @@
     <div class="navbar navbar-expand-md navbar-default navbar-dark">
         <div class="container">
             <a class="navbar-brand logo" href="{% url 'index' %}"></a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler"
+                    aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
             <div class="collapse navbar-collapse" id="navbarToggler">
                 <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                     <li class="nav-item">
@@ -66,10 +67,14 @@
                     </li>
                     {% else %}
                     <li class="nav-item">
-                        <button type="button" class="btn nav-link" data-toggle="modal" data-target="#registerModal"><i class="fas fa-user"></i>Register</button>
+                        <button type="button" class="btn nav-link" data-toggle="modal" data-target="#registerModal"><i
+                                class="fas fa-user"></i>Register
+                        </button>
                     </li>
                     <li class="nav-item">
-                        <button type="button" class="btn nav-link" data-toggle="modal" data-target="#loginModal"><i class="fas fa-sign-in-alt"></i>Log In</button>
+                        <button type="button" class="btn nav-link" data-toggle="modal" data-target="#loginModal"><i
+                                class="fas fa-sign-in-alt"></i>Log In
+                        </button>
                     </li>
                     {% endif %}
                 </ul>
@@ -82,8 +87,10 @@
         <h1><strong>Software Development</strong></h1>
         <p class="lead"><b>We love coding, we love building new features, and we love solving bugs</b></p>
         <p class="lead"><b>Join our community and support us</b></p>
-        <p><a type="button" class="btn btn-primary btn-lg btn-sign-up" data-toggle="modal" data-target="#registerModal">Sign Up!</a></p>
-        <p class="text-muted"><small class="white-text">We promise never to share, trade, sell, deliver, reveal, publicize, or market your email address in any way, shape, or form.</small></p>
+        <p><a type="button" class="btn btn-primary btn-lg btn-sign-up" data-toggle="modal" data-target="#registerModal">Sign
+            Up!</a></p>
+        <p class="text-muted"><small class="white-text">We promise never to share, trade, sell, deliver, reveal,
+            publicize, or market your email address in any way, shape, or form.</small></p>
     </div>
 </section>
 {% endblock %} {% block footer %}
@@ -101,7 +108,8 @@
                     <i class="fas fa-users"></i>
                     <h3>Community</h3>
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                        labore et dolore magna aliqua.
                     </p>
                 </div>
             </div>
@@ -110,7 +118,8 @@
                     <i class="fas fa-headset"></i>
                     <h3>Lorem Ipsum</h3>
                     <p>
-                        Ullamcorper a lacus vestibulum sed. Vulputate enim nulla aliquet porttitor. Venenatis lectus magna fringilla urna porttitor rhoncus.
+                        Ullamcorper a lacus vestibulum sed. Vulputate enim nulla aliquet porttitor. Venenatis lectus
+                        magna fringilla urna porttitor rhoncus.
                     </p>
                 </div>
             </div>
@@ -119,7 +128,8 @@
                     <i class="fas fa-laptop"></i>
                     <h3>Lorem Ipsum</h3>
                     <p>
-                        Facilisi morbi tempus iaculis urna id volutpat lacus. Quis vel eros donec ac odio tempor orci dapibus. Morbi tincidunt augue interdum velit euismod.
+                        Facilisi morbi tempus iaculis urna id volutpat lacus. Quis vel eros donec ac odio tempor orci
+                        dapibus. Morbi tincidunt augue interdum velit euismod.
                     </p>
                 </div>
             </div>
@@ -128,7 +138,8 @@
                     <i class="fas fa-question-circle"></i>
                     <h3>Lorem Ipsum</h3>
                     <p>
-                        Molestie at elementum eu facilisis sed. Ornare arcu odio ut sem nulla pharetra diam. Dui accumsan sit amet nulla facilisi morbi tempus iaculis urna.
+                        Molestie at elementum eu facilisis sed. Ornare arcu odio ut sem nulla pharetra diam. Dui
+                        accumsan sit amet nulla facilisi morbi tempus iaculis urna.
                     </p>
                 </div>
             </div>
@@ -137,7 +148,8 @@
                     <i class="fas fa-address-card"></i>
                     <h3>About Us</h3>
                     <p>
-                        Molestie at elementum eu facilisis sed. Ornare arcu odio ut sem nulla pharetra diam. Dui accumsan sit amet nulla facilisi morbi tempus iaculis urna.
+                        Molestie at elementum eu facilisis sed. Ornare arcu odio ut sem nulla pharetra diam. Dui
+                        accumsan sit amet nulla facilisi morbi tempus iaculis urna.
                     </p>
                 </div>
             </div>
@@ -146,7 +158,8 @@
                     <i class="fas fa-envelope"></i>
                     <h3>Contact Us</h3>
                     <p>
-                        Molestie at elementum eu facilisis sed. Ornare arcu odio ut sem nulla pharetra diam. Dui accumsan sit amet nulla facilisi morbi tempus iaculis urna.
+                        Molestie at elementum eu facilisis sed. Ornare arcu odio ut sem nulla pharetra diam. Dui
+                        accumsan sit amet nulla facilisi morbi tempus iaculis urna.
                     </p>
                 </div>
             </div>
@@ -158,17 +171,21 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <input type="hidden" value="{{ login_from_pass_change }}" id="login_from_pass_change" name="login_from_pass_change">
+                <input type="hidden" value="{{ login_from_pass_change }}" id="login_from_pass_change"
+                       name="login_from_pass_change">
                 <h5 class="modal-title"><b>Sign In</b></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
+                    <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <form method="POST" class="loginform">
                 <fieldset class="form-group">
                     {% csrf_token %} {{ login_form | as_bootstrap }}
-                    <div class="alert alert-danger" role="alert" id="username_or_password_error" style="display:none;">Your username or password are incorrect</div>
-                    <p><a type="button" data-dismiss="modal" data-toggle="modal" data-target="#forgottenPasswordModal" style="color:blue;">Forgot My Password</a></p>
+                    <div class="alert alert-danger" role="alert" id="username_or_password_error" style="display:none;">
+                        Your username or password are incorrect
+                    </div>
+                    <p><a data-dismiss="modal" data-toggle="modal" data-target="#forgottenPasswordModal" href="#">Forgot
+                        My Password</a></p>
                 </fieldset>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -185,7 +202,7 @@
             <div class="modal-header">
                 <h5 class="modal-title"><b>Create a new account</b></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
+                    <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <form method="POST" class="registerform" onsubmit="regFormSubmitChecker()">
@@ -193,26 +210,33 @@
                     {% csrf_token %} {% for field in reg_form %} {% if field.label == 'Username' %}
                     <div class="form-group">
                         {{ field.label_tag }} {{ field }}
-                        <div class="alert alert-danger" role="alert" id="usernameAlert" style="display:none;">Username is already in use</div>
+                        <div class="alert alert-danger" role="alert" id="usernameAlert" style="display:none;">Username
+                            is already in use
+                        </div>
                     </div>
 
                     {% elif field.label == 'Email' %}
                     <div class="form-group">
                         {{ field.label_tag }} {{ field }}
-                        <div class="alert alert-danger" role="alert" id="emailAlert" style="display:none;">Email is already in use</div>
+                        <div class="alert alert-danger" role="alert" id="emailAlert" style="display:none;">Email is
+                            already in use
+                        </div>
                     </div>
 
                     {% elif field.label == "Password Confirmation" %}
                     <div class="form-group">
                         {{ field.label_tag }} {{ field }}
-                        <div class="alert alert-danger" role="alert" id="passwordAlert" style="display:none;">Passwords do not match</div>
+                        <div class="alert alert-danger" role="alert" id="passwordAlert" style="display:none;">Passwords
+                            do not match
+                        </div>
                     </div>
                     {% else %}
                     <div class="form-group">
                         {{ field.label_tag }} {{ field }}
                     </div>
                     {% endif %} {% endfor %}
-                    <p>Already got an account? <a type="button" data-dismiss="modal" data-toggle="modal" data-target="#loginModal" style="color:blue;">Sign In</a></p>
+                    <p>Already got an account? <a data-dismiss="modal" data-toggle="modal"
+                                                  data-target="#loginModal" href="#">Sign In</a></p>
                 </fieldset>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -229,7 +253,7 @@
             <div class="modal-header">
                 <h5 class="modal-title"><b>Forgotten Password</b></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
+                    <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <form method="POST" class="forgottenpassform">
@@ -237,10 +261,13 @@
                 <div style="display:none">
                     <input type="hidden" value="{{ csrf_token }}" name="csrfmiddlewaretoken">
                 </div>
-                <label for="id_email" class="control-label required-field">E-mail address:</label> {{ forg_pass_form.email }}
+                <label for="id_email" class="control-label required-field">E-mail address:</label>
+                {{ forg_pass_form.email }}
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-sign-up" data-toggle="modal" name="reset_password">Reset Password</button>
+                    <button type="submit" class="btn btn-sign-up" data-toggle="modal" name="reset_password">Reset
+                        Password
+                    </button>
                 </div>
             </form>
         </div>
@@ -253,7 +280,7 @@
             <div class="modal-header">
                 <h5 class="modal-title"><b>Forgotten Password</b></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
+                    <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="email-sent">
