@@ -179,15 +179,6 @@ a.bug-link{
     background-color: rgb(246, 248, 250);
 }
 
-.bug-wrapper{
-    border: 1px solid;
-    border-color: rgb(209, 213, 218);
-}
-
-.bug-reported-by{
-    border-bottom: 1px solid;
-    border-color: rgb(209, 213, 218);
-}
 /*-----------------PAGINATION------------*/
 .page-nav{
     margin-top: 20px;
@@ -300,5 +291,13 @@ a.bug-link{
     }
     .comment-wrapper .media-list {
         list-style-type: none;
+    }
+    .bug-wrapper{
+        border: 1px solid;
+        border-color: rgb(209, 213, 218);
+    }
+    .bug-reported-by{
+        border-bottom: 1px solid;
+        border-color: rgb(209, 213, 218);
     }
 }
