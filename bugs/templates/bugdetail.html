@@ -2,21 +2,21 @@
 {% block content %}
 <div class="container news-container">
     <div class="row title">
-        <div class="col-3 col-md-1">
+        <div class="col-3 col-md-2 col-lg-1">
             <a href="#">
                 <img class="thumbnail-img img-circle" src="{{ MEDIA_URL }}{{ bug.reported_by.avatar }}"
                      alt="{{bug.title}}">
             </a>
         </div>
-        <div class="bug-wrapper col-9 col-md-11">
+        <div class="bug-wrapper col-9 col-md-10 col-lg-11">
             <div class="row bug-reported-by">
-                <div class="col-12 col-md-12">
+                <div class="col-12">
                     <strong>
                         <a class="no-decor" style="color: #e54725;" href="#">{{ bug.reported_by }}</a>
                     </strong>
                     <small class="text-muted">{{ bug.published_date|timesince}} ago</small>
                 </div>
-                <div class="col-12 col-md-12">
+                <div class="col-12">
                     <strong>
                         <span class="no-decor" style="color: #e54725;" href="#">{{ bug.title }}</span>
                     </strong>
@@ -24,14 +24,14 @@
             </div>
             <!-- BIG SCREEN CONTENT-->
             <div class="row d-none d-md-block">
-                <div class="col-12 col-md-12">
+                <div class="col-lg-12">
                     <p class="newdetail-content">{{ bug.content|linebreaks}}</p>
                 </div>
             </div>
-            <div class="row d-none d-md-block">
+            <div class="row d-none d-md-flex">
                 {% for bugimage in bug.images.all %}
                 {% if bugimage.image %}
-                <div class="col-md-4">
+                <div class="col-3">
                     <img src="{{ bugimage.image.url }}" alt="Image Not Found" class="img-thumbnail">
                 </div>
                 {% endif %}
@@ -41,14 +41,14 @@
     </div>
     <!-- SMALL SCREEN CONTENT-->
     <div class="row d-block d-md-none">
-        <div class="col-12 col-md-12">
+        <div class="col-12">
             <p class="newdetail-content">{{ bug.content|linebreaks}}</p>
         </div>
     </div>
-    <div class="row title">
+    <div class="row title d-block d-md-none">
         {% for bugimage in bug.images.all %}
         {% if bugimage.image %}
-        <div class="col-md-4">
+        <div class="col-lg-4">
             <img src="{{ bugimage.image.url }}" alt="Image Not Found" class="img-thumbnail">
         </div>
         {% endif %}
