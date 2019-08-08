@@ -11,18 +11,6 @@ $("#id_username_or_email").change(function() {
     $(this).val(id_username_or_email);
 });
 
-//At login form is 'enter' pushed login_button click event is called
-$('#id_username_or_email').on('keypress', function(event) {
-    if(event.which == 13 && $(this).val() != "") {
-        $('#login_button').click();
-    }
-});
-$('#id_password').on('keypress', function(event){
-    if(event.which == 13 && $(this).val() != "") {
-        $('#login_button').click();
-    }
-});
-
 //Sends the data to the server to check if those were correct
 //Returns true/false to be the value of 'beprevented'
 $('#login_button').on('click', function(event) {
