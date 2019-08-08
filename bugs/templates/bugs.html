@@ -27,6 +27,7 @@
                 <div role="gridcell" class="table-cell"><b>Bug's Title</b></div>
                 <div role="gridcell" class="table-cell d-none d-md-table-cell"><b>Reported by</b></div>
                 <div role="gridcell" class="table-cell d-none d-md-table-cell"><b>Reported at</b></div>
+                <div role="gridcell" class="table-cell"><b>Upvotes</b></div>
             </div>
             {% for bug in bugs %}
             <a role="row" class="table-row no-decor bug-link" href="{{ bug.get_absolute_url }}">
@@ -40,6 +41,7 @@
                 <div role="gridcell" class="table-cell">{{ bug.title }}</div>
                 <div role="gridcell" class="table-cell d-none d-md-table-cell"> {{ bug.reported_by.user }}</div>
                 <div role="gridcell" class="table-cell d-none d-md-table-cell">{{ bug.published_date|timesince}} ago</div>
+                <div role="gridcell" class="table-cell">{{ bug.upvotes}}</div>
             </a>
             {% endfor %}
         </div>

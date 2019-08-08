@@ -20,7 +20,7 @@ class Bug(models.Model):
     slug = models.SlugField(unique=True)
 
     class Meta:
-        ordering = ['-published_date']
+        ordering = ['-upvotes', '-published_date']
 
     def __str__(self):
         return self.title
