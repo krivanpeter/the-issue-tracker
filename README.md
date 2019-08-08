@@ -5,6 +5,7 @@
 I'm a student at Code Institute and I've reached my fifth milestone project which was to create this webapplication.
 I needed to use all of my knowledge I got through the course.
 
+The website can be viewed [here](https://my-unicorn-attractor.herokuapp.com/)
 ## What does it do?
 
 This website is made for users who use a given software.
@@ -18,7 +19,6 @@ Users can speak to each other via comments under every piece of news, bugs or fe
 This website uses Django and AJAX to route viewers through the site.
 The animations are created with JQuery.
 The site is styled with Bootstrap.
-The site can be viewed [HERE](#) later.
 
 ## User Stories
 1. As a user on the website I want to be able to see the latest news,
