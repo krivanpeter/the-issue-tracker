@@ -31,8 +31,12 @@ class BugReportForm(forms.ModelForm):
 class BugImageForm(forms.ModelForm):
     images = forms.ImageField(
         required=False,
-        label='Image',
-        widget=forms.FileInput(attrs={'multiple': True})
+        label='',
+        widget=forms.FileInput(
+            attrs={
+                'name': 'images',
+                'multiple': True,
+            })
     )
 
     class Meta:

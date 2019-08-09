@@ -1,5 +1,5 @@
 from django.contrib.contenttypes.models import ContentType
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from accounts.models import UserProfile
@@ -80,7 +80,9 @@ def report_bug(request):
                 bug_form.reported_by = UserProfile.objects.get(user=request.user)
                 bug_form.save()
 
-                for file in request.FILES.getlist('images'):
+                for index, file in enumerate(request.FILES.getlist('images')):
+                    if index == 3:
+                        break
                     instance = BugImages(
                         bug=bug_form,
                         image=file
@@ -88,11 +90,8 @@ def report_bug(request):
                     instance.save()
                 return redirect('/bugs/')
             else:
-                args = {
-                    'new_bug_form': new_bug_form,
-                    'bug_img_form': bug_img_form
-                }
-                return render(request, 'reportbug.html', args)
+                data = {'is_valid': False}
+                return JsonResponse(data)
         else:
             new_bug_form = BugReportForm()
             bug_img_form = BugImageForm()
