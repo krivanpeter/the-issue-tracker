@@ -8,10 +8,7 @@
         <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             {{new_bug_form | as_bootstrap}}
-            {{ bug_img_form.management_form }}
-                {% for form in bug_img_form %}
-                    {{ form }}
-                {% endfor %}
+            {{ bug_img_form }}
             <br>
             <button type="submit">Submit</button>
         </form>

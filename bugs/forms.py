@@ -27,11 +27,14 @@ class BugReportForm(forms.ModelForm):
         content = re.sub(' +', ' ', self.cleaned_data.get('content').strip())
         return content
 
+
 class BugImageForm(forms.ModelForm):
-    image = forms.ImageField(label='Image')
+    images = forms.ImageField(
+        required=False,
+        label='Image',
+        widget=forms.FileInput(attrs={'multiple': True})
+    )
 
     class Meta:
         model = BugImages
-        fields = (
-            'image',
-        )
+        fields = ('images', )
