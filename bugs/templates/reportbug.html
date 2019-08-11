@@ -26,14 +26,18 @@
                     {% endfor %}
                     <div class="image-and-submit-row col-12">
                         <div class="row">
-                        <span class="col-9 col-md-10">
-                            {{ bug_img_form }}
-                            <button type="button" class="btn btn-outline-secondary" id="image-picker">Choose Images</button>
-                            <span id="number_of_chosen_files">Upload maximum 3 screenshots</span>
-                        </span>
-                            <span class="col-3 col-md-2">
-                            <button type="submit" class="btn btn-outline-dark">Report</button>
-                        </span>
+                            <div class="col-9 col-md-10">
+                                {{ bug_img_form }}
+                                <button type="button" class="btn btn-outline-secondary"
+                                        id="image-picker">Choose Images
+                                </button>
+                            </div>
+                            <div class="col-3 col-md-2">
+                                <button type="submit" class="btn bugs-button">Report Bug</button>
+                            </div>
+                            <div class="col-12" id="number_of_chosen_files">
+                                Upload maximum 3 screenshots
+                            </div>
                         </div>
                     </div>
                 </div>

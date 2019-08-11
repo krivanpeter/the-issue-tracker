@@ -6,8 +6,9 @@
         <div class="col-12">
             <hr>
             <span class="panel-heading">Bugs</span>
-            <a type="button" class="btn btn-primary float-right"
-               href="{% url 'report_bug' %}"><span>Report Bug</span></a>
+            <a type="button" class="btn bugs-button float-right" href="{% url 'report_bug' %}">
+                Report Bug
+            </a>
             <hr>
         </div>
     </div>
@@ -39,8 +40,12 @@
                 <div role="gridcell" class="table-cell"><i class="fas fa-check" style="color: green;"></i></div>
                 {% endif %}
                 <div role="gridcell" class="table-cell">{{ bug.title }}</div>
-                <div role="gridcell" class="table-cell d-none d-md-table-cell"> {{ bug.reported_by.user }}</div>
-                <div role="gridcell" class="table-cell d-none d-md-table-cell">{{ bug.published_date|timesince}} ago</div>
+                <div role="gridcell" class="table-cell d-none d-md-table-cell">
+                    {{ bug.reported_by.user }}
+                </div>
+                <div role="gridcell" class="table-cell d-none d-md-table-cell">
+                    {{ bug.published_date|timesince}} ago
+                </div>
                 <div role="gridcell" class="table-cell">{{ bug.upvotes}}</div>
             </a>
             {% endfor %}

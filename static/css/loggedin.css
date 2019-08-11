@@ -78,6 +78,7 @@ body{
 }
 /*-----------------NEWS-----------------*/
 .title{
+    margin-top: 10px;
     margin-bottom: 10px;
 }
 
@@ -130,9 +131,11 @@ body{
 }
 
 /*-----------------BUGS-----------------*/
-.bugs-button{
+.btn.bugs-button{
     background-color: #e54725;
     color: black;
+    border: 1px solid black;
+    border-radius: .15rem;
 }
 
 .bugs-button:hover{

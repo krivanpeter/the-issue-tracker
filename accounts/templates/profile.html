@@ -1,27 +1,60 @@
 {% extends "base_logged_in.html" %}
 {% block content %}
 <div class="container">
-    <div class="row">
-        <h2>Profile</h2>
+    <h2 align="center" class="title">Profile</h2>
+    <div>
+        <div class="row">
+            <div role="grid" class="bug-table" style="width: 100%;">
+                <div role="row" class="table-row">
+                    <div align="center" class="col-12">
+                        <img src="{{ user.userprofile.avatar.url }}" height="250">
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div role="row" class="table-row">
+                        <div role="gridcell" class="table-cell"><b>Username:</b></div>
+                        <div role="gridcell" class="table-cell">{{ user.userprofile }}</div>
+                    </div>
+                    <div role="row" class="table-row">
+                        <div role="gridcell" class="table-cell"><b>First name:</b></div>
+                        <div role="gridcell" class="table-cell">{{ user.first_name }}</div>
+                    </div>
+                    <div role="row" class="table-row">
+                        <div role="gridcell" class="table-cell"><b>Last name:</b></div>
+                        <div role="gridcell" class="table-cell">{{ user.last_name }}</div>
+                    </div>
+                    <div role="row" class="table-row">
+                        <div role="gridcell" class="table-cell"><b>E-mail:</b></div>
+                        <div role="gridcell" class="table-cell">{{ user.email }}</div>
+                    </div>
+                    <div role="row" class="table-row">
+                        <div role="gridcell" class="table-cell"><b>First name:</b></div>
+                        <div role="gridcell" class="table-cell">{{ user.userprofile.gender }}</div>
+                    </div>
+                    <div align="center" class="title">
+                        <a class="btn btn-dark" type="button" href="{% url 'edit_profile' %}">
+                            Edit Profile
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <p><img src="{{ user.userprofile.avatar.url }}" height="250"></p>
-    <p><b>Username: </b>{{ user.userprofile }} </p>
-    <p><b>First name: </b>{{ user.first_name }} </p>
-    <p><b>Last name: </b>{{ user.last_name }} </p>
-    <p><b>E-mail address: </b>{{ user.email }} </p>
-    <p><b>Gender: </b>{{ user.userprofile.gender }} </p>
-    <a class="btn btn-primary" type="button" href="{% url 'edit_profile' %}">Edit Profile</a>
 </div>
 {% if bugs %}
 <div class="container">
-    <div class="row">
-        <h2>Reported Bugs</h2>
+    <h2 align="center" class="title">Reported Bugs</h2>
+    <div role="grid" class="bug-table" style="width: 100%;">
+        <div class="col-12">
+            {% for bug in bugs %}
+            <div role="row" class="table-row">
+                <a role="gridcell" class="no-decor table-cell" href="{{ bug.get_absolute_url }}">{{ bug.title }}</a>
+            </div>
+            {% endfor %}
+        </div>
     </div>
-    {% for bug in bugs %}
-    <div class="row">
-    {{ bug.title }}
-    </div>
-    {% endfor %}
 </div>
 {% endif %}
 {% endblock %}
+
+
