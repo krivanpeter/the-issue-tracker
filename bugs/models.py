@@ -10,7 +10,7 @@ from django.utils.text import slugify
 
 class Bug(models.Model):
     # A piece of Bug
-    title = models.CharField(max_length=60, default="")
+    title = models.TextField(max_length=60, default="")
     content = models.TextField()
     created_date = models.DateTimeField(auto_now_add=True)
     published_date = models.DateTimeField(blank=True, null=True, default=timezone.now)

@@ -139,7 +139,8 @@ body{
     background-color: #b7381d;;
     color: #BEBEBE;
 }
-#id_content{
+#id_content,
+#id_title{
     resize: none;
 }
 
@@ -177,6 +178,11 @@ a.bug-link{
 
 .bug-first-row{
     background-color: rgb(246, 248, 250);
+}
+
+.image-and-submit-row {
+    margin-top: 15px;
+    margin-bottom: 15px;
 }
 
 /*-----------------PAGINATION------------*/
@@ -272,7 +278,8 @@ a.bug-link{
     color: #990000;
 }
 /*--------------------------------------*/
-#id_password {
+#id_password,
+#id_images{
     display: none;
 }
 /*-------------MEDIA QUERIES------------*/

@@ -2,19 +2,49 @@
 {% load staticfiles %}
 {% load bootstrap_tags %}
 {% block content %}
-<div class="container">
-    <div class="row">
-        <h2>Report New Bug</h2>
-    </div>
+<div class="container news-container">
+    <h2 class="title" align="center">New Bug</h2>
     <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-        {{new_bug_form | as_bootstrap}}
-        {{ bug_img_form }}
-        <br>
-        <button type="submit">Submit</button>
+        <div class="row title">
+            <div class="col-3 col-md-2 col-xl-1">
+                <img class="thumbnail-img img-circle" src="{{ MEDIA_URL }}{{ user.userprofile.avatar }}"
+                     alt="Picture can not be loaded">
+            </div>
+            <div class="bug-wrapper col-9 col-md-10 col-xl-11">
+                <div class="row">
+                    {% for field in new_bug_form %}
+                    {% if field.label == 'Title' %}
+                    <div class="col-12">
+                        <span>{{ field.label }} {{ field }}</span>
+                    </div>
+                    {% elif field.label == 'Description' %}
+                    <div class="col-12">
+                        <span>{{ field.label }} {{ field }}</span>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                    <div class="image-and-submit-row col-12">
+                        <div class="row">
+                        <span class="col-9 col-md-10">
+                            {{ bug_img_form }}
+                            <button type="button" class="btn btn-outline-secondary" id="image-picker">Choose Images</button>
+                            <span id="number_of_chosen_files">Upload maximum 3 screenshots</span>
+                        </span>
+                            <span class="col-3 col-md-2">
+                            <button type="submit" class="btn btn-outline-dark">Report</button>
+                        </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </form>
+    <div class="row">
+        <button type="button" class="btn btn-back">Back to bugs</button>
+    </div>
 </div>
 {% endblock %}
 {% block scripts %}
-<script src="{% static 'js/file_limiter.js' %}"></script>
+<script src="{% static 'js/bug_report.js' %}"></script>
 {% endblock %}

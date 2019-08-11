@@ -5,12 +5,18 @@ import re
 
 class BugReportForm(forms.ModelForm):
     # Bug Report Form
+    title = forms.CharField(widget=forms.Textarea(
+        attrs={
+            'class': 'form-control bug-input',
+            'placeholder': 'Give it a title...',
+            'rows': '1'}),
+        label='Title')
     content = forms.CharField(widget=forms.Textarea(
         attrs={
             'class': 'form-control bug-input',
-            'placeholder': 'Describe the issue...',
+            'placeholder': 'Describe the issue here...',
             'rows': '3'}),
-        label='The issue')
+        label='Description')
 
     class Meta:
         model = Bug
