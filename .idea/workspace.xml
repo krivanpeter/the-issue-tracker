@@ -6,8 +6,6 @@
       <change beforePath="$PROJECT_DIR$/accounts/templates/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/templates/profile.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/attractor/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/attractor/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bugs/templates/bugs.html" beforeDir="false" afterPath="$PROJECT_DIR$/bugs/templates/bugs.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bugs/templates/reportbug.html" beforeDir="false" afterPath="$PROJECT_DIR$/bugs/templates/reportbug.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/loggedin.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/loggedin.css" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
