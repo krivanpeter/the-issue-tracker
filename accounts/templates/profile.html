@@ -1,6 +1,7 @@
 {% extends "base_logged_in.html" %}
 {% block content %}
-<div class="container">
+<!-- SMALL SCREEN -->
+<div class="container d-block d-md-none">
     <h2 align="center" class="title">Profile</h2>
     <div class="row">
         <div role="grid" style="width: 100%; display: table;">
@@ -9,7 +10,7 @@
                     <img src="{{ user.userprofile.avatar.url }}" height="250">
                 </div>
             </div>
-            <div class="col-12">
+            <div align="center" class="col-12">
                 <div role="row" class="table-row">
                     <div role="gridcell" class="table-cell"><b>Username:</b></div>
                     <div role="gridcell" class="table-cell">{{ user.userprofile }}</div>
@@ -39,12 +40,48 @@
         </div>
     </div>
 </div>
-{% if bugs %}
+<!-- BIG SCREEN -->
+<div class="container d-none d-md-block">
+    <h2 align="center" class="title">Profile</h2>
+    <div class="row">
+        <div class="offset-2 col-md-5 col-lg-4">
+            <img src="{{ user.userprofile.avatar.url }}" height="250">
+            <div class="title">
+                <a class="btn btn-dark" type="button" href="{% url 'edit_profile' %}">
+                    <span>Edit Profile</span>
+                </a>
+            </div>
+        </div>
+        <div class="col-md-5 col-lg-6">
+            <div role="row" class="table-row">
+                <div role="gridcell" class="table-cell"><b>Username:</b></div>
+                <div role="gridcell" class="table-cell">{{ user.userprofile }}</div>
+            </div>
+            <div role="row" class="table-row">
+                <div role="gridcell" class="table-cell"><b>First name:</b></div>
+                <div role="gridcell" class="table-cell">{{ user.first_name }}</div>
+            </div>
+            <div role="row" class="table-row">
+                <div role="gridcell" class="table-cell"><b>Last name:</b></div>
+                <div role="gridcell" class="table-cell">{{ user.last_name }}</div>
+            </div>
+            <div role="row" class="table-row">
+                <div role="gridcell" class="table-cell"><b>E-mail:</b></div>
+                <div role="gridcell" class="table-cell">{{ user.email }}</div>
+            </div>
+            <div role="row" class="table-row">
+                <div role="gridcell" class="table-cell"><b>Gender:</b></div>
+                <div role="gridcell" class="table-cell">{{ user.userprofile.gender }}</div>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="container">
+    {% if bugs %}
     <h2 align="center" class="title">Reported Bugs</h2>
     <div class="row">
         <div role="grid" style="width: 100%; display: table;">
-            <div class="col-12">
+            <div align="center" class="col-12">
                 {% for bug in bugs %}
                 <div role="row" class="table-row">
                     <div role="gridcell" class="table-cell">
@@ -55,7 +92,7 @@
                         {% endif %}
                     </div>
                     <a role="gridcell" class="no-decor table-cell" href="{{ bug.get_absolute_url }}">{{ bug.title }}</a>
-                    <div role="gridcell" class="d-none">
+                    <div role="gridcell" class="d-none d-md-block table-cell">
                         <span>{{ bug.published_date|timesince}} ago</span>
                     </div>
                 </div>
@@ -63,8 +100,19 @@
             </div>
         </div>
     </div>
+    {% endif %}
+    {% if upvotes %}
+    <h2 align="center" class="title">My Upvotes</h2>
+    <div class="row">
+        <div role="grid" style="width: 100%; display: table;">
+            {% for upvote in upvotes %}
+            {{ upvote }}
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
 </div>
-{% endif %}
+
 {% endblock %}
 
 
