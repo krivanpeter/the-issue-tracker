@@ -142,8 +142,7 @@ body{
     background-color: #b7381d;;
     color: #BEBEBE;
 }
-#id_content,
-#id_title{
+.bug-input{
     resize: none;
 }
 
@@ -282,7 +281,8 @@ a.bug-link{
 }
 /*--------------------------------------*/
 #id_password,
-#id_images{
+#id_images,
+#id_avatar{
     display: none;
 }
 /*-------------MEDIA QUERIES------------*/
@@ -302,7 +302,7 @@ a.bug-link{
     .comment-wrapper .media-list {
         list-style-type: none;
     }
-    .bug-wrapper{
+    .wrapper{
         border: 1px solid;
         border-color: rgb(209, 213, 218);
     }

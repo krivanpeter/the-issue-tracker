@@ -7,4 +7,8 @@ $(document).ready(function() {
         event.preventDefault();
         $(this).parent().parent('.row').parent('.container').parent('.media-body').parent('.media').next('.comment-reply').fadeToggle();
     });
+
+    $('#avatar-picker').click(function(){
+        $("#id_avatar").click();
+    });
 })

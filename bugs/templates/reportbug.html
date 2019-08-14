@@ -1,6 +1,5 @@
 {% extends "base_logged_in.html" %}
 {% load staticfiles %}
-{% load bootstrap_tags %}
 {% block content %}
 <div class="container news-container">
     <h2 class="title" align="center">New Bug</h2>
@@ -14,15 +13,9 @@
             <div class="bug-wrapper col-9 col-md-10 col-xl-11">
                 <div class="row">
                     {% for field in new_bug_form %}
-                    {% if field.label == 'Title' %}
                     <div class="col-12">
                         <span>{{ field.label }} {{ field }}</span>
                     </div>
-                    {% elif field.label == 'Description' %}
-                    <div class="col-12">
-                        <span>{{ field.label }} {{ field }}</span>
-                    </div>
-                    {% endif %}
                     {% endfor %}
                     <div class="image-and-submit-row col-12">
                         <div class="row">

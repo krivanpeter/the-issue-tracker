@@ -18,12 +18,12 @@ class UserRegistrationForm(UserCreationForm):
         attrs={'id': 'id_registration_email', 'type': 'email'}))
     password1 = forms.CharField(label='Password', widget=forms.PasswordInput, required=True)
     password2 = forms.CharField(label='Password Confirmation', widget=forms.PasswordInput, required=True)
-    
+
     def __init__(self, *args, **kwargs):
         super(UserRegistrationForm, self).__init__(*args, **kwargs)
         for visible in self.visible_fields():
             visible.field.widget.attrs['class'] = 'form-control'
-            
+
     class Meta:
         model = User
         fields = ('username', 'email', 'password1', 'password2')
@@ -50,10 +50,32 @@ class UserRegistrationForm(UserCreationForm):
 
 # User Profile EditForm
 class EditProfileForm(UserChangeForm):
-    password = ReadOnlyPasswordHashField(label=("Password"),
-                                         help_text=("Raw passwords are not stored, so there is no way to see "
-                                                     "the password, but you can change it "
-                                                     "using <a href=\"/profile/change-password/\">this form</a>."))
+    first_name = forms.CharField(widget=forms.Textarea(
+        attrs={
+            'class': 'form-control bug-input',
+            'rows': '1'}),
+        label='First Name')
+    last_name = forms.CharField(widget=forms.Textarea(
+        attrs={
+            'class': 'form-control bug-input',
+            'rows': '1'}),
+        label='Last Name')
+    email = forms.CharField(widget=forms.Textarea(
+        attrs={
+            'class': 'form-control bug-input',
+            'rows': '1'}),
+        label='E-mail')
+    password = ReadOnlyPasswordHashField(
+        label='Password',
+        help_text=('Raw passwords are not stored, so there is no way to see '
+                   'the password, but you can change it '
+                   'using <a href=\"/profile/change-password/\">this form</a>.'),
+        widget=forms.PasswordInput(
+            attrs={
+                'class': 'form-control bug-input',
+            }),
+    )
+
     class Meta:
         model = User
         fields = (
@@ -77,6 +99,26 @@ class EditProfileForm(UserChangeForm):
 
 
 class EditUserForm(forms.ModelForm):
+    GENDER_CHOICES = (
+        ('M', 'Male'),
+        ('F', 'Female')
+    )
+    avatar = forms.ImageField(
+        required=False,
+        label='Avatar',
+        widget=forms.FileInput(
+            attrs={
+                'name': 'images'
+            })
+    )
+    gender = forms.ChoiceField(
+        choices=GENDER_CHOICES,
+        label='Gender',
+        widget=forms.Select(
+            attrs={
+                'class': 'form-control bug-input'})
+    )
+
     class Meta:
         model = UserProfile
         fields = (
