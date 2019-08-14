@@ -7,13 +7,13 @@ from django.shortcuts import (
 from django.contrib.auth.forms import (
     PasswordResetForm,
     SetPasswordForm,
-    PasswordChangeForm
 )
 from .forms import (
     UserLoginForm,
     UserRegistrationForm,
     EditProfileForm,
-    EditUserForm
+    EditUserForm,
+    PasswordChangeCustomForm
 )
 from django.http import JsonResponse, Http404
 from django.utils.http import urlsafe_base64_decode
@@ -31,8 +31,8 @@ from django.views.decorators.cache import never_cache
 from bugs.models import Bug
 
 
-"""A view that displays the index page"""
 def index(request):
+    """A view that displays the index page"""
     data = {'data': False}
     if request.method == "POST":
         if 'reset_password' in request.POST:
@@ -62,13 +62,12 @@ def index(request):
         return render(request, "index.html", args)
 
 
-"""
-A view checks the user's username and password
-If correct redirect to page of the logged in users
-"""
 def login(request):
+    """
+    A view checks the user's username and password
+    If correct redirect to page of the logged in users
+    """
     data = {'username_or_password_error': False}
-    """A view that manages the login form"""
     if request.method == 'POST':
         user_form = UserLoginForm(request.POST)
         if user_form.is_valid():
@@ -86,12 +85,12 @@ def login(request):
         return index(request)
 
 
-"""
-A view checks the user's username and password
-Necessary to be able to prevent the submiting of the loginform
-if user's data are incorrect
-"""
 def check_userdata(request):
+    """
+    A view checks the user's username and password
+    Necessary to be able to prevent the submiting of the loginform
+    if user's data are incorrect
+    """
     if request.method == "POST":
         data = {'username_or_password_error': False}
         username_or_email = request.POST.get('username_or_email', None)
@@ -107,7 +106,6 @@ def check_userdata(request):
         raise Http404()
 
 
-"""A view which logouts the user"""
 def logout(request):
     """A view that logs the user out and redirects back to the index page"""
     auth.logout(request)
@@ -115,10 +113,8 @@ def logout(request):
     return redirect('index')
 
 
-"""
-A view which let the user to login after changed password
-"""
 def login_from_password_change(request):
+    """A view which let the user to login after changed password"""
     if request.method == "POST":
         return login(request)
     else:
@@ -131,9 +127,9 @@ def login_from_password_change(request):
         return render(request, "index.html", args)
 
 
-"""A view that displays the profile page of a logged in user"""
 @login_required
 def view_profile(request):
+    """A view that displays the profile page of a logged in user"""
     if request.user.is_authenticated:
         if Bug.objects.filter(reported_by=request.user.userprofile).exists():
             bugs = Bug.objects.filter(reported_by=request.user.userprofile)
@@ -150,9 +146,9 @@ def view_profile(request):
         return redirect('index')
 
 
-"""A view that lets a logged in user to change the profile"""
 @login_required
 def edit_profile(request):
+    """A view that lets a logged in user to change the profile"""
     if request.user.is_authenticated:
         if request.method == "POST":
             user_form = EditProfileForm(request.POST, instance=request.user)
@@ -182,12 +178,12 @@ def edit_profile(request):
         return redirect('index')
 
 
-"""A view that lets a logged in user to change the profile"""
 @login_required
 def change_password(request):
+    """A view that lets a logged in user to change the profile"""
     if request.user.is_authenticated:
         if request.method == "POST":
-            form = PasswordChangeForm(data=request.POST, user=request.user)
+            form = PasswordChangeCustomForm(data=request.POST, user=request.user)
             if form.is_valid():
                 form.save()
                 auth.logout(request)
@@ -195,15 +191,15 @@ def change_password(request):
             else:
                 return redirect('/profile/change-password/')
         else:
-            form = PasswordChangeForm(user=request.user)
+            form = PasswordChangeCustomForm(user=request.user)
             args = {'form': form}
             return render(request, 'change_password.html', args)
     else:
         return redirect('index')
 
 
-"""A view that checks if username exists in database"""
 def check_username(request):
+    """A view that checks if username exists in database"""
     if request.method == "GET":
         username = request.GET.get('username', None)
         data = {
@@ -214,8 +210,8 @@ def check_username(request):
         raise Http404()
 
 
-"""A view that checks if email address exists in database"""
 def check_email(request):
+    """A view that checks if email address exists in database"""
     if request.method == "GET":
         email = request.GET.get('email', None)
         data = {
@@ -226,8 +222,8 @@ def check_email(request):
         raise Http404()
 
 
-"""A view that manages the registration form"""
 def register(request):
+    """A view that manages the registration form"""
     if request.method == 'POST':
         user_form = UserRegistrationForm(request.POST)
         if user_form.is_valid():

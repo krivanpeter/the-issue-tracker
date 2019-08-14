@@ -1,8 +1,9 @@
 from django import forms
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserCreationForm, UserChangeForm, ReadOnlyPasswordHashField
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm, ReadOnlyPasswordHashField, PasswordChangeForm
 from django.core.exceptions import ValidationError
 from accounts.models import UserProfile
+from collections import OrderedDict
 import re
 
 
@@ -125,3 +126,11 @@ class EditUserForm(forms.ModelForm):
             'avatar',
             'gender'
         )
+
+
+class PasswordChangeCustomForm(PasswordChangeForm):
+    def __init__(self, user, *args, **kwargs):
+        super(PasswordChangeCustomForm, self).__init__(user,*args, **kwargs)
+        for field in self.fields:
+            self.fields[field].widget.attrs['class'] = 'form-control bug-input'
+
