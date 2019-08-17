@@ -187,6 +187,10 @@ a.bug-link{
     margin-bottom: 15px;
 }
 
+.bug-reported-by{
+        border-bottom: 1px solid;
+        border-color: rgb(209, 213, 218);
+    }
 /*-----------------PAGINATION------------*/
 .page-nav{
     margin-top: 20px;
@@ -304,10 +308,6 @@ a.bug-link{
     }
     .wrapper{
         border: 1px solid;
-        border-color: rgb(209, 213, 218);
-    }
-    .bug-reported-by{
-        border-bottom: 1px solid;
         border-color: rgb(209, 213, 218);
     }
 }
