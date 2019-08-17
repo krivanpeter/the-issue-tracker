@@ -22,7 +22,7 @@
 </div>
 <div class="container news-container">
     <div class="row title">
-        <div class="bug-wrapper col-12">
+        <div class="col-12">
             <div class="row">
                 <div class="col-12">
                     <p class="newdetail-content">{{ bug.content|linebreaks}}</p>
@@ -44,4 +44,24 @@
         <button type="button" class="btn btn-back">Back to bugs</button>
     </div>
 </div>
+<!-- The Modal -->
+<div class="modal fade" id="imagemodal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" style="max-width: 650px">
+        <div class="modal-content">
+            <div class="modal-body" style="height: 450px;">
+                <img src="" id="imagepreview" class="img-responsive">
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script>
+$(".img-thumbnail").on("click", function() {
+    if($(window).width()>768){
+        $('#imagepreview').attr('src', $(this).attr('src'));
+        $('#imagemodal').modal('show');
+    }
+});
+</script>
 {% endblock %}

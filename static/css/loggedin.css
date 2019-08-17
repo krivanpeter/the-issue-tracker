@@ -186,11 +186,26 @@ a.bug-link{
     margin-top: 15px;
     margin-bottom: 15px;
 }
-
 .bug-reported-by{
-        border-bottom: 1px solid;
-        border-color: rgb(209, 213, 218);
-    }
+    border-bottom: 1px solid;
+    border-color: rgb(209, 213, 218);
+}
+
+.img-responsive {
+    width:650px; /* This value will depend on what size you want for your loading image, let's say it's 50px */
+    height: 450px;
+    position:absolute;
+    left:50%;
+    top:50%;
+    margin-top:-225px; /* This needs to be half of the height */
+    margin-left:-325px; /* This needs to be half of the width */
+}
+
+#imagepreview{
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+    border-radius: .25rem;
+}
 /*-----------------PAGINATION------------*/
 .page-nav{
     margin-top: 20px;
@@ -214,7 +229,6 @@ a.bug-link{
     text-decoration: none;
     background-color: #e9ecef;
     border-color: #dee2e6;
-
 }
 /*-----------------FOOTER-----------------*/
 .community-pages-footer{
@@ -306,8 +320,11 @@ a.bug-link{
     .comment-wrapper .media-list {
         list-style-type: none;
     }
-    .wrapper{
-        border: 1px solid;
-        border-color: rgb(209, 213, 218);
+    .img-thumbnail{
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .img-thumbnail:hover{
+        opacity: 0.8;
     }
 }
