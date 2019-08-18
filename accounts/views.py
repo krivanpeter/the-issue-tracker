@@ -131,8 +131,8 @@ def login_from_password_change(request):
 @login_required
 def view_profile(request, username=None):
     """A view that displays the profile page of a user"""
-    user = UserProfile.objects.get(user__username=username)
     if request.user.is_authenticated:
+        user = UserProfile.objects.get(user__username=username)
         if Bug.objects.filter(reported_by=user).exists():
             bugs = Bug.objects.filter(reported_by=user)
             args = {

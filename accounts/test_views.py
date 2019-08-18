@@ -9,16 +9,24 @@ class TestViews(TestCase):
         self.assertTemplateUsed(page, "index.html")
 
     def test_cant_get_profile_page_without_login(self):
-        page = self.client.get("/profile/")
-        self.assertEqual(page.status_code, 302)
-        page = self.client.get("/profile/", follow=True)
+        page = self.client.get("/profile/testuser")
+        self.assertEqual(page.status_code, 301)
+        page = self.client.get("/profile/testuser", follow=True)
         self.assertTemplateUsed(page, "index.html")
         self.assertEqual(page.status_code, 200)
 
     def test_get_profile_page(self):
         self.user = User.objects.create_user(username='testuser', password='12345')
         self.client.login(username='testuser', password='12345')
-        page = self.client.get("/profile/")
+        page = self.client.get("/profile/testuser", follow=True)
+        self.assertEqual(page.status_code, 200)
+        self.assertTemplateUsed(page, "profile.html")
+
+    def test_get_other_user_profile_page(self):
+        self.user = User.objects.create_user(username='testuser', password='12345')
+        self.otheruser = User.objects.create_user(username='otheruser', password='12345')
+        self.client.login(username='testuser', password='12345')
+        page = self.client.get("/profile/otheruser", follow=True)
         self.assertEqual(page.status_code, 200)
         self.assertTemplateUsed(page, "profile.html")
 
