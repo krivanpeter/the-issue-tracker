@@ -16,7 +16,7 @@ A view which shows all the news
 @login_required
 def all_news(request):
     if request.user.is_authenticated:
-        news_list = New.objects.all().order_by('-published_date')
+        news_list = New.objects.all()
         page = request.GET.get('page', 1)
         paginator = Paginator(news_list, 5)
         try:

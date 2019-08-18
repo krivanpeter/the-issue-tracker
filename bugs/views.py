@@ -2,6 +2,7 @@ from django.contrib.contenttypes.models import ContentType
 from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from accounts.models import UserProfile
 from comments.forms import CommentForm
 from comments.models import Comment
@@ -9,11 +10,20 @@ from .models import Bug, BugImages
 from .forms import BugReportForm, BugImageForm
 
 
+
 @login_required
 def all_bugs(request):
     # A view which shows all the reported bugs
     if request.user.is_authenticated:
-        bugs = Bug.objects.all()
+        bug_list = Bug.objects.all()
+        page = request.GET.get('page', 1)
+        paginator = Paginator(bug_list, 10)
+        try:
+            bugs = paginator.page(page)
+        except PageNotAnInteger:
+            bugs = paginator.page(1)
+        except EmptyPage:
+            bugs = paginator.page(paginator.num_pages)
         return render(request, "bugs.html", {"bugs": bugs})
     else:
         return redirect('index')

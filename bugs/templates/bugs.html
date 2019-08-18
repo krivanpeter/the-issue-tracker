@@ -51,4 +51,35 @@
         </div>
     </div>
 </div>
+{% if bugs.has_other_pages %}
+<div class="container">
+    <nav class="row page-nav" aria-label="Bugs Page Navigation">
+        <ul class="col-12 pagination justify-content-center">
+            {% if bugs.has_previous %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ bugs.previous_page_number }}">Previous</a>
+            </li>
+            {% endif %}
+            {% for i in bugs.paginator.page_range %}
+            {% if bugs.number == i %}
+            <li class="page-item active">
+                <span class="page-link">{{ i }}
+                    <span class="sr-only">(current)</span>
+                </span>
+            </li>
+            {% else %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ i }}">{{ i }}</a>
+            </li>
+            {% endif %}
+            {% endfor %}
+            {% if bugs.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ bugs.next_page_number }}">Next</a>
+            </li>
+            {% endif %}
+        </ul>
+    </nav>
+</div>
+{% endif %}
 {% endblock %}

@@ -16,6 +16,9 @@ class New(models.Model):
     image = models.ImageField(upload_to="news_images", null=True)
     slug = models.SlugField(unique=True)
 
+    class Meta:
+        ordering = ['-published_date']
+
     def __str__(self):
         return self.title
 
