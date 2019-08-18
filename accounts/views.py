@@ -196,7 +196,6 @@ def delete_avatar(request):
         raise Http404()
 
 
-
 @login_required
 def change_password(request):
     """A view that lets a logged in user to change the profile"""
