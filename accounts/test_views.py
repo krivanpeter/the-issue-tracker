@@ -1,5 +1,7 @@
-from django.test import TestCase
 from django.contrib.auth.models import User
+from django.test import TestCase
+from django.test.client import RequestFactory
+from .views import delete_avatar
 
 
 class TestViews(TestCase):
@@ -29,6 +31,24 @@ class TestViews(TestCase):
         page = self.client.get("/profile/otheruser", follow=True)
         self.assertEqual(page.status_code, 200)
         self.assertTemplateUsed(page, "profile.html")
+
+    def test_edit_profile(self):
+        self.user = User.objects.create_user(username='testuser', password='12345')
+        self.client.login(username='testuser', password='12345')
+        page = self.client.get("/profile/edit", follow=True)
+        self.assertEqual(page.status_code, 200)
+        self.assertTemplateUsed(page, "editprofile.html")
+
+    def test_delete_avatar(self):
+        self.user = User.objects.create_user(username='testuser', password='12345')
+        self.user.userprofile.avatar = "../media/profile_images/test.png"
+        self.user.userprofile.gender = "M"
+        self.client.login(username='testuser', password='12345')
+        self.factory = RequestFactory()
+        request = self.factory.get('/accounts/delete-avatar/')
+        request.user = self.user
+        delete_avatar(request)
+        self.assertEqual(self.user.userprofile.avatar, "../media/profile_images/male_def.png")
 
     def test_check_username_not_exists(self):
         response = self.client.get('/accounts/check_username/', {'username': 'testuser'})
