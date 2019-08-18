@@ -7,29 +7,29 @@
         <div role="grid" style="width: 100%; display: table;">
             <div role="row" class="table-row">
                 <div align="center" class="col-12">
-                    <img src="{{ user.userprofile.avatar.url }}" height="250">
+                    <img src="{{ user.avatar.url }}" height="250">
                 </div>
             </div>
             <div align="center" class="col-12">
                 <div role="row" class="table-row">
                     <div role="gridcell" class="table-cell"><b>Username:</b></div>
-                    <div role="gridcell" class="table-cell">{{ user.userprofile }}</div>
+                    <div role="gridcell" class="table-cell">{{ user }}</div>
                 </div>
                 <div role="row" class="table-row">
                     <div role="gridcell" class="table-cell"><b>First name:</b></div>
-                    <div role="gridcell" class="table-cell">{{ user.first_name }}</div>
+                    <div role="gridcell" class="table-cell">{{ user.user.first_name }}</div>
                 </div>
                 <div role="row" class="table-row">
                     <div role="gridcell" class="table-cell"><b>Last name:</b></div>
-                    <div role="gridcell" class="table-cell">{{ user.last_name }}</div>
+                    <div role="gridcell" class="table-cell">{{ user.user.last_name }}</div>
                 </div>
                 <div role="row" class="table-row">
                     <div role="gridcell" class="table-cell"><b>E-mail:</b></div>
-                    <div role="gridcell" class="table-cell">{{ user.email }}</div>
+                    <div role="gridcell" class="table-cell">{{ user.user.email }}</div>
                 </div>
                 <div role="row" class="table-row">
                     <div role="gridcell" class="table-cell"><b>First name:</b></div>
-                    <div role="gridcell" class="table-cell">{{ user.userprofile.gender }}</div>
+                    <div role="gridcell" class="table-cell">{{ user.gender }}</div>
                 </div>
                 <div align="center" class="title">
                     <a class="btn btn-dark" type="button" href="{% url 'edit_profile' %}">
@@ -45,33 +45,35 @@
     <h2 align="center" class="title">Profile</h2>
     <div class="row">
         <div class="offset-2 col-md-5 col-lg-4">
-            <img src="{{ user.userprofile.avatar.url }}" height="250">
+            <img src="{{ user.avatar.url }}" height="250">
+            {% if request.user.userprofile == user %}
             <div class="title">
                 <a class="btn btn-dark" type="button" href="{% url 'edit_profile' %}">
                     <span>Edit Profile</span>
                 </a>
             </div>
+            {% endif %}
         </div>
         <div class="col-md-5 col-lg-6">
             <div role="row" class="table-row">
                 <div role="gridcell" class="table-cell"><b>Username:</b></div>
-                <div role="gridcell" class="table-cell">{{ user.userprofile }}</div>
+                <div role="gridcell" class="table-cell">{{ user }}</div>
             </div>
             <div role="row" class="table-row">
                 <div role="gridcell" class="table-cell"><b>First name:</b></div>
-                <div role="gridcell" class="table-cell">{{ user.first_name }}</div>
+                <div role="gridcell" class="table-cell">{{ user.user.first_name }}</div>
             </div>
             <div role="row" class="table-row">
                 <div role="gridcell" class="table-cell"><b>Last name:</b></div>
-                <div role="gridcell" class="table-cell">{{ user.last_name }}</div>
+                <div role="gridcell" class="table-cell">{{ user.user.last_name }}</div>
             </div>
             <div role="row" class="table-row">
                 <div role="gridcell" class="table-cell"><b>E-mail:</b></div>
-                <div role="gridcell" class="table-cell">{{ user.email }}</div>
+                <div role="gridcell" class="table-cell">{{ user.user.email }}</div>
             </div>
             <div role="row" class="table-row">
                 <div role="gridcell" class="table-cell"><b>Gender:</b></div>
-                <div role="gridcell" class="table-cell">{{ user.userprofile.gender }}</div>
+                <div role="gridcell" class="table-cell">{{ user.gender }}</div>
             </div>
         </div>
     </div>

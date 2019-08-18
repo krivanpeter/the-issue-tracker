@@ -3,14 +3,14 @@
 <div class="container news-container">
     <div class="row title">
         <div class="col-3 col-md-2 col-lg-1">
-            <a href="#">
+            <a href="{% url 'view_profile' bug.reported_by %}">
                 <img class="thumbnail-img img-circle" src="{{ MEDIA_URL }}{{ bug.reported_by.avatar }}"
                      alt="{{bug.title}}">
             </a>
         </div>
         <div class="col-9 col-md-10 col-lg-11 bug-reported-by">
             <strong>
-                <a class="no-decor" style="color: #e54725;" href="#">{{ bug.reported_by }}</a>
+                <a class="no-decor" style="color: #e54725;" href="{% url 'view_profile' bug.reported_by %}">{{ bug.reported_by }}</a>
             </strong>
             <small class="text-muted">{{ bug.published_date|timesince}} ago</small>
             <br>

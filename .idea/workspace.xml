@@ -3,11 +3,17 @@
   <component name="ChangeListManager">
     <list default="true" id="87ce0953-7b2c-41c1-be27-93881aa7f7a8" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bugs/templates/bugs.html" beforeDir="false" afterPath="$PROJECT_DIR$/bugs/templates/bugs.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bugs/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/bugs/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/news/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/news/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accounts/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accounts/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accounts/templates/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/templates/profile.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accounts/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/attractor/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/attractor/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bugs/templates/bugdetail.html" beforeDir="false" afterPath="$PROJECT_DIR$/bugs/templates/bugdetail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/news/templates/newdetail.html" beforeDir="false" afterPath="$PROJECT_DIR$/news/templates/newdetail.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/news/templates/news.html" beforeDir="false" afterPath="$PROJECT_DIR$/news/templates/news.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/news/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/news/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base_logged_in.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base_logged_in.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/registration/password_reset_complete.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/registration/password_reset_complete.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/registration/password_reset_confirm.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/registration/password_reset_confirm.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -37,18 +43,18 @@
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Ignored.Files" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Peter\PycharmProjects\unicorn-attractor\media\news_images" />
+      <recent name="C:\Users\Peter\PycharmProjects\unicorn-attractor\bugs\templates" />
+      <recent name="C:\Users\Peter\PycharmProjects\unicorn-attractor\accounts\templates" />
+      <recent name="C:\Users\Peter\PycharmProjects\unicorn-attractor\home\templates" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Peter\PycharmProjects\unicorn-attractor\static\js\jquery_fileupload\vendor" />
       <recent name="C:\Users\Peter\PycharmProjects\unicorn-attractor\static\js\jquery_fileupload" />
       <recent name="C:\Users\Peter\PycharmProjects\unicorn-attractor\media\news_images" />
       <recent name="C:\Users\Peter\PycharmProjects\unicorn-attractor\media\profile_images" />
       <recent name="C:\Users\Peter\PycharmProjects\unicorn-attractor" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Peter\PycharmProjects\unicorn-attractor\media\news_images" />
-      <recent name="C:\Users\Peter\PycharmProjects\unicorn-attractor\bugs\templates" />
-      <recent name="C:\Users\Peter\PycharmProjects\unicorn-attractor\accounts\templates" />
-      <recent name="C:\Users\Peter\PycharmProjects\unicorn-attractor\home\templates" />
     </key>
   </component>
   <component name="RunDashboard">

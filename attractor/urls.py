@@ -1,6 +1,10 @@
 from django.conf.urls import url, include
 from django.contrib import admin
-from accounts.views import index, login_from_password_change, view_profile, edit_profile, change_password
+from accounts.views import (
+    index, login_from_password_change,
+    view_profile, edit_profile,
+    change_password
+)
 from accounts import urls as urls_accounts
 from news import urls as urls_news
 from news.views import create_new
@@ -17,7 +21,7 @@ urlpatterns = [
     url(r'^$', index, name='index'),
     url(r'^super-secret/admin/', admin.site.urls),
     url(r'^accounts/', include(urls_accounts)),
-    url(r'^profile/$', view_profile, name='view_profile'),
+    url(r'^profile/(?P<username>.+)/$', view_profile, name='view_profile'),
     url(r'^profile/edit$', edit_profile, name='edit_profile'),
     url(r'^profile/change-password/$', change_password, name='change_password'),
     url(r'^index/$', login_from_password_change, name="login_from_password_change"),

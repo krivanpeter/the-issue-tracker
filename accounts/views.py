@@ -28,6 +28,7 @@ from django.contrib.auth.tokens import default_token_generator
 from django.urls import reverse
 from django.views.decorators.debug import sensitive_post_parameters
 from django.views.decorators.cache import never_cache
+from .models import UserProfile
 from bugs.models import Bug
 
 
@@ -128,18 +129,19 @@ def login_from_password_change(request):
 
 
 @login_required
-def view_profile(request):
+def view_profile(request, username=None):
     """A view that displays the profile page of a logged in user"""
+    user = UserProfile.objects.get(user__username=username)
     if request.user.is_authenticated:
-        if Bug.objects.filter(reported_by=request.user.userprofile).exists():
-            bugs = Bug.objects.filter(reported_by=request.user.userprofile)
+        if Bug.objects.filter(reported_by=user).exists():
+            bugs = Bug.objects.filter(reported_by=user)
             args = {
-                'user': request.user,
+                'user': user,
                 'bugs': bugs
             }
         else:
             args = {
-                'user': request.user
+                'user': user
             }
         return render(request, 'profile.html', args)
     else:
