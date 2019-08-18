@@ -130,7 +130,7 @@ def login_from_password_change(request):
 
 @login_required
 def view_profile(request, username=None):
-    """A view that displays the profile page of a logged in user"""
+    """A view that displays the profile page of a user"""
     user = UserProfile.objects.get(user__username=username)
     if request.user.is_authenticated:
         if Bug.objects.filter(reported_by=user).exists():
@@ -156,7 +156,8 @@ def edit_profile(request):
             user_form = EditProfileForm(request.POST, instance=request.user)
             profile_form = EditUserForm(request.POST, request.FILES, instance=request.user.userprofile)
             if user_form.is_valid() and profile_form.is_valid():
-                if request.user.userprofile.avatar == "../media/profile_images/male_def.png" or request.user.userprofile.avatar == "../media/profile_images/female_def.png":
+                if (request.user.userprofile.avatar == "../media/profile_images/male_def.png" or
+                        request.user.userprofile.avatar == "../media/profile_images/female_def.png"):
                     if profile_form.cleaned_data['gender'] == "F":
                         request.user.userprofile.avatar = "../media/profile_images/female_def.png"
                     elif profile_form.cleaned_data['gender'] == "M":
@@ -165,7 +166,7 @@ def edit_profile(request):
                     profile_form.avatar = profile_form.cleaned_data['avatar']
                 user_form.save()
                 profile_form.save()
-                return redirect('/profile/')
+                return redirect('view_profile', username=request.user.userprofile)
             else:
                 return redirect('/profile/edit')
         else:
@@ -178,6 +179,22 @@ def edit_profile(request):
             return render(request, 'editprofile.html', args)
     else:
         return redirect('index')
+
+
+@login_required
+def delete_avatar(request):
+    """A view that deletes the avatar of the user"""
+    if request.user.is_authenticated:
+        user = request.user.userprofile
+        if user.gender == "F":
+            user.avatar = "../media/profile_images/female_def.png"
+        else:
+            user.avatar = "../media/profile_images/male_def.png"
+        user.save()
+        return redirect('view_profile', username=request.user.userprofile)
+    else:
+        raise Http404()
+
 
 
 @login_required

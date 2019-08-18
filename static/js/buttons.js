@@ -11,4 +11,10 @@ $(document).ready(function() {
     $('#avatar-picker').click(function(){
         $("#id_avatar").click();
     });
+
+    $("#id_avatar").change(function() {
+        if ($("#id_avatar").val() !== "") {
+          $('#avatar-picker').children('span').html($("#id_avatar")[0].files[0].name)
+        }
+    });
 })
