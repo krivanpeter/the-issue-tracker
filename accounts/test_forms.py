@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from django.test import TestCase
-from .forms import UserLoginForm, UserRegistrationForm
+from .forms import UserLoginForm, UserRegistrationForm, EditProfileForm, EditUserForm
 
 
 # Create your tests here.
@@ -50,3 +50,31 @@ class UserRegisterTests(TestCase):
                                           'password1': '12345',
                                           'password2': '12345'})
         self.assertFalse(test_form.is_valid())
+
+
+class EditProfileTests(TestCase):
+
+    def test_edit_profile(self):
+        self.user = User.objects.create_user(username='testuser', email='testuser@testuser.com', password='12345')
+        test_form = EditProfileForm({'first_name': 'Test',
+                                     'last_name': 'Test',
+                                     'email': 'testuser@testuser.com',
+                                     })
+        self.assertTrue(test_form.is_valid())
+
+
+class EditUserTests(TestCase):
+
+    def test_edit_user_no_avatar(self):
+        self.user = User.objects.create_user(username='testuser', email='testuser@testuser.com', password='12345')
+        test_form = EditUserForm({'avatar': '',
+                                  'gender': 'M',
+                                  })
+        self.assertTrue(test_form.is_valid())
+
+    def test_edit_user_avatar(self):
+        self.user = User.objects.create_user(username='testuser', email='testuser@testuser.com', password='12345')
+        test_form = EditUserForm({'avatar': '../media/profile_images/avatar.png',
+                                  'gender': 'M',
+                                  })
+        self.assertTrue(test_form.is_valid())

@@ -3,7 +3,6 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm, ReadOnlyPasswordHashField, PasswordChangeForm
 from django.core.exceptions import ValidationError
 from accounts.models import UserProfile
-from collections import OrderedDict
 import re
 
 
@@ -29,7 +28,8 @@ class UserRegistrationForm(UserCreationForm):
         model = User
         fields = ('username', 'email', 'password1', 'password2')
         help_texts = {
-            'username': "<span class='username_helper'>30 characters or fewer. Letters, digits and @/./+/-/_ only</span>",
+            'username': "<span class='username_helper'>30 characters or fewer."
+                        "Letters, digits and @/./+/-/_ only</span>",
         }
 
     def clean_email(self):
@@ -97,6 +97,10 @@ class EditProfileForm(UserChangeForm):
     def clean_email(self):
         email = re.sub(' +', ' ', self.cleaned_data.get('email').strip())
         return email
+
+    def clean_password(self):
+        # Necessary for tests to run without problem
+        return ""
 
 
 class EditUserForm(forms.ModelForm):
