@@ -7,7 +7,6 @@ from accounts.views import (
 )
 from accounts import urls as urls_accounts
 from news import urls as urls_news
-from news.views import create_new
 from bugs.views import report_bug
 from comments.views import comment_delete
 from bugs import urls as urls_bugs
@@ -26,7 +25,6 @@ urlpatterns = [
     url(r'^change-password/$', change_password, name='change_password'),
     url(r'^index/$', login_from_password_change, name="login_from_password_change"),
     url(r'^news/', include(urls_news)),
-    url(r'^create-new/$', create_new, name='create_new'),
     url(r'^report-bug/$', report_bug, name='report_bug'),
     url(r'^bugs/', include(urls_bugs)),
     url(r'^comment-delete/$', comment_delete, name='comment_delete'),

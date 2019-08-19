@@ -73,24 +73,3 @@ def new_detail(request, slug=None):
         return render(request, "newdetail.html", args)
     else:
         return redirect('index')
-
-
-def create_new(request):
-    if request.user.is_authenticated:
-        if request.method == "POST":
-            new_form = CreateNewForm(request.POST, request.FILES)
-            if new_form.is_valid():
-                form = new_form.save(commit=False)
-                form.save()
-                return redirect('/create-new/')
-            else:
-                print(new_form.errors)
-                return redirect('/create-new/')
-        else:
-            new_form = CreateNewForm()
-            args = {
-                'new_form': new_form
-            }
-            return render(request, 'create_new.html', args)
-    else:
-        return redirect('index')
