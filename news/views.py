@@ -7,7 +7,6 @@ from accounts.models import UserProfile
 from comments.forms import CommentForm
 from comments.models import Comment
 from .models import New
-from .forms import CreateNewForm
 
 
 '''
