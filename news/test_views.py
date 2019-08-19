@@ -23,8 +23,6 @@ class TestViews(TestCase):
         self.new = New.objects.create(
             title="test-new",
             content="test-content",
-            created_date="2000-10-10",
-            published_date="2000-10-10",
             image="test-new.png",
             slug="test-new"
             )
