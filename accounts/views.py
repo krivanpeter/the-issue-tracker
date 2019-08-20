@@ -129,14 +129,32 @@ def login_from_password_change(request):
 
 @login_required
 def view_profile(request, username=None):
+    # bugs = Bug.objects.filter(upvotes=user.user)
     """A view that displays the profile page of a user"""
     if request.user.is_authenticated:
         user = UserProfile.objects.get(user__username=username)
-        if Bug.objects.filter(reported_by=user).exists():
-            bugs = Bug.objects.filter(reported_by=user)
+        if (Bug.objects.filter(reported_by=user).exists() and not
+            Bug.objects.filter(upvotes=user.user).exists()):
+            reported_bugs = Bug.objects.filter(reported_by=user)
             args = {
                 'user': user,
-                'bugs': bugs
+                'reported_bugs': reported_bugs
+            }
+        elif (Bug.objects.filter(upvotes=user.user).exists() and not
+              Bug.objects.filter(reported_by=user).exists()):
+            upvoted_bugs = Bug.objects.filter(upvotes=user.user)
+            args = {
+                'user': user,
+                'upvoted_bugs': upvoted_bugs
+            }
+        elif (Bug.objects.filter(upvotes=user.user).exists() and
+              Bug.objects.filter(reported_by=user).exists()):
+            upvoted_bugs = Bug.objects.filter(upvotes=user.user)
+            reported_bugs = Bug.objects.filter(reported_by=user)
+            args = {
+                'user': user,
+                'reported_bugs': reported_bugs,
+                'upvoted_bugs': upvoted_bugs,
             }
         else:
             args = {

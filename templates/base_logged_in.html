@@ -67,11 +67,11 @@
                             <ul class="media-list">
                                 {% for comment in comments %}
                                 <li class="media">
-                                    <a class="d-none d-md-block" href="#">
+                                    <a class="d-none d-md-block" href="{% url 'view_profile' bug.reported_by %}">
                                         <img src="{{ MEDIA_URL }}{{ comment.user.avatar }}" alt="" class="img-circle">
                                     </a>
                                     <div class="media-body">
-                                        <strong><a class="no-decor" style="color: #e54725;" href="#">@{{ comment.user.user }}</a></strong>
+                                        <strong><a class="no-decor" style="color: #e54725;" href="{% url 'view_profile' bug.reported_by %}">@{{ comment.user.user }}</a></strong>
                                         <span class="text-muted">
                                             <small class="text-muted">{{ comment.published_date|timesince}} ago</small>
                                         </span>
@@ -104,11 +104,11 @@
                                 <div class="comment-reply" style="display: none">
                                     {% for child_comment in comment.children %}
                                         <li class="media offset-1">
-                                            <a class="d-none d-md-block" href="#">
+                                            <a class="d-none d-md-block" href="{% url 'view_profile' bug.reported_by %}">
                                                 <img src="{{ MEDIA_URL }}{{ child_comment.user.avatar }}" alt="" class="img-circle">
                                             </a>
                                             <div class="media-body">
-                                                <strong><a class="no-decor" style="color: #e54725;" href="#">@{{ child_comment.user.user }}</a></strong>
+                                                <strong><a class="no-decor" style="color: #e54725;" href="{% url 'view_profile' bug.reported_by %}">@{{ child_comment.user.user }}</a></strong>
                                                 <span class="text-muted">
                                                     <small class="text-muted">{{ child_comment.published_date|timesince}} ago</small>
                                                 </span>

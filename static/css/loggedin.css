@@ -72,7 +72,8 @@ body{
     color: white;
 }
 
-.fas.fa-exclamation-circle{
+.fas.fa-exclamation-circle,
+.fas.fa-check{
     line-height: 1.5;
     margin: 0;
 }

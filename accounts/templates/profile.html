@@ -79,18 +79,18 @@
     </div>
 </div>
 <div class="container">
-    {% if bugs %}
-    <h2 align="center" class="title">Reported Bugs</h2>
     <div class="row">
-        <div role="grid" style="width: 100%; display: table;">
+        {% if reported_bugs %}
+        <div role="grid" style="width: 50%; display: table;">
             <div align="center" class="col-12">
-                {% for bug in bugs %}
+                <h2 align="center" class="title">Reported Bugs</h2>
+                {% for bug in reported_bugs %}
                 <div role="row" class="table-row">
                     <div role="gridcell" class="table-cell">
                         {% if bug.open is True %}
                         <i class="fas fa-exclamation-circle" style="color: green;"></i>
                         {% else %}
-                        <div role="gridcell" class="table-cell"><i class="fas fa-check" style="color: green;"></i></div>
+                        <i class="fas fa-check" style="color: green;"></i>
                         {% endif %}
                     </div>
                     <a role="gridcell" class="no-decor table-cell" href="{{ bug.get_absolute_url }}">{{ bug.title }}</a>
@@ -101,18 +101,30 @@
                 {% endfor %}
             </div>
         </div>
-    </div>
-    {% endif %}
-    {% if upvotes %}
-    <h2 align="center" class="title">My Upvotes</h2>
-    <div class="row">
-        <div role="grid" style="width: 100%; display: table;">
-            {% for upvote in upvotes %}
-            {{ upvote }}
-            {% endfor %}
+        {% endif %}
+        {% if upvoted_bugs %}
+        <div role="grid" style="width: 50%; display: table;">
+            <div align="center" class="col-12">
+                <h2 align="center" class="title">Upvoted Bugs</h2>
+                {% for bug in upvoted_bugs %}
+                <div role="row" class="table-row">
+                    <div role="gridcell" class="table-cell">
+                        {% if bug.open is True %}
+                        <i class="fas fa-exclamation-circle" style="color: green;"></i>
+                        {% else %}
+                        <i class="fas fa-check" style="color: green;"></i>
+                        {% endif %}
+                    </div>
+                    <a role="gridcell" class="no-decor table-cell" href="{{ bug.get_absolute_url }}">{{ bug.title }}</a>
+                    <div role="gridcell" class="d-none d-md-block table-cell">
+                        <span>{{ bug.published_date|timesince}} ago</span>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
         </div>
+        {% endif %}
     </div>
-    {% endif %}
 </div>
 
 {% endblock %}
