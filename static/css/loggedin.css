@@ -193,13 +193,13 @@ a.bug-link{
 }
 
 .img-responsive {
-    width:650px; /* This value will depend on what size you want for your loading image, let's say it's 50px */
-    height: 450px;
+    width:1280px; /* This value will depend on what size you want for your loading image, let's say it's 50px */
+    height: 720px;
     position:absolute;
     left:50%;
     top:50%;
-    margin-top:-225px; /* This needs to be half of the height */
-    margin-left:-325px; /* This needs to be half of the width */
+    margin-top:-360px; /* This needs to be half of the height */
+    margin-left:-640px; /* This needs to be half of the width */
 }
 
 #imagepreview{

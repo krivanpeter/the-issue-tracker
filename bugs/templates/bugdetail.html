@@ -63,9 +63,9 @@
 </div>
 <!-- The Modal -->
 <div class="modal fade" id="imagemodal" tabindex="-1" role="dialog">
-    <div class="modal-dialog" style="max-width: 650px">
+    <div class="modal-dialog" style="max-width: 1280px">
         <div class="modal-content">
-            <div class="modal-body" style="height: 450px;">
+            <div class="modal-body" style="height: 720px;">
                 <img src="" id="imagepreview" class="img-responsive">
             </div>
         </div>
@@ -80,8 +80,6 @@ $(".img-thumbnail").on("click", function() {
         $('#imagemodal').modal('show');
     }
 });
-
-
 </script>
 <script src="{% static 'js/bug_upvote.js'%}"></script>
 {% endblock %}
