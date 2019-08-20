@@ -1,4 +1,5 @@
 {% extends "base_logged_in.html" %}
+{% load staticfiles %}
 {% block content %}
 <div class="container news-container">
     <div class="row title">
@@ -10,7 +11,9 @@
         </div>
         <div class="col-9 col-md-10 col-lg-11 bug-reported-by">
             <strong>
-                <a class="no-decor" style="color: #e54725;" href="{% url 'view_profile' bug.reported_by %}">{{ bug.reported_by }}</a>
+                <a class="no-decor" style="color: #e54725;" href="{% url 'view_profile' bug.reported_by %}">
+                    {{ bug.reported_by }}
+                </a>
             </strong>
             <small class="text-muted">{{ bug.published_date|timesince}} ago</small>
             <br>
@@ -41,7 +44,21 @@
         </div>
     </div>
     <div class="row">
-        <button type="button" class="btn btn-back">Back to bugs</button>
+        <div class="col-12">
+            <button type="button" class="btn btn-back">Back to bugs</button>
+            <div class="float-right" style="color: #e54725;">
+                <a role="button" id="like-button" class="no-decor" href="{{ bug.get_upvote_url }}">
+                    <i class="fas fa-thumbs-up" style="color: #e54725;">
+                        {% if user in bug.upvotes.all %}
+                        <span>Unlike</span>
+                        {% else %}
+                        <span>Like</span>
+                        {% endif %}
+                    </i>
+                </a>
+                <span id="number_of_likes">{{ bug.upvotes.count}}</span>
+            </div>
+        </div>
     </div>
 </div>
 <!-- The Modal -->
@@ -63,5 +80,8 @@ $(".img-thumbnail").on("click", function() {
         $('#imagemodal').modal('show');
     }
 });
+
+
 </script>
+<script src="{% static 'js/bug_upvote.js'%}"></script>
 {% endblock %}

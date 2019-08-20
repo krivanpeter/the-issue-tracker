@@ -1,3 +1,4 @@
+from django.conf import settings
 from accounts.models import UserProfile
 from comments.models import Comment
 from django.contrib.contenttypes.models import ContentType
@@ -15,18 +16,18 @@ class Bug(models.Model):
     created_date = models.DateTimeField(auto_now_add=True)
     published_date = models.DateTimeField(blank=True, null=True, default=timezone.now)
     open = models.BooleanField(default=True)
-    upvotes = models.IntegerField(default=0)
+    upvotes = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True, related_name='bug_likes')
     reported_by = models.ForeignKey(UserProfile, on_delete=models.CASCADE, null=True)
     slug = models.SlugField(unique=True)
-
-    class Meta:
-        ordering = ['-upvotes', '-published_date']
 
     def __str__(self):
         return self.title
 
     def get_absolute_url(self):
         return reverse("bug_detail", kwargs={"slug": self.slug})
+
+    def get_upvote_url(self):
+        return reverse("upvote_bug", kwargs={"slug": self.slug})
 
     @property
     def comments(self):

@@ -38,15 +38,15 @@ def index(request):
     if request.method == "POST":
         if 'reset_password' in request.POST:
             password_reset(request,
-                       template_name='registration/password_reset_form.html',
-                       email_template_name='registration/password_reset_email.html',
-                       subject_template_name='registration/password_reset_subject.txt',
-                       password_reset_form=PasswordResetForm,
-                       token_generator=default_token_generator,
-                       post_reset_redirect=None,
-                       from_email=None,
-                       extra_context=None,
-                       html_email_template_name=None)
+                           template_name='registration/password_reset_form.html',
+                           email_template_name='registration/password_reset_email.html',
+                           subject_template_name='registration/password_reset_subject.txt',
+                           password_reset_form=PasswordResetForm,
+                           token_generator=default_token_generator,
+                           post_reset_redirect=None,
+                           from_email=None,
+                           extra_context=None,
+                           html_email_template_name=None)
             data['data'] = True
             return JsonResponse(data)
         elif 'create_new_account' in request.POST:
@@ -110,7 +110,6 @@ def check_userdata(request):
 def logout(request):
     """A view that logs the user out and redirects back to the index page"""
     auth.logout(request)
-    messages.success(request, "You have successfully logged out")
     return redirect('index')
 
 
@@ -252,7 +251,6 @@ def register(request):
 
             if user:
                 auth.login(request, user)
-                messages.success(request, "You have successfully registered")
                 return redirect('news')
 
             else:

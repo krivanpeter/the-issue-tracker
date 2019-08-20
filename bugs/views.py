@@ -3,6 +3,7 @@ from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.db.models import Count
 from accounts.models import UserProfile
 from comments.forms import CommentForm
 from comments.models import Comment
@@ -13,9 +14,10 @@ from .forms import BugReportForm, BugImageForm
 
 @login_required
 def all_bugs(request):
-    # A view which shows all the reported bugs
+    # A view which shows all the reported bugs,
+    # ordered by the number of upvotes and the date of the report
     if request.user.is_authenticated:
-        bug_list = Bug.objects.all()
+        bug_list = Bug.objects.annotate(count=Count('upvotes')).order_by('-count')
         page = request.GET.get('page', 1)
         paginator = Paginator(bug_list, 10)
         try:
@@ -29,10 +31,8 @@ def all_bugs(request):
         return redirect('index')
 
 
-'''
-A view which returns a single Bug object based on the ID(pk)
-'''
 def bug_detail(request, slug=None):
+    # A view which returns a single Bug object based on the ID(pk)
     if request.user.is_authenticated:
         bug = get_object_or_404(Bug, slug=slug)
         comments = bug.comments
@@ -114,3 +114,19 @@ def report_bug(request):
         return redirect('index')
 
 
+def upvote_bug(request, slug=None):
+    # A view which allows the user to like and unlike bugs
+    if request.user.is_authenticated:
+        data = {'user_upvoted': False}
+        bug = get_object_or_404(Bug, slug=slug)
+        user = request.user
+        if user.is_authenticated():
+            if user in bug.upvotes.all():
+                bug.upvotes.remove(user)
+                data['user_upvoted'] = False
+            else:
+                bug.upvotes.add(user)
+                data['user_upvoted'] = True
+        return JsonResponse(data)
+    else:
+        return redirect('index')
