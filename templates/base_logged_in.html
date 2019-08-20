@@ -181,7 +181,7 @@
                             <br>
                             <ul class="media-list">
                                 <li class="media">
-                                    <a class="d-none d-md-block" href="#">
+                                    <a class="d-none d-md-block" href="{% url 'view_profile' bug.reported_by %}">
                                         <img src="{{ MEDIA_URL }}{{ user.userprofile.avatar }}" alt=""
                                              class="img-circle">
                                     </a>

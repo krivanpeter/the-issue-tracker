@@ -81,9 +81,9 @@
 <div class="container">
     <div class="row">
         {% if reported_bugs %}
-        <div role="grid" style="width: 50%; display: table;">
-            <div align="center" class="col-12">
-                <h2 align="center" class="title">Reported Bugs</h2>
+        <div align="center" class="col-12 col-md-6">
+            <h2 align="center" class="title">Reported Bugs</h2>
+            <div role="grid" style="width: 100%; display: table;">
                 {% for bug in reported_bugs %}
                 <div role="row" class="table-row">
                     <div role="gridcell" class="table-cell">
@@ -103,9 +103,9 @@
         </div>
         {% endif %}
         {% if upvoted_bugs %}
-        <div role="grid" style="width: 50%; display: table;">
-            <div align="center" class="col-12">
-                <h2 align="center" class="title">Upvoted Bugs</h2>
+        <div align="center" class="col-12 col-md-6">
+            <h2 align="center" class="title">Upvoted Bugs</h2>
+            <div role="grid" style="width: 100%; display: table;">
                 {% for bug in upvoted_bugs %}
                 <div role="row" class="table-row">
                     <div role="gridcell" class="table-cell">
