@@ -35,7 +35,7 @@
                         <a type="button" class="btn bugs-button" href="{% url 'bugs' %}"><i class="fas fa-bug"><span>Bugs</span></i></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="fas fa-laptop-code"></i>Features</a>
+                        <a class="nav-link" href="{% url 'features' %}"><i class="fas fa-laptop-code"></i>Features</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'view_profile' request.user.userprofile %}"><i
@@ -67,11 +67,11 @@
                             <ul class="media-list">
                                 {% for comment in comments %}
                                 <li class="media">
-                                    <a class="d-none d-md-block" href="{% url 'view_profile' bug.reported_by %}">
+                                    <a class="d-none d-md-block" href="{% url 'view_profile' comment.user.user %}">
                                         <img src="{{ MEDIA_URL }}{{ comment.user.avatar }}" alt="" class="img-circle">
                                     </a>
                                     <div class="media-body">
-                                        <strong><a class="no-decor" style="color: #e54725;" href="{% url 'view_profile' bug.reported_by %}">@{{ comment.user.user }}</a></strong>
+                                        <strong><a class="no-decor" style="color: #e54725;" href="{% url 'view_profile' comment.user.user %}">@{{ comment.user.user }}</a></strong>
                                         <span class="text-muted">
                                             <small class="text-muted">{{ comment.published_date|timesince}} ago</small>
                                         </span>
@@ -104,11 +104,11 @@
                                 <div class="comment-reply" style="display: none">
                                     {% for child_comment in comment.children %}
                                         <li class="media offset-1">
-                                            <a class="d-none d-md-block" href="{% url 'view_profile' bug.reported_by %}">
+                                            <a class="d-none d-md-block" href="{% url 'view_profile' child_comment.user.user %}">
                                                 <img src="{{ MEDIA_URL }}{{ child_comment.user.avatar }}" alt="" class="img-circle">
                                             </a>
                                             <div class="media-body">
-                                                <strong><a class="no-decor" style="color: #e54725;" href="{% url 'view_profile' bug.reported_by %}">@{{ child_comment.user.user }}</a></strong>
+                                                <strong><a class="no-decor" style="color: #e54725;" href="{% url 'view_profile' child_comment.user.user %}">@{{ child_comment.user.user }}</a></strong>
                                                 <span class="text-muted">
                                                     <small class="text-muted">{{ child_comment.published_date|timesince}} ago</small>
                                                 </span>
@@ -125,7 +125,7 @@
                                         </li>
                                     {% endfor %}
                                 <li class="media offset-1">
-                                    <a class="d-none d-md-block" href="#">
+                                    <a class="d-none d-md-block" href="{% url 'view_profile' user.userprofile %}">
                                         <img src="{{ MEDIA_URL }}{{ user.userprofile.avatar }}" alt=""
                                              class="img-circle">
                                     </a>
@@ -144,7 +144,7 @@
                                 {% endfor %}
                                 <hr>
                                 <li class="media">
-                                    <a class="d-none d-md-block" href="#">
+                                    <a class="d-none d-md-block" href="{% url 'view_profile' user.userprofile %}">
                                         <img src="{{ MEDIA_URL }}{{ user.userprofile.avatar }}" alt=""
                                              class="img-circle">
                                     </a>
@@ -181,7 +181,7 @@
                             <br>
                             <ul class="media-list">
                                 <li class="media">
-                                    <a class="d-none d-md-block" href="{% url 'view_profile' bug.reported_by %}">
+                                    <a class="d-none d-md-block" href="{% url 'view_profile' user.userprofile %}">
                                         <img src="{{ MEDIA_URL }}{{ user.userprofile.avatar }}" alt=""
                                              class="img-circle">
                                     </a>

@@ -1,0 +1,35 @@
+{% extends "base_logged_in.html" %}
+{% load staticfiles %}
+{% block content %}
+<div class="container news-container">
+    <h2 class="title" align="center">New Feature</h2>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="row title">
+            <div class="col-3 col-md-2 col-xl-1">
+                <img class="thumbnail-img img-circle" src="{{ MEDIA_URL }}{{ user.userprofile.avatar }}"
+                     alt="Picture can not be loaded">
+            </div>
+            <div class="bug-wrapper col-9 col-md-10 col-xl-11">
+                <div class="row">
+                    {% for field in new_feature_form %}
+                    <div class="col-12">
+                        <span>{{ field.label }} {{ field }}</span>
+                    </div>
+                    {% endfor %}
+                    <div class="image-and-submit-row col-12">
+                        <div class="row">
+                            <div class="col-3 col-md-2">
+                                <button type="submit" class="btn bugs-button">Ask Feature</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div class="row">
+        <button type="button" class="btn btn-back">Back to bugs</button>
+    </div>
+</div>
+{% endblock %}

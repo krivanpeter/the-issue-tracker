@@ -1,0 +1,54 @@
+{% extends "base_logged_in.html" %}
+{% load staticfiles %}
+{% block content %}
+<div class="container news-container">
+    <div class="row title">
+        <div class="col-3 col-md-2 col-lg-1">
+            <a href="{% url 'view_profile' feature.reported_by %}">
+                <img class="thumbnail-img img-circle" src="{{ MEDIA_URL }}{{ feature.reported_by.avatar }}"
+                     alt="{{feature.title}}">
+            </a>
+        </div>
+        <div class="col-9 col-md-10 col-lg-11 bug-reported-by">
+            <strong>
+                <a class="no-decor" style="color: #e54725;" href="{% url 'view_profile' feature.reported_by %}">
+                    {{ feature.reported_by }}
+                </a>
+            </strong>
+            <small class="text-muted">{{ feature.published_date|timesince}} ago</small>
+            <br>
+            <strong>
+                <span class="no-decor" style="color: #e54725;">{{ feature.title }}</span>
+            </strong>
+        </div>
+    </div>
+</div>
+<div class="container news-container">
+    <div class="row title">
+        <div class="col-12">
+            <div class="row">
+                <div class="col-12">
+                    <p class="newdetail-content">{{ feature.content|linebreaks}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <button type="button" class="btn btn-back">Back to features</button>
+            <div class="float-right" style="color: #e54725;">
+                <a role="button" id="like-button" class="no-decor" href="{{ feature.get_upvote_url }}">
+                    <i class="fas fa-thumbs-up" style="color: #e54725;">
+                        {% if user in feature.upvotes.all %}
+                        <span>Unlike</span>
+                        {% else %}
+                        <span>Like</span>
+                        {% endif %}
+                    </i>
+                </a>
+                <span id="number_of_likes">{{ feature.upvotes.count}}</span>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
