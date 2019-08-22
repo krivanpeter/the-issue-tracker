@@ -1,0 +1,85 @@
+{% extends "base_logged_in.html" %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <hr>
+            <span class="panel-heading">Features</span>
+            <a type="button" class="btn bugs-button float-right" href="{% url 'report_feature' %}">
+                Ask A New Feature
+            </a>
+            <hr>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div role="grid" class="bug-table" style="width: 100%;">
+            <div role="row" class="table-row bug-first-row">
+                <div role="gridcell" class="table-cell"><span><b>Opened</b></span>
+                    <div class="row">
+                        <div class="col-12">
+                            <i class="fas fa-exclamation-circle" style="color: green;"></i>&nbsp;/
+                            <i class="fas fa-check" style="color: green;"></i>
+                        </div>
+                    </div>
+                </div>
+                <div role="gridcell" class="table-cell"><b>Feature's Title</b></div>
+                <div role="gridcell" class="table-cell d-none d-md-table-cell"><b>Asked by</b></div>
+                <div role="gridcell" class="table-cell d-none d-md-table-cell"><b>Asked at</b></div>
+                <div role="gridcell" class="table-cell"><b>Upvotes</b></div>
+            </div>
+            {% for feature in features %}
+            <a role="row" class="table-row no-decor bug-link" href="{{ feature.get_absolute_url }}">
+                {% if feature.open is True %}
+                <div role="gridcell" class="table-cell">
+                    <i class="fas fa-exclamation-circle" style="color: green;"></i>
+                </div>
+                {% else %}
+                <div role="gridcell" class="table-cell"><i class="fas fa-check" style="color: green;"></i></div>
+                {% endif %}
+                <div role="gridcell" class="table-cell">{{ feature.title }}</div>
+                <div role="gridcell" class="table-cell d-none d-md-table-cell">
+                    {{ feature.reported_by.user }}
+                </div>
+                <div role="gridcell" class="d-none d-md-block table-cell">
+                    {{ feature.published_date|timesince}} ago
+                </div>
+                <div role="gridcell" class="table-cell">{{ feature.upvotes.count }}</div>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% if features.has_other_pages %}
+<div class="container">
+    <nav class="row page-nav" aria-label="Features Page Navigation">
+        <ul class="col-12 pagination justify-content-center">
+            {% if features.has_previous %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ features.previous_page_number }}">Previous</a>
+            </li>
+            {% endif %}
+            {% for i in features.paginator.page_range %}
+            {% if features.number == i %}
+            <li class="page-item active">
+                <span class="page-link">{{ i }}
+                    <span class="sr-only">(current)</span>
+                </span>
+            </li>
+            {% else %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ i }}">{{ i }}</a>
+            </li>
+            {% endif %}
+            {% endfor %}
+            {% if features.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ features.next_page_number }}">Next</a>
+            </li>
+            {% endif %}
+        </ul>
+    </nav>
+</div>
+{% endif %}
+{% endblock %}
