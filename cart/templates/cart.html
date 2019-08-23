@@ -1,0 +1,11 @@
+{% extends "base_logged_in.html" %}
+{% load staticfiles %}
+{% block content %}
+<div class="container news-container">
+    <div class="row">
+        {% for item in cart_items %}
+
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
