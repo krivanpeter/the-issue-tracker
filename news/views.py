@@ -9,11 +9,9 @@ from comments.models import Comment
 from .models import New
 
 
-'''
-A view which shows all the news
-'''
 @login_required
 def all_news(request):
+    # A view which shows all the news
     if request.user.is_authenticated:
         news_list = New.objects.all()
         page = request.GET.get('page', 1)

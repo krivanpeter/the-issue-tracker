@@ -7,6 +7,7 @@ from accounts.views import (
 )
 from accounts import urls as urls_accounts
 from news import urls as urls_news
+from packages import urls as urls_packages
 from bugs.views import report_bug
 from features.views import report_feature
 from comments.views import comment_delete
@@ -30,6 +31,7 @@ urlpatterns = [
     url(r'^news/', include(urls_news)),
     url(r'^features/', include(urls_features)),
     url(r'^bugs/', include(urls_bugs)),
+    url(r'^packages/', include(urls_packages)),
     url(r'^report-bug/$', report_bug, name='report_bug'),
     url(r'^report-feature/$', report_feature, name='report_feature'),
     url(r'^comment-delete/$', comment_delete, name='comment_delete'),

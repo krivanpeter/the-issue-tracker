@@ -11,7 +11,6 @@ from .models import Feature
 from .forms import FeatureReportForm
 
 
-
 @login_required
 def all_features(request):
     # A view which shows all the asked features,

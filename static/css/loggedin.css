@@ -207,6 +207,12 @@ a.bug-link{
     border: 1px solid #dee2e6;
     border-radius: .25rem;
 }
+/*-----------------Packages------------*/
+.package{
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid rgb(209, 213, 218);
+}
 /*-----------------PAGINATION------------*/
 .page-nav{
     margin-top: 20px;

@@ -17,7 +17,7 @@
 
 <body>
 <div class="wrapper">
-    <nav class="navbar navbar-dark navbar-custom navbar-expand-md">
+    <nav class="navbar navbar-dark navbar-custom navbar-expand-lg">
         <div class="container">
             <a class="navbar-brand logo-white-orange" href="{% url 'news' %}"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler"
@@ -32,17 +32,31 @@
                 </ul>
                 <ul class="navbar-nav navbar-right">
                     <li class="nav-item">
-                        <a type="button" class="btn bugs-button" href="{% url 'bugs' %}"><i class="fas fa-bug"><span>Bugs</span></i></a>
+                        <a type="button" class="btn bugs-button" href="{% url 'bugs' %}">
+                            <i class="fas fa-bug">
+                            <span>Bugs</span>
+                            </i>
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'features' %}"><i class="fas fa-laptop-code"></i>Features</a>
+                        <a class="nav-link" href="{% url 'features' %}">
+                            <i class="fas fa-laptop-code"></i>Features
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'view_profile' request.user.userprofile %}"><i
-                                class="fas fa-address-card"></i>Profile</a>
+                        <a class="nav-link" href="{% url 'view_profile' request.user.userprofile %}">
+                            <i class="fas fa-address-card"></i>Profile
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i>Log Out</a>
+                        <a class="nav-link" href="{% url 'all_packages' %}">
+                            <i class="fas fa-box"></i>Packages
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'logout' %}">
+                            <i class="fas fa-sign-out-alt"></i>Log Out
+                        </a>
                     </li>
                 </ul>
             </div>

@@ -44,7 +44,7 @@
 <div class="container d-none d-md-block">
     <h2 align="center" class="title">Profile</h2>
     <div class="row">
-        <div class="offset-2 col-md-5 col-lg-4">
+        <div class="offset-2 col-md-6 col-lg-4">
             <img src="{{ user.avatar.url }}" height="250">
             {% if request.user.userprofile == user %}
             <div class="title">
@@ -54,7 +54,7 @@
             </div>
             {% endif %}
         </div>
-        <div class="col-md-5 col-lg-6">
+        <div class="col-md-4 col-lg-6">
             <div role="row" class="table-row">
                 <div role="gridcell" class="table-cell"><b>Username:</b></div>
                 <div role="gridcell" class="table-cell">{{ user }}</div>

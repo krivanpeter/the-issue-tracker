@@ -18,7 +18,7 @@ class Feature(models.Model):
     open = models.BooleanField(default=True)
     reported_by = models.ForeignKey(UserProfile, on_delete=models.CASCADE, null=True)
     upvotes = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True, related_name='feature_likes')
-    price = models.PositiveIntegerField(default='10')
+    needed_upvotes = models.PositiveIntegerField(default=50)
     slug = models.SlugField(unique=True)
 
     def __str__(self):

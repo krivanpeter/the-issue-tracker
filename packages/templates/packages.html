@@ -1,0 +1,30 @@
+{% extends "base_logged_in.html" %}
+{% block content %}
+<div class="container news-container">
+    <h2 align="center" class="title">Packages</h2>
+    <hr class="featurette-divider">
+    <div class="row">
+        {% for package in packages %}
+        <div align="center" class="col-12 col-lg-4">
+            <h4>{{ package.title }}</h4>
+            <div class="package">
+                <img class="news-image" src="{{ MEDIA_URL }}{{ package.image }}" alt="{{new.title}}">
+                <div>Upvotes worth: {{ package.worth_upvotes }}</div>
+                <div>Price: £ {{ package.price }}</div>
+                <br>
+                <form method="post" action="{% url 'add_to_cart' package.id %}">
+                    {% csrf_token %}
+                    <div class="input-group">
+                        <input name="quantity" type="number" min="1" max="999" class="form-control"
+                               placeholder="Quantity">
+                        <span class="input-group-btn">
+                        <button class="btn btn-success" type="submit">Add</button>
+                    </span>
+                    </div>
+                </form>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
