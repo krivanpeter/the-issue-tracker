@@ -3,10 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="87ce0953-7b2c-41c1-be27-93881aa7f7a8" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/templates/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/templates/profile.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/attractor/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/attractor/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cart/contexts.py" beforeDir="false" afterPath="$PROJECT_DIR$/cart/contexts.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cart/templates/cart.html" beforeDir="false" afterPath="$PROJECT_DIR$/cart/templates/cart.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cart/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/cart/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/packages/templates/packages.html" beforeDir="false" afterPath="$PROJECT_DIR$/packages/templates/packages.html" afterDir="false" />
