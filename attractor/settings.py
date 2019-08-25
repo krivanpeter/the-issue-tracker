@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'features',
     'comments',
     'storages',
+    'packages',
     'cart'
 ]
 
