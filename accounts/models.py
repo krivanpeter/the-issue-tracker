@@ -11,6 +11,7 @@ class UserProfile(models.Model):
     )
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES, null=True, blank=True)
     avatar = models.ImageField(upload_to='profile_images', default='../media/profile_images/male_def.png')
+    available_upvotes = models.PositiveIntegerField(default=0)
 
     def __str__(self):
         return self.user.username

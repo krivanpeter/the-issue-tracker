@@ -1,11 +1,43 @@
 {% extends "base_logged_in.html" %}
-{% load staticfiles %}
+{% load bootstrap_tags %}
 {% block content %}
 <div class="container news-container">
+    <h2 align="center" class="title">Cart</h2>
+    <hr class="featurette-divider">
     <div class="row">
         {% for item in cart_items %}
-            {{ item }}
+        <div align="center" class="col-12 col-lg-4">
+            <h4>{{ item.package.title }}</h4>
+            <div class="package">
+                <img class="news-image" src="{{ MEDIA_URL }}{{ item.package.image }}" alt="{{item.package.title}}">
+                <div>Upvotes worth: {{ item.package.worth_upvotes }}</div>
+                <div>Price: £ {{ item.package.price }}</div>
+                <br>
+                <form class="form-inline" method="post" action="{% url 'adjust_cart' item.id %}">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <div class="input-group">
+                            <label for="quantity" class="input-group-addon">Quantity</label>
+                            <input name="quantity" id="quantity" type="number" min="0" max="999" class="form-control" value="{{item.quantity}}">
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>Amend
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
         {% endfor %}
     </div>
+    <div class="row">
+        <p>Total £</p>
+        <p>
+            <span>{{ total }}</span>
+        </p>
+        <a href="#" class="btn btn-success" role="button">
+            <span class="glyphicon glyphicon-ok-sign" aria-hidden="true">Checkout</span>
+        </a>
+    </div>
 </div>
+
 {% endblock %}

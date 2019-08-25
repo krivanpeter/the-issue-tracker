@@ -8,11 +8,15 @@ def view_cart(request):
 
 def add_to_cart(request, id):
     # Add a quantity of the specified feature to the cart
-    quantity=int(request.POST.get('quantity'))
-    cart = request.session.get('cart', {})
-    cart[id] = cart.get(id, quantity)
-    request.session['cart'] = cart
-    return redirect(reverse('packages'))
+    quantity = request.POST.get('quantity')
+    if is_num(quantity):
+        quantity = int(quantity)
+        cart = request.session.get('cart', {})
+        cart[id] = cart.get(id, quantity)
+        request.session['cart'] = cart
+        return redirect(reverse('all_packages'))
+    else:
+        return redirect('all_packages')
 
 
 def adjust_cart(request, id):
@@ -26,3 +30,11 @@ def adjust_cart(request, id):
         cart.pop(id)
     request.session['cart'] = cart
     return redirect(reverse('view_cart'))
+
+
+def is_num(data):
+    try:
+        int(data)
+        return True
+    except ValueError:
+        return False
