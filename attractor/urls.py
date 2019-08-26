@@ -14,6 +14,7 @@ from comments.views import comment_delete
 from bugs import urls as urls_bugs
 from features import urls as urls_features
 from cart import urls as urls_cart
+from checkout import urls as urls_checkout
 from django.views import static
 from .settings import MEDIA_ROOT
 
@@ -36,5 +37,6 @@ urlpatterns = [
     url(r'^report-feature/$', report_feature, name='report_feature'),
     url(r'^comment-delete/$', comment_delete, name='comment_delete'),
     url(r'^cart/', include(urls_cart)),
+    url(r'^checkout/', include(urls_checkout)),
     url(r'^media/(?P<path>.*)$', static.serve, {'document_root': MEDIA_ROOT}),
 ]
