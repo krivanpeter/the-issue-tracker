@@ -2,7 +2,7 @@ from django import forms
 from .models import Order
 
 
-class MakePaymentForm(forms.ModelForm):
+class MakePaymentForm(forms.Form):
     # Payment Form
     MONTH_CHOICES = [(i, i) for i in range(1, 12)]
     YEAR_CHOICES = [(i, i) for i in range(2017, 2036)]
@@ -14,7 +14,7 @@ class MakePaymentForm(forms.ModelForm):
     stripe_id = forms.CharField(widget=forms.HiddenInput)
 
 
-class OrderForm(forms.Form):
+class OrderForm(forms.ModelForm):
     # Order Form
     class Meta:
         model = Order

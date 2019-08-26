@@ -1,12 +1,13 @@
 {% extends "base_logged_in.html" %}
 {% load staticfiles %}
 {% load bootstrap_tags %}
-{% block head_js%}
+{% block scripts%}
 <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
 <script type="text/javascript">
     //<![CDATA[
     Stripe.publishableKey = '{{publishable}}';
     //]]>
+
 </script>
 <script type="text/javascript" src="{% static 'js/stripe.js' %}"></script>
 {% endblock %}
@@ -41,11 +42,13 @@
     <div id="credit-cards-errors" style="display:none">
         <div class="alert-message block-message error" id="stripe-error-message"></div>
     </div>
-    <div class="form-group col-md-6">
-        {{ order_form|as_bootstrap }}
-    </div>
-    <div class="form-group col-md-6">
-        {{ payment_form|as_bootstrap }}
+    <div class="row">
+        <div class="form-group col-6">
+            {{ order_form|as_bootstrap }}
+        </div>
+        <div class="form-group col-6">
+            {{ payment_form|as_bootstrap }}
+        </div>
     </div>
     {% csrf_token %}
     <div class="form-group col-md-12">
