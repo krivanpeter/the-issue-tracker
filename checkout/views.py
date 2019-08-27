@@ -1,7 +1,8 @@
 from django.contrib import messages
-from django.shortcuts import get_object_or_404, redirect, reverse, render
+from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
+from accounts.models import UserProfile
 from attractor import settings
 from .forms import MakePaymentForm, OrderForm
 from .models import OrderLineItem
@@ -45,6 +46,11 @@ def checkout(request):
                 messages.error(request, 'Your card was declined!')
 
             if customer.paid:
+                user = UserProfile.objects.get(user__username=request.user.username)
+                for id, quantity in cart.items():
+                    package = get_object_or_404(Package, pk=id)
+                    user.available_upvotes += quantity * package.worth_upvotes
+                    user.save()
                 request.session['cart'] = {}
                 return redirect('view_profile', username=request.user)
             else:
