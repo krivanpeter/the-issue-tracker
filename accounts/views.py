@@ -8,6 +8,8 @@ from django.contrib.auth.forms import (
     PasswordResetForm,
     SetPasswordForm,
 )
+
+from features.models import Feature
 from .forms import (
     UserLoginForm,
     UserRegistrationForm,
@@ -133,33 +135,17 @@ def view_profile(request, username=None):
     """A view that displays the profile page of a user"""
     if request.user.is_authenticated:
         user = UserProfile.objects.get(user__username=username)
-        if (Bug.objects.filter(reported_by=user).exists() and not
-            Bug.objects.filter(upvotes=user.user).exists()):
-            reported_bugs = Bug.objects.filter(reported_by=user)
-            args = {
-                'user': user,
-                'reported_bugs': reported_bugs
-            }
-        elif (Bug.objects.filter(upvotes=user.user).exists() and not
-              Bug.objects.filter(reported_by=user).exists()):
-            upvoted_bugs = Bug.objects.filter(upvotes=user.user)
-            args = {
-                'user': user,
-                'upvoted_bugs': upvoted_bugs
-            }
-        elif (Bug.objects.filter(upvotes=user.user).exists() and
-              Bug.objects.filter(reported_by=user).exists()):
-            upvoted_bugs = Bug.objects.filter(upvotes=user.user)
-            reported_bugs = Bug.objects.filter(reported_by=user)
-            args = {
-                'user': user,
-                'reported_bugs': reported_bugs,
-                'upvoted_bugs': upvoted_bugs,
-            }
-        else:
-            args = {
-                'user': user
-            }
+        reported_bugs = Bug.objects.filter(reported_by=user)
+        upvoted_bugs = Bug.objects.filter(upvotes=user.user)
+        asked_features = Feature.objects.filter(reported_by=user)
+        upvoted_features = Feature.objects.filter(upvoted_by=user.user)
+        args = {
+            'user': user,
+            'reported_bugs': reported_bugs,
+            'upvoted_bugs': upvoted_bugs,
+            'asked_features': asked_features,
+            'upvoted_features': upvoted_features,
+        }
         return render(request, 'profile.html', args)
     else:
         return redirect('index')

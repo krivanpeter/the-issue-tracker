@@ -90,6 +90,7 @@
         </div>
     </div>
 </div>
+<!-- REPORTED BUGS -->
 <div class="container">
     <div class="row">
         {% if reported_bugs %}
@@ -114,6 +115,7 @@
             </div>
         </div>
         {% endif %}
+        <!-- UPVOTED BUGS -->
         {% if upvoted_bugs %}
         <div align="center" class="col-12 col-md-6">
             <h2 align="center" class="title">Upvoted Bugs</h2>
@@ -130,6 +132,56 @@
                     <a role="gridcell" class="no-decor table-cell" href="{{ bug.get_absolute_url }}">{{ bug.title }}</a>
                     <div role="gridcell" class="d-none d-md-block table-cell">
                         <span>{{ bug.published_date|timesince}} ago</span>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+<!-- ASKED FEATURES -->
+<div class="container">
+    <div class="row">
+        {% if asked_features %}
+        <div align="center" class="col-12 col-md-6">
+            <h2 align="center" class="title">Asked Features</h2>
+            <div role="grid" style="width: 100%; display: table;">
+                {% for feature in asked_features %}
+                <div role="row" class="table-row">
+                    <div role="gridcell" class="table-cell">
+                        {% if feature.open is True %}
+                        <i class="fas fa-exclamation-circle" style="color: green;"></i>
+                        {% else %}
+                        <i class="fas fa-check" style="color: green;"></i>
+                        {% endif %}
+                    </div>
+                    <a role="gridcell" class="no-decor table-cell" href="{{ feature.get_absolute_url }}">{{ feature.title }}</a>
+                    <div role="gridcell" class="d-none d-md-block table-cell">
+                        <span>{{ feature.published_date|timesince}} ago</span>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+        <!-- UPVOTED FEATURES -->
+        {% if upvoted_features %}
+        <div align="center" class="col-12 col-md-6">
+            <h2 align="center" class="title">Upvoted Features</h2>
+            <div role="grid" style="width: 100%; display: table;">
+                {% for feature in upvoted_features %}
+                <div role="row" class="table-row">
+                    <div role="gridcell" class="table-cell">
+                        {% if feature.open is True %}
+                        <i class="fas fa-exclamation-circle" style="color: green;"></i>
+                        {% else %}
+                        <i class="fas fa-check" style="color: green;"></i>
+                        {% endif %}
+                    </div>
+                    <a role="gridcell" class="no-decor table-cell" href="{{ feature.get_absolute_url }}">{{ feature.title }}</a>
+                    <div role="gridcell" class="d-none d-md-block table-cell">
+                        <span>{{ feature.published_date|timesince}} ago</span>
                     </div>
                 </div>
                 {% endfor %}

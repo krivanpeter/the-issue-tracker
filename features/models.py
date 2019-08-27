@@ -17,7 +17,8 @@ class Feature(models.Model):
     published_date = models.DateTimeField(blank=True, null=True, default=timezone.now)
     open = models.BooleanField(default=True)
     reported_by = models.ForeignKey(UserProfile, on_delete=models.CASCADE, null=True)
-    upvotes = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True, related_name='feature_likes')
+    upvoted_by = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True, related_name='feature_likes')
+    upvotes = models.PositiveIntegerField(default=0)
     needed_upvotes = models.PositiveIntegerField(default=50)
     slug = models.SlugField(unique=True)
 

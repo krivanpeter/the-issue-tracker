@@ -107,13 +107,13 @@ def upvote_feature(request, slug=None):
         data = {'user_upvoted': False}
         feature = get_object_or_404(Feature, slug=slug)
         user = request.user
-        if user.is_authenticated():
-            if user in feature.upvotes.all():
-                feature.upvotes.remove(user)
-                data['user_upvoted'] = False
-            else:
-                feature.upvotes.add(user)
-                data['user_upvoted'] = True
-        return JsonResponse(data)
+        if user in feature.upvoted_by.all():
+            feature.upvotes += 1
+            feature.save()
+        else:
+            feature.upvoted_by.add(user)
+            feature.upvotes += 1
+            feature.save()
+        return redirect('features')
     else:
         return redirect('index')
