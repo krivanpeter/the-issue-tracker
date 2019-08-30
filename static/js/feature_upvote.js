@@ -9,9 +9,14 @@ $('#like-button').on('click', function(event) {
 		success: function(data) {
               var newLikes;
               if (data.feature_upvoted){
-                likeCount += 1;
-                this_.html(" Upvote Again");
-                $('#number_of_upvotes').html(likeCount);
+                if (data.user_has_upvotes){
+                    likeCount += 1;
+                    this_.html(" Upvote Again");
+                    $('#number_of_upvotes').html(likeCount);
+                }
+                else{
+                    $('#missing_upvotes_error').fadeIn();
+                }
               }
           }
     });

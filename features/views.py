@@ -104,7 +104,7 @@ def report_feature(request):
 def upvote_feature(request, slug=None):
     # A view which allows the user to upvote features
     if request.user.is_authenticated:
-        data = {'feature_upvoted': True}
+        data = {'user_has_upvotes': True, 'feature_upvoted': True}
         feature = get_object_or_404(Feature, slug=slug)
         user = request.user
         userprofile = UserProfile.objects.get(user=request.user)
@@ -114,7 +114,8 @@ def upvote_feature(request, slug=None):
             feature.save()
             userprofile.available_upvotes -= 1
             userprofile.save()
-            return JsonResponse(data)
-        return redirect('features')
+        else:
+            data['user_has_upvotes'] = False
+        return JsonResponse(data)
     else:
         return redirect('index')

@@ -53,6 +53,9 @@
             </div>
         </div>
     </div>
+    <div class="col-12 col-md-7 col-lg-6 col-xl-5 float-right alert alert-secondary" id="missing_upvotes_error" style="display:none;">
+        You don't have enough available points to upvote
+    </div>
 </div>
 {% endblock %}
 {% block scripts %}
@@ -63,6 +66,11 @@ $(".img-thumbnail").on("click", function() {
         $('#imagemodal').modal('show');
     }
 });
+
+
+
+
+
 </script>
 <script src="{% static 'js/feature_upvote.js'%}"></script>
 {% endblock %}
