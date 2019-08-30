@@ -102,18 +102,19 @@ def report_feature(request):
 
 
 def upvote_feature(request, slug=None):
-    # A view which allows the user to like and unlike features
+    # A view which allows the user to upvote features
     if request.user.is_authenticated:
-        data = {'user_upvoted': False}
+        data = {'feature_upvoted': True}
         feature = get_object_or_404(Feature, slug=slug)
         user = request.user
-        if user in feature.upvoted_by.all():
-            feature.upvotes += 1
-            feature.save()
-        else:
+        userprofile = UserProfile.objects.get(user=request.user)
+        if userprofile.available_upvotes > 0:
             feature.upvoted_by.add(user)
             feature.upvotes += 1
             feature.save()
+            userprofile.available_upvotes -= 1
+            userprofile.save()
+            return JsonResponse(data)
         return redirect('features')
     else:
         return redirect('index')

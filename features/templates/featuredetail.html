@@ -39,16 +39,30 @@
             <div class="float-right" style="color: #e54725;">
                 <a role="button" id="like-button" class="no-decor" href="{{ feature.get_upvote_url }}">
                     <i class="fas fa-arrow-alt-circle-up" style="color: #e54725;">
-                        {% if user in feature.upvotes.all %}
+                        {% if user in feature.upvoted_by.all %}
                         <span>Upvote again</span>
                         {% else %}
                         <span>Upvote</span>
                         {% endif %}
                     </i>
                 </a>
-                <span id="number_of_likes">{{ feature.upvotes}} / {{ feature.needed_upvotes}}</span>
+                <span>
+                    <span id="number_of_upvotes">{{ feature.upvotes}}</span>
+                    <span>/ {{ feature.needed_upvotes}}</span>
+                </span>
             </div>
         </div>
     </div>
 </div>
+{% endblock %}
+{% block scripts %}
+<script>
+$(".img-thumbnail").on("click", function() {
+    if($(window).width()>768){
+        $('#imagepreview').attr('src', $(this).attr('src'));
+        $('#imagemodal').modal('show');
+    }
+});
+</script>
+<script src="{% static 'js/feature_upvote.js'%}"></script>
 {% endblock %}
