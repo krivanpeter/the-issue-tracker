@@ -81,7 +81,7 @@
                             <ul class="media-list">
                                 {% for comment in comments %}
                                 <li class="media">
-                                    <a class="d-none d-md-block" href="{% url 'view_profile' comment.user.user %}">
+                                    <a href="{% url 'view_profile' comment.user.user %}">
                                         <img src="{{ MEDIA_URL }}{{ comment.user.avatar }}" alt="" class="img-circle">
                                     </a>
                                     <div class="media-body">

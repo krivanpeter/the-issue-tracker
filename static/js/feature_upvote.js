@@ -11,7 +11,6 @@ $('#like-button').on('click', function(event) {
               if (data.feature_upvoted){
                 if (data.user_has_upvotes){
                     likeCount += 1;
-                    this_.html(" Upvote Again");
                     $('#number_of_upvotes').html(likeCount);
                 }
                 else{

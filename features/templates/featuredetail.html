@@ -35,15 +35,11 @@
     </div>
     <div class="row">
         <div class="col-12">
-            <button type="button" class="btn btn-back">Back to features</button>
+            <button type="button" class="btn btn-back">Back</button>
             <div class="float-right" style="color: #e54725;">
                 <a role="button" id="like-button" class="no-decor" href="{{ feature.get_upvote_url }}">
                     <i class="fas fa-arrow-alt-circle-up" style="color: #e54725;">
-                        {% if user in feature.upvoted_by.all %}
-                        <span>Upvote again</span>
-                        {% else %}
                         <span>Upvote</span>
-                        {% endif %}
                     </i>
                 </a>
                 <span>
@@ -52,25 +48,16 @@
                 </span>
             </div>
         </div>
-    </div>
-    <div class="col-12 col-md-7 col-lg-6 col-xl-5 float-right alert alert-secondary" id="missing_upvotes_error" style="display:none;">
-        You don't have enough available points to upvote
+        <div class="col-12">
+            <span class="alert alert-secondary float-right" id="missing_upvotes_error" style="display:none;">
+                <small>You don't have enough available points to upvote.<br>
+                Click <a href="{% url 'all_packages' %}">here</a> to buy some
+                </small>
+            </span>
+        </div>
     </div>
 </div>
 {% endblock %}
 {% block scripts %}
-<script>
-$(".img-thumbnail").on("click", function() {
-    if($(window).width()>768){
-        $('#imagepreview').attr('src', $(this).attr('src'));
-        $('#imagemodal').modal('show');
-    }
-});
-
-
-
-
-
-</script>
 <script src="{% static 'js/feature_upvote.js'%}"></script>
 {% endblock %}

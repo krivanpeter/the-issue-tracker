@@ -1,6 +1,6 @@
 $(document).ready(function() {
     $('.btn-back').on('click', function(event) {
-        window.history.back();
+        window.history.go(-1);
     });
 
     $('.comment-reply-btn').on('click', function(event) {
