@@ -131,7 +131,7 @@ def login_from_password_change(request):
 
 @login_required
 def view_profile(request, username=None):
-    # bugs = Bug.objects.filter(upvotes=user.user)
+    print("CALLED")
     """A view that displays the profile page of a user"""
     if request.user.is_authenticated:
         user = UserProfile.objects.get(user__username=username)
@@ -156,15 +156,16 @@ def edit_profile(request):
     """A view that lets a logged in user to change the profile"""
     if request.user.is_authenticated:
         if request.method == "POST":
+            user = request.user
             user_form = EditProfileForm(request.POST, instance=request.user)
             profile_form = EditUserForm(request.POST, request.FILES, instance=request.user.userprofile)
             if user_form.is_valid() and profile_form.is_valid():
-                if (request.user.userprofile.avatar == "../media/profile_images/male_def.png" or
-                        request.user.userprofile.avatar == "../media/profile_images/female_def.png"):
+                if (user.userprofile.avatar == "../media/profile_images/male_def.png" or
+                        user.userprofile.avatar == "../media/profile_images/female_def.png"):
                     if profile_form.cleaned_data['gender'] == "F":
-                        request.user.userprofile.avatar = "../media/profile_images/female_def.png"
+                        user.userprofile.avatar = "../media/profile_images/female_def.png"
                     elif profile_form.cleaned_data['gender'] == "M":
-                        request.user.userprofile.avatar = "../media/profile_images/male_def.png"
+                        user.userprofile.avatar = "../media/profile_images/male_def.png"
                 else:
                     profile_form.avatar = profile_form.cleaned_data['avatar']
                 user_form.save()
@@ -201,7 +202,7 @@ def delete_avatar(request):
 
 @login_required
 def change_password(request):
-    """A view that lets a logged in user to change the profile"""
+    """A view that lets a logged in user to change the password"""
     if request.user.is_authenticated:
         if request.method == "POST":
             form = PasswordChangeCustomForm(data=request.POST, user=request.user)

@@ -83,7 +83,6 @@ class EditProfileForm(UserChangeForm):
             'first_name',
             'last_name',
             'email',
-            'password'
         )
 
     def clean_first_name(self):
