@@ -100,8 +100,7 @@ def report_bug(request):
                     instance.save()
                 return redirect('/bugs/')
             else:
-                data = {'is_valid': False}
-                return JsonResponse(data)
+                return redirect('/report-bug/')
         else:
             new_bug_form = BugReportForm()
             bug_img_form = BugImageForm()

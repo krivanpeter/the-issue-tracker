@@ -16,9 +16,9 @@ def all_features(request):
     # A view which shows all the asked features,
     # ordered by the number of upvotes and the date of the report
     if request.user.is_authenticated:
-        bug_list = Feature.objects.annotate(count=Count('upvotes')).order_by('-count')
+        feature_list = Feature.objects.annotate(count=Count('upvotes')).order_by('-open', '-count')
         page = request.GET.get('page', 1)
-        paginator = Paginator(bug_list, 10)
+        paginator = Paginator(feature_list, 10)
         try:
             features = paginator.page(page)
         except PageNotAnInteger:
@@ -82,15 +82,19 @@ def report_feature(request):
     if request.user.is_authenticated:
         if request.method == "POST":
             new_feature_form = FeatureReportForm(request.POST)
-
+            userprofile = UserProfile.objects.get(user=request.user)
             if new_feature_form.is_valid():
-                feature_form = new_feature_form.save(commit=False)
-                feature_form.reported_by = UserProfile.objects.get(user=request.user)
-                feature_form.save()
-                return redirect('/features/')
+                if userprofile.available_upvotes >= 5:
+                    feature_form = new_feature_form.save(commit=False)
+                    feature_form.reported_by = UserProfile.objects.get(user=request.user)
+                    feature_form.save()
+                    userprofile.available_upvotes -= 5
+                    userprofile.save()
+                    return redirect('/features/')
+                else:
+                    return redirect('/report-feature/')
             else:
-                data = {'is_valid': False}
-                return JsonResponse(data)
+                return redirect('/report-feature/')
         else:
             new_feature_form = FeatureReportForm()
             args = {
