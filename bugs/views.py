@@ -11,13 +11,12 @@ from .models import Bug, BugImages
 from .forms import BugReportForm, BugImageForm
 
 
-
 @login_required
 def all_bugs(request):
     # A view which shows all the reported bugs,
     # ordered by the number of upvotes and the date of the report
     if request.user.is_authenticated:
-        bug_list = Bug.objects.annotate(count=Count('upvotes')).order_by('-open', '-count')
+        bug_list = Bug.objects.annotate(count=Count('upvotes')).order_by('-open', '-count', '-published_date')
         page = request.GET.get('page', 1)
         paginator = Paginator(bug_list, 10)
         try:

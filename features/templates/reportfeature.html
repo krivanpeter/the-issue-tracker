@@ -3,7 +3,7 @@
 {% block content %}
 <div class="container news-container">
     <h2 class="title" align="center">New Feature</h2>
-    <p align="center">To ask a new feature you will need to spend 5 upvotes!</p>
+    <p align="center">We will subtract 5 of your upvotes after the request of feature</p>
     <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="row title">
@@ -20,8 +20,15 @@
                     {% endfor %}
                     <div class="image-and-submit-row col-12">
                         <div class="row">
-                            <div class="col-3 col-md-2">
+                            <div class="col-12 col-md-2">
                                 <button type="submit" class="btn bugs-button">Ask Feature</button>
+                            </div>
+                            <div class="col-12 col-md-10">
+                                <span class="alert alert-secondary float-right" id="missing_upvotes_error" style="display: none;">
+                                    <small>You don't have enough available points to ask a feature.<br>
+                                    Click <a href="{% url 'all_packages' %}">here</a> to buy some
+                                    </small>
+                                </span>
                             </div>
                         </div>
                     </div>

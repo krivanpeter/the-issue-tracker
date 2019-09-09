@@ -3,7 +3,6 @@ from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.db.models import Count
 from accounts.models import UserProfile
 from comments.forms import CommentForm
 from comments.models import Comment
@@ -16,7 +15,7 @@ def all_features(request):
     # A view which shows all the asked features,
     # ordered by the number of upvotes and the date of the report
     if request.user.is_authenticated:
-        feature_list = Feature.objects.annotate(count=Count('upvotes')).order_by('-open', '-count')
+        feature_list = Feature.objects.order_by('-open', '-upvotes', '-published_date')
         page = request.GET.get('page', 1)
         paginator = Paginator(feature_list, 10)
         try:
@@ -80,9 +79,9 @@ def feature_detail(request, slug=None):
 def report_feature(request):
     # A view which allows the user to ask new features
     if request.user.is_authenticated:
+        userprofile = UserProfile.objects.get(user=request.user)
         if request.method == "POST":
             new_feature_form = FeatureReportForm(request.POST)
-            userprofile = UserProfile.objects.get(user=request.user)
             if new_feature_form.is_valid():
                 if userprofile.available_upvotes >= 5:
                     feature_form = new_feature_form.save(commit=False)
@@ -92,17 +91,22 @@ def report_feature(request):
                     userprofile.save()
                     return redirect('/features/')
                 else:
-                    return redirect('/report-feature/')
+                    data = {'user_has_upvotes': False}
+                    return JsonResponse(data)
             else:
                 return redirect('/report-feature/')
         else:
-            new_feature_form = FeatureReportForm()
-            args = {
-                'new_feature_form': new_feature_form,
-            }
-            return render(request, 'reportfeature.html', args)
+            if userprofile.available_upvotes >= 5:
+                new_feature_form = FeatureReportForm()
+                args = {
+                    'new_feature_form': new_feature_form,
+                }
+                return render(request, 'reportfeature.html', args)
+            else:
+                return redirect('features')
     else:
         return redirect('index')
+
 
 
 def upvote_feature(request, slug=None):
