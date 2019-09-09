@@ -1,6 +1,7 @@
 from django.contrib import messages
 from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth.decorators import login_required
+from django.urls import reverse
 from django.utils import timezone
 from accounts.models import UserProfile
 from attractor import settings
@@ -58,6 +59,8 @@ def checkout(request):
         else:
             messages.error(request, 'We were unable to take a payment with that cart!')
     else:
+        if not request.session.get('cart', {}):
+            return redirect(reverse('view_cart'))
         order_form = OrderForm()
         payment_form = MakePaymentForm()
     return render(request, 'checkout.html', {

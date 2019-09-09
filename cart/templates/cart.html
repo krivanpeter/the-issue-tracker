@@ -5,6 +5,7 @@
     <h2 align="center" class="title">Cart</h2>
     <hr class="featurette-divider">
     <div class="row">
+        {% if cart_items %}
         {% for item in cart_items %}
         <div align="center" class="col-12 col-md-6 col-lg-4">
             <h4>{{ item.package.title }}</h4>
@@ -18,8 +19,7 @@
                         <label for="quantity" class="input-group-addon">Quantity: </label>
                         <input name="quantity" id="quantity" type="number" min="0" max="999" class="form-control"
                                value="{{item.quantity}}">
-
-                        <button type="submit" class="btn btn-primary">
+                        <button type="submit" class="btn btn-dark">
                             <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>Amend
                         </button>
                     </div>
@@ -27,18 +27,25 @@
             </div>
         </div>
         {% endfor %}
+        {% else %}
+        <div align="center" class="col-12 col-md-6 col-lg-4">
+            <h4 align="center">Your Shopping Cart is empty.</h4>
+        </div>
+        {% endif %}
     </div>
     <hr class="featurette-divider">
+    {% if cart_items %}
     <div class="row">
         <div class="col-12">
             <div class="float-right">
                 <span>Total £ {{ total }}</span>
                 <hr class="featurette-divider">
-                <a href="{% url 'checkout' %}" class="btn btn-success" role="button">
+                <a href="{% url 'checkout' %}" class="btn bugs-button" role="button">
                     <span class="glyphicon glyphicon-ok-sign" aria-hidden="true">Checkout</span>
                 </a>
             </div>
         </div>
     </div>
+    {% endif %}
 </div>
 {% endblock %}
