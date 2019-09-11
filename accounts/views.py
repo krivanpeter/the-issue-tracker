@@ -133,19 +133,22 @@ def login_from_password_change(request):
 def view_profile(request, username=None):
     """A view that displays the profile page of a user"""
     if request.user.is_authenticated:
-        user = UserProfile.objects.get(user__username=username)
-        reported_bugs = Bug.objects.filter(reported_by=user)
-        upvoted_bugs = Bug.objects.filter(upvotes=user.user)
-        asked_features = Feature.objects.filter(reported_by=user)
-        upvoted_features = Feature.objects.filter(upvoted_by=user.user)
-        args = {
-            'user': user,
-            'reported_bugs': reported_bugs,
-            'upvoted_bugs': upvoted_bugs,
-            'asked_features': asked_features,
-            'upvoted_features': upvoted_features,
-        }
-        return render(request, 'profile.html', args)
+        if UserProfile.objects.filter(user__username=username).exists():
+            user = UserProfile.objects.get(user__username=username)
+            reported_bugs = Bug.objects.filter(reported_by=user)
+            upvoted_bugs = Bug.objects.filter(upvotes=user.user)
+            asked_features = Feature.objects.filter(reported_by=user)
+            upvoted_features = Feature.objects.filter(upvoted_by=user.user)
+            args = {
+                'user': user,
+                'reported_bugs': reported_bugs,
+                'upvoted_bugs': upvoted_bugs,
+                'asked_features': asked_features,
+                'upvoted_features': upvoted_features,
+            }
+            return render(request, 'profile.html', args)
+        else:
+            raise Http404()
     else:
         return redirect('index')
 

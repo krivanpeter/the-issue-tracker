@@ -10,6 +10,7 @@ from .models import OrderLineItem
 import stripe
 from packages.models import Package
 
+
 stripe.api_key = settings.STRIPE_SECRET
 
 
@@ -18,7 +19,6 @@ def checkout(request):
     if request.method == "POST":
         order_form = OrderForm(request.POST)
         payment_form = MakePaymentForm(request.POST)
-
         if order_form.is_valid() and payment_form.is_valid():
             order = order_form.save(commit=False)
             order.date = timezone.now()
@@ -45,17 +45,20 @@ def checkout(request):
                 )
             except stripe.error.CardError:
                 messages.error(request, 'Your card was declined!')
-
-            if customer.paid:
-                user = UserProfile.objects.get(user__username=request.user.username)
-                for id, quantity in cart.items():
-                    package = get_object_or_404(Package, pk=id)
-                    user.available_upvotes += quantity * package.worth_upvotes
-                    user.save()
-                request.session['cart'] = {}
-                return redirect('view_profile', username=request.user)
+            if 'customer' in locals():
+                if customer.paid:
+                    user = UserProfile.objects.get(user__username=request.user.username)
+                    for id, quantity in cart.items():
+                        package = get_object_or_404(Package, pk=id)
+                        user.available_upvotes += quantity * package.worth_upvotes
+                        user.save()
+                    request.session['cart'] = {}
+                    return redirect('view_profile', username=request.user)
+                else:
+                    messages.error(request, 'Unable to take payment.')
             else:
-                messages.error(request, 'Unable to take payment.')
+                messages.error(request, "An error occurred")
+                return redirect("checkout")
         else:
             messages.error(request, 'We were unable to take a payment with that card!')
     else:

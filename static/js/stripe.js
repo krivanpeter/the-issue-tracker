@@ -12,7 +12,6 @@ $(function() {
         if (status === 200) {
             $("#credit-card-errors").hide();
             $("#id_stripe_id").val(response.id);
-
             // Prevent the credit card details from being submitted
             // to our server
             $("#id_credit_card_number").removeAttr('name');

@@ -5,7 +5,7 @@
 <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
 <script type="text/javascript">
     //<![CDATA[
-    Stripe.publishableKey = '{{publishable}}';
+        Stripe.publishableKey = '{{ publishable }}';
     //]]>
 
 </script>
@@ -36,26 +36,29 @@
             </div>
         </div>
     </div>
-    {% for message in messages %}
-    {{ message }}
-    {% endfor %}
     <form role="form" method="post" id="payment-form" action="{% url 'checkout' %}">
         <legend>Payment Details</legend>
-        <div id="credit-cards-errors" style="display:none">
-            <div class="alert-message block-message error" id="stripe-error-message"></div>
-        </div>
         <div class="row">
             <div class="form-group col-12 col-md-6">
                 {{ order_form|as_bootstrap }}
             </div>
             <div class="form-group col-12 col-md-6">
                 {{ payment_form|as_bootstrap }}
+                <div id="credit-card-errors" style="display: none;">
+                    <div class="alert alert-secondary" id="stripe-error-message"></div>
+                </div>
+                <div class="alert alert-secondary">
+                    {% for message in messages %}
+                    {{ message }}
+                    {% endfor %}
+                </div>
             </div>
         </div>
         {% csrf_token %}
         <div align="center" class="form-group">
             <input class="btn bugs-button" id="submit_payment_btn" name="commit" type="submit" value="Submit Payment">
         </div>
+
     </form>
 </div>
 {% endblock%}
