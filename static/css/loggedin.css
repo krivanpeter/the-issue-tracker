@@ -312,6 +312,9 @@ a.bug-link{
     color: #990000;
 }
 
+.fas.fa-trash{
+    margin: 0;
+}
 /*--------------------------------------*/
 #id_password,
 #id_images,

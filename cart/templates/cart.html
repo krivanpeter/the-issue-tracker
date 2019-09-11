@@ -16,15 +16,15 @@
                 <form class="form-inline justify-content-center" method="post" action="{% url 'adjust_cart' item.id %}">
                     {% csrf_token %}
                     <div class="form-group">
-                        <label for="quantity" class="input-group-addon">Quantity: </label>
+                        <label for="quantity" class="input-group-addon">Quantity:&nbsp</label>
                         <input name="quantity" id="quantity" type="number" min="0" max="999" class="form-control"
                                value="{{item.quantity}}">
-                        <button type="submit" class="btn btn-secondary">
-                            Amend
+                        <button type="submit" class="btn btn-outline-info">
+                            <span>Amend</span>
                         </button>
-                        <button type="submit" class="btn btn-danger">
-                            Remove
-                        </button>
+                        <a class="btn btn-outline-danger" href="{% url 'remove_item' item.id %}">
+                            <i class="fas fa-trash"></i>
+                        </a>
                     </div>
                 </form>
             </div>
