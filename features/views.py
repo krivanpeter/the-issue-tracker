@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.contrib.contenttypes.models import ContentType
 from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
@@ -103,6 +104,7 @@ def report_feature(request):
                 }
                 return render(request, 'reportfeature.html', args)
             else:
+                messages.error(request, 'You do not have enough available upvotes to ask a new feature')
                 return redirect('features')
     else:
         return redirect('index')

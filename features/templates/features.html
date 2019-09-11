@@ -13,6 +13,13 @@
     </div>
 </div>
 <div class="container">
+    {% if messages%}
+    <div class="float-right alert alert-secondary">
+        {% for message in messages %}
+        {{ message }}
+        {% endfor %}
+    </div>
+    {% endif %}
     <p align="center">We will need 50 upvotes on a feature to start the development.</p>
     <p align="center">You will need at least 5 upvotes to be able to request a new feature!</p>
     <div class="row">
