@@ -169,6 +169,7 @@ def edit_profile(request):
                     profile_form.avatar = profile_form.cleaned_data['avatar']
                 user_form.save()
                 profile_form.save()
+                messages.success(request, 'Your profile has been updated.')
                 return redirect('view_profile', username=request.user.userprofile)
             else:
                 return redirect('/profile/edit')
@@ -194,6 +195,7 @@ def delete_avatar(request):
         else:
             user.avatar = "../media/profile_images/male_def.png"
         user.save()
+        messages.success(request, 'Your avatar has been deleted.')
         return redirect('view_profile', username=request.user.userprofile)
     else:
         raise Http404()

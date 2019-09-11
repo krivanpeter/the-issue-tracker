@@ -1,57 +1,11 @@
 {% extends "base_logged_in.html" %}
 {% block content %}
-<!-- SMALL SCREEN -->
-<div class="container d-block d-md-none">
-    <h2 align="center" class="title">Profile</h2>
-    <div class="row">
-        <div align="center" class="col-12">
-            <div role="grid" class="profile-feature" style="width: 100%; display: table;">
-                <div role="row" class="table-row">
-                    <div align="center" class="col-12">
-                        <img src="{{ user.avatar.url }}" height="250">
-                    </div>
-                </div>
-                <div align="center" class="col-12">
-                    <div role="row" class="table-row">
-                        <div role="gridcell" class="table-cell"><b>Username:</b></div>
-                        <div role="gridcell" class="table-cell">{{ user }}</div>
-                    </div>
-                    <div role="row" class="table-row">
-                        <div role="gridcell" class="table-cell"><b>First name:</b></div>
-                        <div role="gridcell" class="table-cell">{{ user.user.first_name }}</div>
-                    </div>
-                    <div role="row" class="table-row">
-                        <div role="gridcell" class="table-cell"><b>Last name:</b></div>
-                        <div role="gridcell" class="table-cell">{{ user.user.last_name }}</div>
-                    </div>
-                    <div role="row" class="table-row">
-                        <div role="gridcell" class="table-cell"><b>E-mail:</b></div>
-                        <div role="gridcell" class="table-cell">{{ user.user.email }}</div>
-                    </div>
-                    <div role="row" class="table-row">
-                        <div role="gridcell" class="table-cell"><b>Gender:</b></div>
-                        <div role="gridcell" class="table-cell">{{ user.gender }}</div>
-                    </div>
-                    {% if request.user.userprofile == user %}
-                    <div role="row" class="table-row">
-                        <div role="gridcell" class="table-cell"><b>Available Upvotes:</b></div>
-                        <div role="gridcell" class="table-cell">{{ user.available_upvotes }}</div>
-                    </div>
-                    {% endif %}
-                    <div align="center" class="title">
-                        <a class="btn btn-dark" type="button" href="{% url 'edit_profile' %}">
-                            Edit Profile
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- BIG SCREEN -->
-<div class="container d-none d-md-block">
+<div align="center" class="container justify-content-center">
     <h2 align="center" class="title">Profile</h2>
     <div class="profile-feature">
+        {% for message in messages %}
+        <div align="center" style="margin-bottom: 10px;">{{ message }}</div>
+        {% endfor %}
         <div class="row justify-content-center">
             <div class="col-md-6 col-lg-4">
                 <img src="{{ user.avatar.url }}" height="250">

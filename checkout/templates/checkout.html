@@ -36,6 +36,9 @@
             </div>
         </div>
     </div>
+    {% for message in messages %}
+    {{ message }}
+    {% endfor %}
     <form role="form" method="post" id="payment-form" action="{% url 'checkout' %}">
         <legend>Payment Details</legend>
         <div id="credit-cards-errors" style="display:none">

@@ -57,7 +57,7 @@ def checkout(request):
             else:
                 messages.error(request, 'Unable to take payment.')
         else:
-            messages.error(request, 'We were unable to take a payment with that cart!')
+            messages.error(request, 'We were unable to take a payment with that card!')
     else:
         if not request.session.get('cart', {}):
             return redirect(reverse('view_cart'))
