@@ -5,6 +5,7 @@ from accounts.views import (
     view_profile, edit_profile,
     change_password
 )
+from django.views.generic import RedirectView
 from accounts import urls as urls_accounts
 from news import urls as urls_news
 from packages import urls as urls_packages
@@ -39,4 +40,5 @@ urlpatterns = [
     url(r'^cart/', include(urls_cart)),
     url(r'^checkout/', include(urls_checkout)),
     url(r'^media/(?P<path>.*)$', static.serve, {'document_root': MEDIA_ROOT}),
+    url(r'^favicon\.ico$', RedirectView.as_view(url='/static/img/favicon.ico')),
 ]

@@ -131,7 +131,6 @@ def login_from_password_change(request):
 
 @login_required
 def view_profile(request, username=None):
-    print("CALLED")
     """A view that displays the profile page of a user"""
     if request.user.is_authenticated:
         user = UserProfile.objects.get(user__username=username)
