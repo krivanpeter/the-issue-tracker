@@ -18,6 +18,8 @@ function changeNavBar() {
                 $('.navbar-brand').removeClass('logo-transparent');
                 $('.nav-item button').addClass('white-text');
                 $('.nav-item button').removeClass('black-text');
+                $('.nav-item a').addClass('white-text');
+                $('.nav-item a').removeClass('black-text');
                 $('.nav-link i').addClass('white-text');
                 $('.nav-link i').removeClass('orange-fa');
             }
@@ -28,6 +30,8 @@ function changeNavBar() {
                 $('.navbar-brand').addClass('logo-transparent');
                 $('.nav-item button').removeClass('white-text');
                 $('.nav-item button').addClass('black-text');
+                $('.nav-item a').removeClass('white-text');
+                $('.nav-item a').addClass('black-text');
                 $('.nav-link i').removeClass('white-text');
                 $('.nav-link i').addClass('orange-fa');
             }

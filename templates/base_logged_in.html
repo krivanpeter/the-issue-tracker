@@ -54,6 +54,16 @@
                         </a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="{% url 'view_cart' %}">
+                            <i class="fas fa-shopping-cart"></i>Cart
+                            {% if cart_items %}
+                            ({{ cart_items|length }})
+                            {% else %}
+                            ( 0 )
+                            {% endif %}
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="{% url 'logout' %}">
                             <i class="fas fa-sign-out-alt"></i>Log Out
                         </a>
