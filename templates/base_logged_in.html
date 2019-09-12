@@ -96,8 +96,8 @@
                                     </a>
                                     <div class="media-body">
                                         <strong><a class="no-decor" style="color: #e54725;"
-                                                   href="{% url 'view_profile' comment.user.user %}">@{{
-                                            comment.user.user }}</a></strong>
+                                                   href="{% url 'view_profile' comment.user.user %}">
+                                            @{{ comment.user.user }}</a></strong>
                                         <span class="text-muted">
                                             <small class="text-muted">{{ comment.published_date|timesince}} ago</small>
                                         </span>
@@ -139,8 +139,8 @@
                                         </a>
                                         <div class="media-body">
                                             <strong><a class="no-decor" style="color: #e54725;"
-                                                       href="{% url 'view_profile' child_comment.user.user %}">@{{
-                                                child_comment.user.user }}</a></strong>
+                                                       href="{% url 'view_profile' child_comment.user.user %}">
+                                                @{{ child_comment.user.user }}</a></strong>
                                             <span class="text-muted">
                                                     <small class="text-muted">{{ child_comment.published_date|timesince}} ago</small>
                                                 </span>

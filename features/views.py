@@ -104,26 +104,39 @@ def report_feature(request):
                 }
                 return render(request, 'reportfeature.html', args)
             else:
-                messages.error(request, 'You do not have enough available upvotes to ask a new feature')
+                messages.error(
+                    request,
+                    'You do not have enough available upvotes to ask a new feature'
+                )
                 return redirect('features')
     else:
         return redirect('index')
 
 
-
 def upvote_feature(request, slug=None):
     # A view which allows the user to upvote features
     if request.user.is_authenticated:
-        data = {'user_has_upvotes': True, 'feature_upvoted': True}
+        data = {'user_has_upvotes': True, 'max_reached': False}
         feature = get_object_or_404(Feature, slug=slug)
         user = request.user
         userprofile = UserProfile.objects.get(user=request.user)
         if userprofile.available_upvotes > 0:
-            feature.upvoted_by.add(user)
-            feature.upvotes += 1
-            feature.save()
-            userprofile.available_upvotes -= 1
-            userprofile.save()
+            if feature.open:
+                if feature.upvotes + 1 < 50:
+                    feature.upvoted_by.add(user)
+                    feature.upvotes += 1
+                    feature.save()
+                    userprofile.available_upvotes -= 1
+                    userprofile.save()
+                else:
+                    feature.open = False
+                    feature.upvoted_by.add(user)
+                    feature.upvotes += 1
+                    feature.save()
+                    userprofile.available_upvotes -= 1
+                    userprofile.save()
+            else:
+                data['max_reached'] = True
         else:
             data['user_has_upvotes'] = False
         return JsonResponse(data)

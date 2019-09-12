@@ -7,8 +7,8 @@ $('#like-button').on('click', function(event) {
 		data: {},
 		dataType: 'JSON',
 		success: function(data) {
-              var newLikes;
-              if (data.feature_upvoted){
+            var newLikes;
+            if(!data.max_reached){
                 if (data.user_has_upvotes){
                     likeCount += 1;
                     $('#number_of_upvotes').html(likeCount);
@@ -16,7 +16,7 @@ $('#like-button').on('click', function(event) {
                 else{
                     $('#missing_upvotes_error').fadeIn();
                 }
-              }
-          }
+            }
+        }
     });
 });
