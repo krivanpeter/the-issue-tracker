@@ -40,7 +40,6 @@ def feature_detail(request, slug=None):
             "object_id": feature.id
         }
         form = CommentForm(request.POST or None, initial=initial_data)
-
         if form.is_valid():
             user = UserProfile.objects.get(user=request.user)
             c_type = form.cleaned_data.get("content_type")
