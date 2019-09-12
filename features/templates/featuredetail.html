@@ -37,11 +37,13 @@
         <div class="col-12">
             <button type="button" class="btn btn-back">Back</button>
             <div class="float-right" style="color: #e54725;">
+                {% if feature.open == 'O' %}
                 <a role="button" id="like-button" class="no-decor" href="{{ feature.get_upvote_url }}">
                     <i class="fas fa-arrow-alt-circle-up" style="color: #e54725;">
                         <span>Upvote</span>
                     </i>
                 </a>
+                {% endif %}
                 <span>
                     <span id="number_of_upvotes">{{ feature.upvotes}}</span>
                     <span>/ {{ feature.needed_upvotes}}</span>

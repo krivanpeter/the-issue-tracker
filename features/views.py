@@ -121,7 +121,7 @@ def upvote_feature(request, slug=None):
         user = request.user
         userprofile = UserProfile.objects.get(user=request.user)
         if userprofile.available_upvotes > 0:
-            if feature.open:
+            if feature.open == 'O':
                 if feature.upvotes + 1 < 50:
                     feature.upvoted_by.add(user)
                     feature.upvotes += 1
@@ -129,7 +129,7 @@ def upvote_feature(request, slug=None):
                     userprofile.available_upvotes -= 1
                     userprofile.save()
                 else:
-                    feature.open = False
+                    feature.open = 'U'
                     feature.upvoted_by.add(user)
                     feature.upvotes += 1
                     feature.save()

@@ -25,11 +25,12 @@
     <div class="row">
         <div role="grid" class="bug-table" style="width: 100%;">
             <div role="row" class="table-row bug-first-row">
-                <div role="gridcell" class="table-cell"><span><b>Opened</b></span>
+                <div role="gridcell" class="table-cell"><span><b>Status</b></span>
                     <div class="row">
                         <div class="col-12">
                             <i class="fas fa-exclamation-circle" style="color: green;"></i>&nbsp;/
-                            <i class="fas fa-check" style="color: green;"></i>
+                            <i class="fas fa-check" style="color: green;"></i> /
+                            <i class="fas fa-code" style="color: green;"></i>
                         </div>
                     </div>
                 </div>
@@ -40,12 +41,18 @@
             </div>
             {% for feature in features %}
             <a role="row" class="table-row no-decor bug-link" href="{{ feature.get_absolute_url }}">
-                {% if feature.open is True %}
+                {% if feature.open == "O" %}
                 <div role="gridcell" class="table-cell">
                     <i class="fas fa-exclamation-circle" style="color: green;"></i>
                 </div>
+                {% elif feature.open == "C" %}
+                <div role="gridcell" class="table-cell">
+                    <i class="fas fa-check" style="color: green;"></i>
+                </div>
                 {% else %}
-                <div role="gridcell" class="table-cell"><i class="fas fa-check" style="color: green;"></i></div>
+                <div role="gridcell" class="table-cell">
+                    <i class="fas fa-code" style="color: green;"></i>
+                </div>
                 {% endif %}
                 <div role="gridcell" class="table-cell">{{ feature.title }}</div>
                 <div role="gridcell" class="table-cell d-none d-md-table-cell">

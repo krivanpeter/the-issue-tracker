@@ -9,18 +9,25 @@ from django.utils import timezone
 from django.utils.text import slugify
 
 
+FEATURE_CHOICES = (
+    ('O', 'Opened'),
+    ('D', 'Under Development'),
+    ('C', 'Closed')
+)
+
+
 class Feature(models.Model):
     # A piece of Feature
     title = models.TextField(max_length=60, default="")
     content = models.TextField()
     created_date = models.DateTimeField(auto_now_add=True)
     published_date = models.DateTimeField(blank=True, null=True, default=timezone.now)
-    open = models.BooleanField(default=True)
+    open = models.CharField(max_length=1, choices=FEATURE_CHOICES, default=FEATURE_CHOICES[0])
     reported_by = models.ForeignKey(UserProfile, on_delete=models.CASCADE, null=True)
     upvoted_by = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True, related_name='feature_likes')
     upvotes = models.PositiveSmallIntegerField(default=0)
     needed_upvotes = models.PositiveIntegerField(default=50)
-    slug = models.SlugField(unique=True)
+    slug = models.SlugField(unique=True, max_length=60)
 
     def __str__(self):
         return self.title
