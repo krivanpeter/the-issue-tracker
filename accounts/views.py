@@ -198,7 +198,7 @@ def delete_avatar(request):
         else:
             user.avatar = "../media/profile_images/male_def.png"
         user.save()
-        messages.success(request, 'Your avatar has been deleted.')
+        messages.success(request, 'Your avatar has been deleted.', fail_silently=True)
         return redirect('view_profile', username=request.user.userprofile)
     else:
         raise Http404()

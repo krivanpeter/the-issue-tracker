@@ -8,6 +8,8 @@
         Stripe.publishableKey = '{{ publishable }}';
     //]]>
 
+
+
 </script>
 <script type="text/javascript" src="{% static 'js/stripe.js' %}"></script>
 {% endblock %}
@@ -47,18 +49,17 @@
                 <div id="credit-card-errors" style="display: none;">
                     <div class="alert alert-danger" id="stripe-error-message"></div>
                 </div>
+                {% for message in messages %}
                 <div class="alert alert-secondary">
-                    {% for message in messages %}
                     {{ message }}
-                    {% endfor %}
                 </div>
+                {% endfor %}
             </div>
         </div>
         {% csrf_token %}
         <div align="center" class="form-group">
             <input class="btn bugs-button" id="submit_payment_btn" name="commit" type="submit" value="Submit Payment">
         </div>
-
     </form>
 </div>
 {% endblock%}
