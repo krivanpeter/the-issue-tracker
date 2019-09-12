@@ -1,5 +1,6 @@
 {% extends "base_logged_in.html" %}
 {% load staticfiles %}
+{% load custom_tags %}
 {% block content %}
 <div class="container news-container">
     <div class="row title">
@@ -34,20 +35,30 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-12">
-            <button type="button" class="btn btn-back">Back</button>
-            <div class="float-right" style="color: #e54725;">
+        <button type="button" class="btn btn-back col-3">Back</button>
+        <div class="col-8">
+            <div align="right" class="float-right" style="color: #e54725;">
                 {% if feature.open == 'O' %}
-                <a role="button" id="like-button" class="no-decor" href="{{ feature.get_upvote_url }}">
+                {% if request.user not in feature.upvoted_by.all %}
+                <a role="button" id="like-button" class="no-decor col-6" href="{{ feature.get_upvote_url }}">
                     <i class="fas fa-arrow-alt-circle-up" style="color: #e54725;">
                         <span>Upvote</span>
                     </i>
                 </a>
+                {% else %}
+                <a role="button" id="multiple-like-button" class="no-decor col-8" href="{{ feature.get_upvote_url }}">
+                    <i class="fas fa-arrow-alt-circle-up" style="color: #e54725;">Upvote</i>
+                </a>
+                <input name="quantity" id="quantity" type="number" min="1" max="{% subtract feature %}" class="form-control-sm"
+                       value="1">
                 {% endif %}
-                <span>
-                    <span id="number_of_upvotes">{{ feature.upvotes}}</span>
-                    <span>/ {{ feature.needed_upvotes}}</span>
-                </span>
+                {% endif %}
+                <div class="col-12">
+                    <span class="float-right">
+                        <span id="number_of_upvotes">{{ feature.upvotes}}</span>
+                        <span>/ {{ feature.needed_upvotes}}</span>
+                    </span>
+                </div>
             </div>
         </div>
         <div class="col-12">
@@ -63,3 +74,6 @@
 {% block scripts %}
 <script src="{% static 'js/feature_upvote.js'%}"></script>
 {% endblock %}
+
+
+

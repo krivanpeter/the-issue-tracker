@@ -65,7 +65,6 @@ def feature_detail(request, slug=None):
                 parent=parent_obj,
             )
             return HttpResponseRedirect(new_comment.content_object.get_absolute_url())
-
         args = {
             'feature': feature,
             'comments': comments,
@@ -115,25 +114,26 @@ def report_feature(request):
 def upvote_feature(request, slug=None):
     # A view which allows the user to upvote features
     if request.user.is_authenticated:
-        data = {'user_has_upvotes': True, 'max_reached': False}
+        data = {'user_has_upvotes': True, 'max_reached': False, 'quantity': 0}
         feature = get_object_or_404(Feature, slug=slug)
         user = request.user
         userprofile = UserProfile.objects.get(user=request.user)
-        if userprofile.available_upvotes > 0:
+        if int(request.GET['quantity']) >= 1:
+            quantity = int(request.GET['quantity'])
+        else:
+            quantity = 1
+        data['quantity'] = quantity
+        if userprofile.available_upvotes >= quantity:
             if feature.open == 'O':
-                if feature.upvotes + 1 < 50:
-                    feature.upvoted_by.add(user)
-                    feature.upvotes += 1
-                    feature.save()
-                    userprofile.available_upvotes -= 1
-                    userprofile.save()
-                else:
+                if feature.upvotes + quantity >= 50:
                     feature.open = 'U'
-                    feature.upvoted_by.add(user)
-                    feature.upvotes += 1
-                    feature.save()
-                    userprofile.available_upvotes -= 1
-                    userprofile.save()
+                feature.upvoted_by.add(user)
+                if feature.upvotes + quantity > 50:
+                    quantity = 50 - feature.upvotes
+                feature.upvotes += quantity
+                feature.save()
+                userprofile.available_upvotes -= quantity
+                userprofile.save()
             else:
                 data['max_reached'] = True
         else:

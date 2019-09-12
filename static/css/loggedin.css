@@ -315,6 +315,12 @@ a.bug-link{
 .fas.fa-trash{
     margin: 0;
 }
+
+.form-control-sm{
+    padding: 0;
+    margin: 0;
+    border-radius: 0;
+}
 /*--------------------------------------*/
 #id_password,
 #id_images,
