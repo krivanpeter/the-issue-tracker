@@ -27,6 +27,9 @@ $('#upvote-button').on('click', function(event) {
                     $('#missing_upvotes_error').fadeIn();
                 }
             }
+            else{
+                location.reload();
+            }
         }
     });
 });

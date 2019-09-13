@@ -30,6 +30,7 @@ def all_features(request):
         return redirect('index')
 
 
+@login_required()
 def feature_detail(request, slug=None):
     # A view which returns a single Bug object based on the ID(pk)
     if request.user.is_authenticated:
@@ -75,6 +76,7 @@ def feature_detail(request, slug=None):
         return redirect('index')
 
 
+@login_required()
 def report_feature(request):
     # A view which allows the user to ask new features
     if request.user.is_authenticated:
@@ -111,6 +113,7 @@ def report_feature(request):
         return redirect('index')
 
 
+@login_required()
 def upvote_feature(request, slug=None):
     # A view which allows the user to upvote features
     if request.user.is_authenticated:
@@ -119,11 +122,14 @@ def upvote_feature(request, slug=None):
         user = request.user
         userprofile = UserProfile.objects.get(user=request.user)
         quantity = int(request.GET['quantity'])
+        if feature.needed_upvotes - feature.upvotes < quantity:
+            quantity = feature.needed_upvotes - feature.upvotes
         data['quantity'] = quantity
         if userprofile.available_upvotes >= quantity:
             if feature.open == '0':
                 if feature.upvotes + quantity >= 50:
                     feature.open = '1'
+                    data['max_reached'] = True
                 feature.upvoted_by.add(user)
                 if feature.upvotes + quantity > 50:
                     quantity = 50 - feature.upvotes
