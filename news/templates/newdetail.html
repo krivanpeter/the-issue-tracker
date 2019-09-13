@@ -1,4 +1,5 @@
 {% extends "base_logged_in.html" %}
+{% load static %}
 {% block content %}
 <!--SMALL SCREEN-->
 <div class="container news-container d-block d-lg-none">
@@ -41,4 +42,8 @@
         <button type="button" class="btn btn-back">Back</button>
     </div>
 </div>
+{% endblock %}
+{% block scripts %}
+<script src="{% static 'js/buttons.js'%}"></script>
+<script src="{% static 'js/delete_comment.js'%}"></script>
 {% endblock %}
