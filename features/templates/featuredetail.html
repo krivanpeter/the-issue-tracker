@@ -38,20 +38,13 @@
         <button type="button" class="btn btn-back col-3">Back</button>
         <div class="col-8">
             <div align="right" class="float-right" style="color: #e54725;">
-                {% if feature.open == 'O' %}
-                {% if request.user not in feature.upvoted_by.all %}
-                <a role="button" id="like-button" class="no-decor col-6" href="{{ feature.get_upvote_url }}">
-                    <i class="fas fa-arrow-alt-circle-up" style="color: #e54725;">
-                        <span>Upvote</span>
-                    </i>
-                </a>
-                {% else %}
-                <a role="button" id="multiple-like-button" class="no-decor col-8" href="{{ feature.get_upvote_url }}">
+                {% if feature.open == '0' %}
+                <a role="button" id="upvote-button" class="no-decor col-8" href="{{ feature.get_upvote_url }}">
                     <i class="fas fa-arrow-alt-circle-up" style="color: #e54725;">Upvote</i>
                 </a>
-                <input name="quantity" id="quantity" type="number" min="1" max="{% subtract feature %}" class="form-control-sm"
+                <input name="quantity" id="quantity" type="number" min="1" max="{% subtract feature %}"
+                       class="form-control-sm"
                        value="1">
-                {% endif %}
                 {% endif %}
                 <div class="col-12">
                     <span class="float-right">

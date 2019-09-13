@@ -41,11 +41,11 @@
             </div>
             {% for feature in features %}
             <a role="row" class="table-row no-decor bug-link" href="{{ feature.get_absolute_url }}">
-                {% if feature.open == "O" %}
+                {% if feature.open == "0" %}
                 <div role="gridcell" class="table-cell">
                     <i class="fas fa-exclamation-circle" style="color: green;"></i>
                 </div>
-                {% elif feature.open == "C" %}
+                {% elif feature.open == "2" %}
                 <div role="gridcell" class="table-cell">
                     <i class="fas fa-check" style="color: green;"></i>
                 </div>

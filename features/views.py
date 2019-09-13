@@ -16,7 +16,7 @@ def all_features(request):
     # A view which shows all the asked features,
     # ordered by the number of upvotes and the date of the report
     if request.user.is_authenticated:
-        feature_list = Feature.objects.order_by('-open', '-upvotes', '-published_date')
+        feature_list = Feature.objects.order_by('open', '-upvotes', '-published_date')
         page = request.GET.get('page', 1)
         paginator = Paginator(feature_list, 10)
         try:
@@ -118,15 +118,12 @@ def upvote_feature(request, slug=None):
         feature = get_object_or_404(Feature, slug=slug)
         user = request.user
         userprofile = UserProfile.objects.get(user=request.user)
-        if int(request.GET['quantity']) >= 1:
-            quantity = int(request.GET['quantity'])
-        else:
-            quantity = 1
+        quantity = int(request.GET['quantity'])
         data['quantity'] = quantity
         if userprofile.available_upvotes >= quantity:
-            if feature.open == 'O':
+            if feature.open == '0':
                 if feature.upvotes + quantity >= 50:
-                    feature.open = 'U'
+                    feature.open = '1'
                 feature.upvoted_by.add(user)
                 if feature.upvotes + quantity > 50:
                     quantity = 50 - feature.upvotes
