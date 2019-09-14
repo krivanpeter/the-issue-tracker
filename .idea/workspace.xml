@@ -3,11 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="87ce0953-7b2c-41c1-be27-93881aa7f7a8" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/attractor/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/attractor/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/graphs.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/js/graphs.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/graphs.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/statistic/templates/statistic.html" beforeDir="false" afterPath="$PROJECT_DIR$/statistic/templates/statistic.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/statistic/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/statistic/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/statistic/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/statistic/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -38,19 +35,19 @@
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Ignored.Files" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Peter\PycharmProjects\unicorn-attractor\static\js" />
-      <recent name="C:\Users\Peter\PycharmProjects\unicorn-attractor\features\templates" />
-      <recent name="C:\Users\Peter\PycharmProjects\unicorn-attractor\media\news_images" />
-      <recent name="C:\Users\Peter\PycharmProjects\unicorn-attractor\bugs\templates" />
-      <recent name="C:\Users\Peter\PycharmProjects\unicorn-attractor\accounts\templates" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Peter\PycharmProjects\unicorn-attractor\statistic\templates" />
       <recent name="C:\Users\Peter\PycharmProjects\unicorn-attractor\features" />
       <recent name="C:\Users\Peter\PycharmProjects\unicorn-attractor\static\img" />
       <recent name="C:\Users\Peter\PycharmProjects\unicorn-attractor" />
       <recent name="C:\Users\Peter\PycharmProjects\unicorn-attractor\cart" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Peter\PycharmProjects\unicorn-attractor\static\js" />
+      <recent name="C:\Users\Peter\PycharmProjects\unicorn-attractor\features\templates" />
+      <recent name="C:\Users\Peter\PycharmProjects\unicorn-attractor\media\news_images" />
+      <recent name="C:\Users\Peter\PycharmProjects\unicorn-attractor\bugs\templates" />
+      <recent name="C:\Users\Peter\PycharmProjects\unicorn-attractor\accounts\templates" />
     </key>
   </component>
   <component name="RunDashboard">
