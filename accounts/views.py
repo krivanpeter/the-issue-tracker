@@ -61,7 +61,7 @@ def index(request):
         login_form = UserLoginForm()
         reg_form = UserRegistrationForm()
         forg_pass_form = PasswordResetForm()
-        args = {'login_form': login_form, 'reg_form': reg_form, 'forg_pass_form':forg_pass_form, 'next': request.GET.get('next', '')}
+        args = {'login_form': login_form, 'reg_form': reg_form, 'forg_pass_form': forg_pass_form, 'next': request.GET.get('next', '')}
         return render(request, "index.html", args)
 
 

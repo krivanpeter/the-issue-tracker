@@ -3,13 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="87ce0953-7b2c-41c1-be27-93881aa7f7a8" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/templates/change_password.html" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/templates/change_password.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/templates/editprofile.html" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/templates/editprofile.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bugs/templates/bugdetail.html" beforeDir="false" afterPath="$PROJECT_DIR$/bugs/templates/bugdetail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bugs/templates/reportbug.html" beforeDir="false" afterPath="$PROJECT_DIR$/bugs/templates/reportbug.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/templates/featuredetail.html" beforeDir="false" afterPath="$PROJECT_DIR$/features/templates/featuredetail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/news/templates/newdetail.html" beforeDir="false" afterPath="$PROJECT_DIR$/news/templates/newdetail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base_logged_in.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base_logged_in.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accounts/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/attractor/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/attractor/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/attractor/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/attractor/urls.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -20,8 +16,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="HTML File" />
         <option value="Python Script" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -39,19 +35,19 @@
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Ignored.Files" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Peter\PycharmProjects\unicorn-attractor\features" />
-      <recent name="C:\Users\Peter\PycharmProjects\unicorn-attractor\static\img" />
-      <recent name="C:\Users\Peter\PycharmProjects\unicorn-attractor" />
-      <recent name="C:\Users\Peter\PycharmProjects\unicorn-attractor\cart" />
-      <recent name="C:\Users\Peter\PycharmProjects\unicorn-attractor\bugs\templates" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Peter\PycharmProjects\unicorn-attractor\static\js" />
       <recent name="C:\Users\Peter\PycharmProjects\unicorn-attractor\features\templates" />
       <recent name="C:\Users\Peter\PycharmProjects\unicorn-attractor\media\news_images" />
       <recent name="C:\Users\Peter\PycharmProjects\unicorn-attractor\bugs\templates" />
       <recent name="C:\Users\Peter\PycharmProjects\unicorn-attractor\accounts\templates" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Peter\PycharmProjects\unicorn-attractor\statistic\templates" />
+      <recent name="C:\Users\Peter\PycharmProjects\unicorn-attractor\features" />
+      <recent name="C:\Users\Peter\PycharmProjects\unicorn-attractor\static\img" />
+      <recent name="C:\Users\Peter\PycharmProjects\unicorn-attractor" />
+      <recent name="C:\Users\Peter\PycharmProjects\unicorn-attractor\cart" />
     </key>
   </component>
   <component name="RunDashboard">

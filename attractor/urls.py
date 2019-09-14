@@ -14,6 +14,7 @@ from features.views import report_feature
 from comments.views import comment_delete
 from bugs import urls as urls_bugs
 from features import urls as urls_features
+from statistic import urls as urls_statistic
 from cart import urls as urls_cart
 from checkout import urls as urls_checkout
 from django.views import static
@@ -33,10 +34,11 @@ urlpatterns = [
     url(r'^news/', include(urls_news)),
     url(r'^features/', include(urls_features)),
     url(r'^bugs/', include(urls_bugs)),
-    url(r'^packages/', include(urls_packages)),
+    url(r'^statistic/', include(urls_statistic)),
     url(r'^report-bug/$', report_bug, name='report_bug'),
     url(r'^report-feature/$', report_feature, name='report_feature'),
     url(r'^comment-delete/$', comment_delete, name='comment_delete'),
+    url(r'^packages/', include(urls_packages)),
     url(r'^cart/', include(urls_cart)),
     url(r'^checkout/', include(urls_checkout)),
     url(r'^media/(?P<path>.*)$', static.serve, {'document_root': MEDIA_ROOT}),
