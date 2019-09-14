@@ -1,7 +1,8 @@
 from django.conf.urls import url
-from .views import all_data
+from .views import statistic, ChartData
 
 
 urlpatterns = [
-    url(r'^$', all_data, name="all_data"),
+    url(r'^$', statistic, name="statistic"),
+    url(r'^api/chart/data/$', ChartData.as_view()),
 ]
