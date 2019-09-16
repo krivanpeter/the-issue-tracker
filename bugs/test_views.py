@@ -35,3 +35,21 @@ class TestViews(TestCase):
         page = self.client.get("/report-bug/")
         self.assertEqual(page.status_code, 200)
         self.assertTemplateUsed(page, "reportbug.html")
+
+    def test_upvote_bug(self):
+        self.user = User.objects.create_user(username='testuser', password='12345')
+        self.client.login(username='testuser', password='12345')
+        self.bug = Bug.objects.create(
+            title="test-bug",
+            slug="test-bug"
+        )
+        response = self.client.get('/bugs/test-bug/upvote')
+        self.assertJSONEqual(
+            str(response.content, encoding='utf8'),
+            {'user_upvoted': True}
+        )
+        response = self.client.get('/bugs/test-bug/upvote')
+        self.assertJSONEqual(
+            str(response.content, encoding='utf8'),
+            {'user_upvoted': False}
+        )

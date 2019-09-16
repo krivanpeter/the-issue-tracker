@@ -80,7 +80,8 @@ def feature_detail(request, slug=None):
 def report_feature(request):
     # A view which allows the user to ask new features
     if request.user.is_authenticated:
-        userprofile = UserProfile.objects.get(user=request.user)
+        user = request.user
+        userprofile = user.userprofile
         if request.method == "POST":
             new_feature_form = FeatureReportForm(request.POST)
             if new_feature_form.is_valid():
@@ -106,7 +107,7 @@ def report_feature(request):
             else:
                 messages.error(
                     request,
-                    'You do not have enough available upvotes to ask a new feature'
+                    'You do not have enough available upvotes to ask a new feature', fail_silently=True
                 )
                 return redirect('features')
     else:
@@ -120,7 +121,8 @@ def upvote_feature(request, slug=None):
         data = {'user_has_upvotes': True, 'max_reached': False, 'quantity': 0}
         feature = get_object_or_404(Feature, slug=slug)
         user = request.user
-        userprofile = UserProfile.objects.get(user=request.user)
+        userprofile = user.userprofile
+        print(userprofile.available_upvotes)
         quantity = int(request.GET['quantity'])
         if feature.needed_upvotes - feature.upvotes < quantity:
             quantity = feature.needed_upvotes - feature.upvotes
