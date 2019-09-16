@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/krivanpeter/unicorn-attractor.svg?branch=master)](https://travis-ci.org/krivanpeter/unicorn-attractor)
+[![Build Status](https://travis-ci.org/krivanpeter/the-issue-tracker.svg?branch=master)](https://travis-ci.org/krivanpeter/the-issue-tracker)
 
 # The Unicorn Attractor
 
