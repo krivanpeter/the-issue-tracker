@@ -3,7 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="87ce0953-7b2c-41c1-be27-93881aa7f7a8" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/attractor/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/attractor/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/img/favicon.ico" beforeDir="false" afterPath="$PROJECT_DIR$/static/img/favicon.ico" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/img/logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/img/logo.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/img/logo_black.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/img/logo_black.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/img/logo_mixed.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/img/logo_mixed.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/img/logo_orange.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/img/logo_orange.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/img/logo_white_orange.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/img/logo_white_orange.png" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -41,9 +46,9 @@
       <recent name="C:\Users\Peter\PycharmProjects\unicorn-attractor\media\news_images" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Peter\PycharmProjects\unicorn-attractor\static\img" />
       <recent name="C:\Users\Peter\PycharmProjects\unicorn-attractor\statistic\templates" />
       <recent name="C:\Users\Peter\PycharmProjects\unicorn-attractor\features" />
-      <recent name="C:\Users\Peter\PycharmProjects\unicorn-attractor\static\img" />
       <recent name="C:\Users\Peter\PycharmProjects\unicorn-attractor" />
       <recent name="C:\Users\Peter\PycharmProjects\unicorn-attractor\cart" />
     </key>
