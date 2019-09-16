@@ -122,7 +122,6 @@ def upvote_feature(request, slug=None):
         feature = get_object_or_404(Feature, slug=slug)
         user = request.user
         userprofile = user.userprofile
-        print(userprofile.available_upvotes)
         quantity = int(request.GET['quantity'])
         if feature.needed_upvotes - feature.upvotes < quantity:
             quantity = feature.needed_upvotes - feature.upvotes
