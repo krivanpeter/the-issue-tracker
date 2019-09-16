@@ -7,15 +7,32 @@
             <h2 align="center" class="title">Statistics</h2>
             <hr>
         </div>
+        <div class="col-12">
+            <p class="title" align="center">For the sake of transparency we would like to show you the informations of
+                the application
+                and the page.</p>
+        </div>
     </div>
 </div>
+<div align="center" class="loader">
+    <img src="{% static 'img/ajax-loader.gif' %}" alt="Loading">
+</div>
 <div class="container">
-    <div class="row">
+    <div class="row graph">
         <div class="col-6">
             <canvas id="number_of_tickets" width="400" height="400"></canvas>
         </div>
-        <div class="col-6">
+        <div class="col-6 graph">
             <canvas id="number_of_upvotes" width="400" height="400"></canvas>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-6 graph">
+            <canvas id="number_of_orders" width="400" height="400"></canvas>
+        </div>
+        <div class="col-6 graph">
+            <canvas id="spent_money" width="400" height="400"></canvas>
         </div>
     </div>
 </div>

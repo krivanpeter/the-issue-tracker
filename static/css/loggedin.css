@@ -321,6 +321,10 @@ a.bug-link{
     margin: 0;
     border-radius: 0;
 }
+
+.graph{
+    margin-bottom: 25px;
+}
 /*--------------------------------------*/
 #id_password,
 #id_images,
