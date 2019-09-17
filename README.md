@@ -99,7 +99,7 @@ Users also can speak to each other via comments under every piece of news, bugs 
 ## Database
 SQLite3 database was used in development and Heroku Postgres in deployment.
 <br>  
-[Database Schema](static/img/IssueTrackerdb.png) - this is a representation of the Database Schema.
+[Database Schema](https://raw.githubusercontent.com/krivanpeter/the-issue-tracker/master/static/img/IssueTrackerdb.png) - this is a representation of the Database Schema.
 
 ## Testing
 
