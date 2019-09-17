@@ -97,6 +97,27 @@ Users also can speak to each other via comments under every piece of news, bugs 
 * [Sendgrid](https://sendgrid.com/) - An email API (used for password recovery emails)
 
 ## Database
-SQLite3 database, that comes with Django, was used in development environment and Heroku Postgres in deployment.
+SQLite3 database was used in development and Heroku Postgres in deployment.
 <br>  
-Database Schema - this is a representation of the initial Database Schema.
+[Database Schema](static/img/IssueTrackerdb.png) - this is a representation of the Database Schema.
+
+## Testing
+
+The code was tested using django's built in testing tools  
+Site viewed and tested in the following browsers:
+* Google Chrome
+* Microsoft Edge
+* Mozilla Firefox  
+
+LEFT TO FILL
+## Deployment
+LEFT TO FILL
+## Credits
+LEFT TO FILL  
+#### Content
+The text for section Y was copied from the Wikipedia article Z
+#### Media
+The photos used in this site were obtained from ...
+#### Acknowledgements
+I received inspiration for this project from X
+

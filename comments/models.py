@@ -24,7 +24,6 @@ class Comment(models.Model):
     content_object = GenericForeignKey('content_type', 'object_id')
     content = models.CharField(max_length=255)
     published_date = models.DateTimeField(blank=True, null=True, default=timezone.now)
-    upvotes = models.IntegerField(default=0)
     objects = CommentManager()
     parent = models.ForeignKey("self", on_delete=models.CASCADE, null=True, blank=True)
 
