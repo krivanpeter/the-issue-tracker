@@ -267,15 +267,10 @@ a.bug-link{
     padding: 0;
 }
 
-.thumbnail-img {
-    width:75px;
-    height:75px;
-}
-
 .comment-wrapper .media-list .media img {
-    width:75px;
-    height:75px;
-    border:2px solid #e5e7e8;
+    width: 60px;
+    height: 60px;
+    border: 2px solid #e5e7e8;
 }
 
 .comment-wrapper .media-list .media {
