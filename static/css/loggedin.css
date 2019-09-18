@@ -83,11 +83,6 @@ body{
     margin-bottom: 10px;
 }
 
-.news-footer{
-    text-align: center;
-    margin-top: 10px;
-}
-
 .no-decor,
 .no-decor:hover,
 .no-decor:focus
@@ -215,7 +210,7 @@ a.bug-link{
 }
 /*-----------------PAGINATION------------*/
 .page-nav{
-    margin-top: 20px;
+    margin-top: 80px;
 }
 
 .pagination a {
