@@ -102,12 +102,31 @@ SQLite3 database was used in development and Heroku Postgres in deployment.
 [Database Schema](https://raw.githubusercontent.com/krivanpeter/the-issue-tracker/master/static/img/IssueTrackerdb.png) - this is a representation of the Database Schema.
 
 ## Testing
+The most of the code was tested using django's built in testing tools, where not it was tested manually. 
+#### Manual Testing
+* Cart:
+    * Modify Quantity
+    * Remove Item
+* Checkout
+    * Checkout
+    * MakePaymentForm
+* Comment
+    * Reply
+    * Delete
+    * CommentForm
+* Features
+    * FeatureReportForm  
+* Packages
+    * All packages(view)
+* Statistic
+    * Page
+    * API
 
-The code was tested using django's built in testing tools  
 Site viewed and tested in the following browsers:
 * Google Chrome
 * Microsoft Edge
 * Mozilla Firefox  
+
 
 LEFT TO FILL
 ## Deployment
@@ -120,4 +139,3 @@ The text for section Y was copied from the Wikipedia article Z
 The photos used in this site were obtained from ...
 #### Acknowledgements
 I received inspiration for this project from X
-
