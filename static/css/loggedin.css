@@ -53,17 +53,7 @@ body{
 
 /*-----------------ICONS-----------------*/
 .fas{
-    margin-right: 10px;
-}
-
-.fas.fa-bug{
-    color: black;
-}
-
-.fas.fa-bug span {
-    font-weight: 500;
-    color: black;
-    padding-left: 5px;
+    margin-right: 5px;
 }
 
 .fab {
@@ -75,6 +65,10 @@ body{
 .fas.fa-exclamation-circle,
 .fas.fa-check{
     line-height: 1.5;
+    margin: 0;
+}
+
+.fas.fa-trash{
     margin: 0;
 }
 /*-----------------NEWS-----------------*/
@@ -305,10 +299,6 @@ a.bug-link{
 }
 .children-comment-delete-btn:hover{
     color: #990000;
-}
-
-.fas.fa-trash{
-    margin: 0;
 }
 
 .form-control-sm{

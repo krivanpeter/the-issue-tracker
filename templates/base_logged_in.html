@@ -27,48 +27,79 @@
             <div class="collapse navbar-collapse" id="navbarToggler">
                 <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'news' %}"><i class="fas fa-newspaper"></i>News</a>
+                        <a {% if '/news/' in request.path %}
+                            class="btn bugs-button"
+                        {% else %}
+                            class="nav-link"
+                        {% endif %}
+                           href="{% url 'news' %}">
+                        <i class="fas fa-newspaper"></i><span>News</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'statistic' %}"><i class="fas fa-chart-pie"></i>Statistics</a>
+                        <a {% if '/statistic/' in request.path %}
+                            class="btn bugs-button"
+                        {% else %}
+                            class="nav-link"
+                        {% endif %} href="{% url 'statistic' %}">
+                        <i class="fas fa-chart-pie"></i><span>Statistics</span></a>
                     </li>
                 </ul>
                 <ul class="navbar-nav navbar-right">
                     <li class="nav-item">
-                        <a type="button" class="btn bugs-button" href="{% url 'bugs' %}">
-                            <i class="fas fa-bug">
-                                <span>Bugs</span>
-                            </i>
+                        <a {% if '/bugs/' in request.path %}
+                            class="btn bugs-button"
+                        {% else %}
+                            class="nav-link"
+                        {% endif %} href="{% url 'bugs' %}">
+                            <i class="fas fa-bug"></i><span>Bugs</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'features' %}">
-                            <i class="fas fa-laptop-code"></i>Features
+                        <a {% if '/features/' in request.path %}
+                            class="btn bugs-button"
+                        {% else %}
+                            class="nav-link"
+                        {% endif %} href="{% url 'features' %}">
+                            <i class="fas fa-laptop-code"></i><span>Features</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'view_profile' request.user.userprofile %}">
-                            <i class="fas fa-address-card"></i>Profile
+                        <a {% if '/profile/' in request.path %}
+                            class="btn bugs-button"
+                        {% else %}
+                            class="nav-link"
+                        {% endif %} href="{% url 'view_profile' request.user.userprofile %}">
+                            <i class="fas fa-address-card"></i><span>Profile</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'all_packages' %}">
-                            <i class="fas fa-box"></i>Packages
+                        <a {% if '/packages/' in request.path %}
+                            class="btn bugs-button"
+                        {% else %}
+                            class="nav-link"
+                        {% endif %} href="{% url 'all_packages' %}">
+                            <i class="fas fa-box"></i><span>Packages</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'view_cart' %}">
-                            <i class="fas fa-shopping-cart"></i>Cart
+                        <a {% if '/cart/' in request.path %}
+                            class="btn bugs-button"
+                        {% else %}
+                            class="nav-link"
+                        {% endif %} href="{% url 'view_cart' %}">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span>Cart
                             {% if cart_items %}
                             ({{ cart_items|length }})
                             {% else %}
                             ( 0 )
                             {% endif %}
+                            </span>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'logout' %}">
-                            <i class="fas fa-sign-out-alt"></i>Log Out
+                            <i class="fas fa-sign-out-alt"></i><span>Log Out</span>
                         </a>
                     </li>
                 </ul>
