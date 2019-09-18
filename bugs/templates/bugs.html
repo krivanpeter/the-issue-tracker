@@ -3,51 +3,46 @@
 <div class="container">
     <div class="row">
         <div class="col-12">
-            <hr>
-            <span class="panel-heading">Bugs</span>
-            <a type="button" class="btn bugs-button float-right" href="{% url 'report_bug' %}">
+            <a class="btn bugs-button report-button" href="{% url 'report_bug' %}">
                 Report Bug
             </a>
-            <hr>
         </div>
-    </div>
-</div>
-<div class="container">
-    <div class="row">
-        <div role="grid" class="bug-table" style="width: 100%;">
-            <div role="row" class="table-row bug-first-row">
-                <div role="gridcell" class="table-cell"><span><b>Opened</b></span>
-                    <div class="row">
-                        <div class="col-12">
-                            <i class="fas fa-exclamation-circle" style="color: green;"></i>&nbsp;/
-                            <i class="fas fa-check" style="color: green;"></i>
+        <div class="col-12">
+            <div role="grid" class="bug-table" style="width: 100%;">
+                <div role="row" class="table-row bug-first-row">
+                    <div role="gridcell" class="table-cell"><span><b>Opened</b></span>
+                        <div class="row">
+                            <div class="col-12">
+                                <i class="fas fa-exclamation-circle" style="color: green;"></i>&nbsp;/
+                                <i class="fas fa-check" style="color: green;"></i>
+                            </div>
                         </div>
                     </div>
+                    <div role="gridcell" class="table-cell"><b>Bug's Title</b></div>
+                    <div role="gridcell" class="table-cell d-none d-md-table-cell"><b>Reported by</b></div>
+                    <div role="gridcell" class="table-cell d-none d-md-table-cell"><b>Reported at</b></div>
+                    <div role="gridcell" class="table-cell"><b>Upvotes</b></div>
                 </div>
-                <div role="gridcell" class="table-cell"><b>Bug's Title</b></div>
-                <div role="gridcell" class="table-cell d-none d-md-table-cell"><b>Reported by</b></div>
-                <div role="gridcell" class="table-cell d-none d-md-table-cell"><b>Reported at</b></div>
-                <div role="gridcell" class="table-cell"><b>Upvotes</b></div>
+                {% for bug in bugs %}
+                <a role="row" class="table-row no-decor bug-link" href="{{ bug.get_absolute_url }}">
+                    {% if bug.open is True %}
+                    <div role="gridcell" class="table-cell">
+                        <i class="fas fa-exclamation-circle" style="color: green;"></i>
+                    </div>
+                    {% else %}
+                    <div role="gridcell" class="table-cell"><i class="fas fa-check" style="color: green;"></i></div>
+                    {% endif %}
+                    <div role="gridcell" class="table-cell">{{ bug.title }}</div>
+                    <div role="gridcell" class="table-cell d-none d-md-table-cell">
+                        {{ bug.reported_by.user }}
+                    </div>
+                    <div role="gridcell" class="d-none d-md-block table-cell">
+                        {{ bug.published_date|timesince}} ago
+                    </div>
+                    <div role="gridcell" class="table-cell">{{ bug.upvotes.count }}</div>
+                </a>
+                {% endfor %}
             </div>
-            {% for bug in bugs %}
-            <a role="row" class="table-row no-decor bug-link" href="{{ bug.get_absolute_url }}">
-                {% if bug.open is True %}
-                <div role="gridcell" class="table-cell">
-                    <i class="fas fa-exclamation-circle" style="color: green;"></i>
-                </div>
-                {% else %}
-                <div role="gridcell" class="table-cell"><i class="fas fa-check" style="color: green;"></i></div>
-                {% endif %}
-                <div role="gridcell" class="table-cell">{{ bug.title }}</div>
-                <div role="gridcell" class="table-cell d-none d-md-table-cell">
-                    {{ bug.reported_by.user }}
-                </div>
-                <div role="gridcell" class="d-none d-md-block table-cell">
-                    {{ bug.published_date|timesince}} ago
-                </div>
-                <div role="gridcell" class="table-cell">{{ bug.upvotes.count }}</div>
-            </a>
-            {% endfor %}
         </div>
     </div>
 </div>

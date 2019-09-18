@@ -47,10 +47,6 @@ body{
     background-color: transparent;
 }
 
-.navbar-nav{
-    text-align: center;
-}
-
 /*-----------------ICONS-----------------*/
 .fas{
     margin-right: 5px;
@@ -96,7 +92,7 @@ body{
 .news-detail-image{
     width:500px;
     max-height:auto;
-    margin: 0 10px;
+    margin: 0;
 }
 
 .newdetail-content p{
@@ -106,9 +102,8 @@ body{
 .btn-back{
     color: black;
     border-color: rgb(222, 226, 230);
-    padding: 8px 16px;
-    margin-left: 20px;
-    margin-bottom: 10px;
+    margin-top: 45px;
+    margin-bottom: 35px;
     color: black;
     border: 1px solid #dee2e6;
 }
@@ -118,6 +113,10 @@ body{
     text-decoration: none;
     background-color: #e9ecef;
     border-color: #dee2e6;
+}
+
+.report-button{
+    margin: 25px 0;
 }
 
 /*-----------------BUGS-----------------*/
@@ -310,6 +309,10 @@ a.bug-link{
 .graph{
     margin-bottom: 25px;
 }
+
+.statistic-container{
+    padding-bottom: 50px;
+}
 /*--------------------------------------*/
 #id_password,
 #id_images,
@@ -323,9 +326,6 @@ a.bug-link{
     }
     .news-container{
         margin-top: 30px;
-    }
-    .newdetail-content{
-        margin: 5px 10px;
     }
     .comment-container{
         padding-left: 15px;

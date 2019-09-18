@@ -3,67 +3,68 @@
 <div class="container">
     <div class="row">
         <div class="col-12">
-            <hr>
-            <span class="panel-heading">Features</span>
-            <a type="button" class="btn bugs-button float-right" href="{% url 'report_feature' %}">
-                Ask A New Feature
+            <a class="btn bugs-button report-button" href="{% url 'report_feature' %}">
+                <span>Ask A New Feature</span>
             </a>
-            <hr>
+        </div>
+        <div class="col-12">
+            {% if messages%}
+            <div class="alert alert-secondary">
+                {% for message in messages %}
+                {{ message }}
+                {% endfor %}
+            </div>
+            {% endif %}
         </div>
     </div>
-</div>
-<div class="container">
-    {% if messages%}
-    <div class="float-right alert alert-secondary">
-        {% for message in messages %}
-        {{ message }}
-        {% endfor %}
-    </div>
-    {% endif %}
-    <p align="center">We will need 50 upvotes on a feature to start the development.</p>
-    <p align="center">You will need at least 5 upvotes to be able to request a new feature!</p>
     <div class="row">
-        <div role="grid" class="bug-table" style="width: 100%;">
-            <div role="row" class="table-row bug-first-row">
-                <div role="gridcell" class="table-cell"><span><b>Status</b></span>
-                    <div class="row">
-                        <div class="col-12">
-                            <i class="fas fa-exclamation-circle" style="color: green;"></i>&nbsp;/
-                            <i class="fas fa-check" style="color: green;"></i> /
+        <div class="col-12">
+            <p align="center">We will need 50 upvotes on a feature to start the development.</p>
+            <p align="center">You will need at least 5 upvotes to be able to request a new feature!</p>
+            <div class="col-12">
+                <div role="grid" class="bug-table" style="width: 100%;">
+                    <div role="row" class="table-row bug-first-row">
+                        <div role="gridcell" class="table-cell"><span><b>Status</b></span>
+                            <div class="row">
+                                <div class="col-12">
+                                    <i class="fas fa-exclamation-circle" style="color: green;"></i>&nbsp;/
+                                    <i class="fas fa-check" style="color: green;"></i> /
+                                    <i class="fas fa-code" style="color: green;"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div role="gridcell" class="table-cell"><b>Feature's Title</b></div>
+                        <div role="gridcell" class="table-cell d-none d-md-table-cell"><b>Asked by</b></div>
+                        <div role="gridcell" class="table-cell d-none d-md-table-cell"><b>Asked at</b></div>
+                        <div role="gridcell" class="table-cell"><b>Upvotes</b></div>
+                    </div>
+                    {% for feature in features %}
+                    <a role="row" class="table-row no-decor bug-link" href="{{ feature.get_absolute_url }}">
+                        {% if feature.open == "0" %}
+                        <div role="gridcell" class="table-cell">
+                            <i class="fas fa-exclamation-circle" style="color: green;"></i>
+                        </div>
+                        {% elif feature.open == "2" %}
+                        <div role="gridcell" class="table-cell">
+                            <i class="fas fa-check" style="color: green;"></i>
+                        </div>
+                        {% else %}
+                        <div role="gridcell" class="table-cell">
                             <i class="fas fa-code" style="color: green;"></i>
                         </div>
-                    </div>
+                        {% endif %}
+                        <div role="gridcell" class="table-cell">{{ feature.title }}</div>
+                        <div role="gridcell" class="table-cell d-none d-md-table-cell">
+                            {{ feature.reported_by.user }}
+                        </div>
+                        <div role="gridcell" class="d-none d-md-block table-cell">
+                            {{ feature.published_date|timesince}} ago
+                        </div>
+                        <div role="gridcell" class="table-cell">{{ feature.upvotes }} / {{feature.needed_upvotes}}</div>
+                    </a>
+                    {% endfor %}
                 </div>
-                <div role="gridcell" class="table-cell"><b>Feature's Title</b></div>
-                <div role="gridcell" class="table-cell d-none d-md-table-cell"><b>Asked by</b></div>
-                <div role="gridcell" class="table-cell d-none d-md-table-cell"><b>Asked at</b></div>
-                <div role="gridcell" class="table-cell"><b>Upvotes</b></div>
             </div>
-            {% for feature in features %}
-            <a role="row" class="table-row no-decor bug-link" href="{{ feature.get_absolute_url }}">
-                {% if feature.open == "0" %}
-                <div role="gridcell" class="table-cell">
-                    <i class="fas fa-exclamation-circle" style="color: green;"></i>
-                </div>
-                {% elif feature.open == "2" %}
-                <div role="gridcell" class="table-cell">
-                    <i class="fas fa-check" style="color: green;"></i>
-                </div>
-                {% else %}
-                <div role="gridcell" class="table-cell">
-                    <i class="fas fa-code" style="color: green;"></i>
-                </div>
-                {% endif %}
-                <div role="gridcell" class="table-cell">{{ feature.title }}</div>
-                <div role="gridcell" class="table-cell d-none d-md-table-cell">
-                    {{ feature.reported_by.user }}
-                </div>
-                <div role="gridcell" class="d-none d-md-block table-cell">
-                    {{ feature.published_date|timesince}} ago
-                </div>
-                <div role="gridcell" class="table-cell">{{ feature.upvotes }} / {{feature.needed_upvotes}}</div>
-            </a>
-            {% endfor %}
         </div>
     </div>
 </div>

@@ -28,18 +28,18 @@
                 <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                     <li class="nav-item">
                         <a {% if '/news/' in request.path %}
-                            class="btn bugs-button"
+                        class="btn bugs-button"
                         {% else %}
-                            class="nav-link"
+                        class="nav-link"
                         {% endif %}
-                           href="{% url 'news' %}">
+                        href="{% url 'news' %}">
                         <i class="fas fa-newspaper"></i><span>News</span></a>
                     </li>
                     <li class="nav-item">
                         <a {% if '/statistic/' in request.path %}
-                            class="btn bugs-button"
+                        class="btn bugs-button"
                         {% else %}
-                            class="nav-link"
+                        class="nav-link"
                         {% endif %} href="{% url 'statistic' %}">
                         <i class="fas fa-chart-pie"></i><span>Statistics</span></a>
                     </li>
@@ -47,48 +47,48 @@
                 <ul class="navbar-nav navbar-right">
                     <li class="nav-item">
                         <a {% if '/bugs/' in request.path %}
-                            class="btn bugs-button"
+                        class="btn bugs-button"
                         {% else %}
-                            class="nav-link"
+                        class="nav-link"
                         {% endif %} href="{% url 'bugs' %}">
-                            <i class="fas fa-bug"></i><span>Bugs</span>
+                        <i class="fas fa-bug"></i><span>Bugs</span>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a {% if '/features/' in request.path %}
-                            class="btn bugs-button"
+                        class="btn bugs-button"
                         {% else %}
-                            class="nav-link"
+                        class="nav-link"
                         {% endif %} href="{% url 'features' %}">
-                            <i class="fas fa-laptop-code"></i><span>Features</span>
+                        <i class="fas fa-laptop-code"></i><span>Features</span>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a {% if '/profile/' in request.path %}
-                            class="btn bugs-button"
+                        class="btn bugs-button"
                         {% else %}
-                            class="nav-link"
+                        class="nav-link"
                         {% endif %} href="{% url 'view_profile' request.user.userprofile %}">
-                            <i class="fas fa-address-card"></i><span>Profile</span>
+                        <i class="fas fa-address-card"></i><span>Profile</span>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a {% if '/packages/' in request.path %}
-                            class="btn bugs-button"
+                        class="btn bugs-button"
                         {% else %}
-                            class="nav-link"
+                        class="nav-link"
                         {% endif %} href="{% url 'all_packages' %}">
-                            <i class="fas fa-box"></i><span>Packages</span>
+                        <i class="fas fa-box"></i><span>Packages</span>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a {% if '/cart/' in request.path %}
-                            class="btn bugs-button"
+                        class="btn bugs-button"
                         {% else %}
-                            class="nav-link"
+                        class="nav-link"
                         {% endif %} href="{% url 'view_cart' %}">
-                            <i class="fas fa-shopping-cart"></i>
-                            <span>Cart
+                        <i class="fas fa-shopping-cart"></i>
+                        <span>Cart
                             {% if cart_items %}
                             ({{ cart_items|length }})
                             {% else %}
@@ -106,7 +106,7 @@
             </div>
         </div>
     </nav>
-    <div class="content">
+    <div>
         {% block content %}
         {% endblock %}
     </div>
@@ -117,9 +117,6 @@
             <div class="col-12">
                 <div class="comment-wrapper">
                     <div class="panel panel-info">
-                        <hr>
-                        <h4 class="panel-heading">Comments</h4>
-                        <hr>
                         <div class="panel-body">
                             <br>
                             <ul class="media-list">
@@ -211,7 +208,6 @@
                                     </li>
                                 </div>
                                 {% endfor %}
-                                <hr>
                                 <li class="media">
                                     <a class="d-none d-md-block" href="{% url 'view_profile' user.userprofile %}">
                                         <img src="{{ MEDIA_URL }}{{ user.userprofile.avatar }}" alt=""
@@ -242,11 +238,6 @@
             <div class="col-12">
                 <div class="comment-wrapper">
                     <div class="panel panel-info">
-                        <h4 class="panel-heading">
-                            <hr>
-                            Comments
-                            <hr>
-                        </h4>
                         <div class="panel-body">
                             <br>
                             <ul class="media-list">

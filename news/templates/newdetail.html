@@ -4,9 +4,6 @@
 <!--SMALL SCREEN-->
 <div class="container news-container d-block d-lg-none">
     <div class="row">
-        <div class="col-12">
-            <h2 class="title">{{ new.title }}</h2>
-        </div>
         <a href="{% url 'new_detail' new.id %}"><img class="news_image col-12" src="{{ MEDIA_URL }}{{ new.image }}"
                                                      alt="{{new.title}}"></a>
         <div class="col-12">

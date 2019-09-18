@@ -2,8 +2,6 @@
 {% load bootstrap_tags %}
 {% block content %}
 <div class="container news-container">
-    <h2 align="center" class="title">Cart</h2>
-    <hr class="featurette-divider">
     <div class="row">
         {% if cart_items %}
         {% for item in cart_items %}
@@ -36,13 +34,11 @@
         </div>
         {% endif %}
     </div>
-    <hr class="featurette-divider">
     {% if cart_items %}
     <div class="row">
         <div class="col-12">
             <div class="float-right">
                 <span>Total £ {{ total }}</span>
-                <hr class="featurette-divider">
                 <a href="{% url 'checkout' %}" class="btn bugs-button" role="button">
                     <span class="glyphicon glyphicon-ok-sign" aria-hidden="true">Checkout</span>
                 </a>
