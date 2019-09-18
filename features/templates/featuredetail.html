@@ -4,22 +4,16 @@
 {% block content %}
 <div class="container news-container">
     <div class="row title">
-        <div class="col-3 col-md-2 col-lg-1">
-            <a href="{% url 'view_profile' feature.reported_by %}">
-                <img class="thumbnail-img img-circle" src="{{ MEDIA_URL }}{{ feature.reported_by.avatar }}"
-                     alt="{{feature.title}}">
-            </a>
-        </div>
         <div class="col-9 col-md-10 col-lg-11 bug-reported-by">
             <strong>
-                <a class="no-decor" style="color: #e54725;" href="{% url 'view_profile' feature.reported_by %}">
-                    {{ feature.reported_by }}
-                </a>
-            </strong>
-            <small class="text-muted">{{ feature.published_date|timesince}} ago</small>
-            <br>
-            <strong>
                 <span class="no-decor" style="color: #e54725;">{{ feature.title }}</span>
+                <span class="float-right text-muted">
+                    {% if feature.is_recent %}
+                    {{ feature.published_date|timesince}} ago
+                    {% else %}
+                    {{ feature.published_date|date:"d M Y" }}
+                    {% endif %}
+                </span>
             </strong>
         </div>
     </div>
@@ -35,8 +29,15 @@
         </div>
     </div>
     <div class="row">
-        <button type="button" class="btn btn-back col-3">Back</button>
-        <div class="col-8">
+        <div class="col-12">
+            <span>
+                Reported by:
+                <a class="no-decor" style="color: #e54725;" href="{% url 'view_profile' feature.reported_by %}">
+                    {{ feature.reported_by }}
+                </a>
+            </span>
+        </div>
+        <div class="col-12">
             <div align="right" class="float-right" style="color: #e54725;">
                 {% if feature.open == '0' %}
                 <a role="button" id="upvote-button" class="no-decor col-8" href="{{ feature.get_upvote_url }}">
@@ -61,6 +62,7 @@
                 </small>
             </span>
         </div>
+        <button type="button" class="btn btn-back">Back</button>
     </div>
 </div>
 {% endblock %}

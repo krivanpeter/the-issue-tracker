@@ -1,3 +1,5 @@
+from datetime import timedelta, date
+
 from django.conf import settings
 from accounts.models import UserProfile
 from comments.models import Comment
@@ -51,6 +53,10 @@ class Feature(models.Model):
         instance = self
         content_type = ContentType.objects.get_for_model(instance.__class__)
         return content_type
+
+    @property
+    def is_recent(self):
+        return (self.published_date.date() + timedelta(days=2)) > date.today()
 
 
 def create_slug(instance, new_slug=None):

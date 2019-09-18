@@ -37,7 +37,11 @@
                         {{ bug.reported_by.user }}
                     </div>
                     <div role="gridcell" class="d-none d-md-block table-cell">
+                        {% if bug.is_recent %}
                         {{ bug.published_date|timesince}} ago
+                        {% else %}
+                        {{ bug.published_date|date:"d M Y" }}
+                        {% endif %}
                     </div>
                     <div role="gridcell" class="table-cell">{{ bug.upvotes.count }}</div>
                 </a>

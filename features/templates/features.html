@@ -58,7 +58,11 @@
                             {{ feature.reported_by.user }}
                         </div>
                         <div role="gridcell" class="d-none d-md-block table-cell">
+                            {% if feature.is_recent %}
                             {{ feature.published_date|timesince}} ago
+                            {% else %}
+                            {{ feature.published_date|date:"d M Y" }}
+                            {% endif %}
                         </div>
                         <div role="gridcell" class="table-cell">{{ feature.upvotes }} / {{feature.needed_upvotes}}</div>
                     </a>

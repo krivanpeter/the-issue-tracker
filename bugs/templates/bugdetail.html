@@ -1,24 +1,19 @@
 {% extends "base_logged_in.html" %}
 {% load staticfiles %}
+{% load custom_tags %}
 {% block content %}
 <div class="container news-container">
     <div class="row title">
-        <div class="col-3 col-md-2 col-lg-1">
-            <a href="{% url 'view_profile' bug.reported_by %}">
-                <img class="thumbnail-img img-circle" src="{{ MEDIA_URL }}{{ bug.reported_by.avatar }}"
-                     alt="{{bug.title}}">
-            </a>
-        </div>
         <div class="col-9 col-md-10 col-lg-11 bug-reported-by">
             <strong>
-                <a class="no-decor" style="color: #e54725;" href="{% url 'view_profile' bug.reported_by %}">
-                    {{ bug.reported_by }}
-                </a>
-            </strong>
-            <small class="text-muted">{{ bug.published_date|timesince}} ago</small>
-            <br>
-            <strong>
                 <span class="no-decor" style="color: #e54725;">{{ bug.title }}</span>
+                <span class="float-right text-muted">
+                    {% if bug.is_recent %}
+                    {{ bug.published_date|timesince}} ago
+                    {% else %}
+                    {{ bug.published_date|date:"d M Y" }}
+                    {% endif %}
+                </span>
             </strong>
         </div>
     </div>
@@ -45,7 +40,12 @@
     </div>
     <div class="row">
         <div class="col-12">
-            <button type="button" class="btn btn-back">Back</button>
+            <span>
+            Reported by:
+            <a class="no-decor" style="color: #e54725;" href="{% url 'view_profile' bug.reported_by %}">
+                {{ bug.reported_by }}
+            </a>
+        </span>
             <div class="float-right" style="color: #e54725;">
                 <a role="button" id="like-button" class="no-decor" href="{{ bug.get_upvote_url }}">
                     <i class="fas fa-thumbs-up" style="color: #e54725;">
@@ -59,6 +59,7 @@
                 <span id="number_of_likes">{{ bug.upvotes.count}}</span>
             </div>
         </div>
+        <button type="button" class="btn btn-back">Back</button>
     </div>
 </div>
 <!-- The Image Modal -->

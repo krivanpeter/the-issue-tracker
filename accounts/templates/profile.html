@@ -65,7 +65,13 @@
                     </div>
                     <a role="gridcell" class="no-decor table-cell" href="{{ bug.get_absolute_url }}">{{ bug.title }}</a>
                     <div role="gridcell" class="d-none d-md-block table-cell">
-                        <span>{{ bug.published_date|timesince}} ago</span>
+                        <span>
+                            {% if bug.is_recent %}
+                            {{ bug.published_date|timesince}} ago
+                            {% else %}
+                            {{ bug.published_date|date:"d M Y" }}
+                            {% endif %}
+                        </span>
                     </div>
                 </div>
                 {% endfor %}
@@ -88,7 +94,13 @@
                     </div>
                     <a role="gridcell" class="no-decor table-cell" href="{{ bug.get_absolute_url }}">{{ bug.title }}</a>
                     <div role="gridcell" class="d-none d-md-block table-cell">
-                        <span>{{ bug.published_date|timesince}} ago</span>
+                        <span>
+                            {% if bug.is_recent %}
+                            {{ bug.published_date|timesince}} ago
+                            {% else %}
+                            {{ bug.published_date|date:"d M Y" }}
+                            {% endif %}
+                        </span>
                     </div>
                 </div>
                 {% endfor %}
@@ -116,7 +128,13 @@
                     <a role="gridcell" class="no-decor table-cell" href="{{ feature.get_absolute_url }}">
                         {{ feature.title }}</a>
                     <div role="gridcell" class="d-none d-md-block table-cell">
-                        <span>{{ feature.published_date|timesince}} ago</span>
+                        <span>
+                            {% if feature.is_recent %}
+                            {{ feature.published_date|timesince}} ago
+                            {% else %}
+                            {{ feature.published_date|date:"d M Y" }}
+                            {% endif %}
+                        </span>
                     </div>
                 </div>
                 {% endfor %}
@@ -140,7 +158,13 @@
                     <a role="gridcell" class="no-decor table-cell" href="{{ feature.get_absolute_url }}">
                         {{ feature.title }}</a>
                     <div role="gridcell" class="d-none d-md-block table-cell">
-                        <span>{{ feature.published_date|timesince}} ago</span>
+                        <span>
+                            {% if bug.is_recent %}
+                            {{ bug.published_date|timesince}} ago
+                            {% else %}
+                            {{ bug.published_date|date:"d M Y" }}
+                            {% endif %}
+                        </span>
                     </div>
                 </div>
                 {% endfor %}

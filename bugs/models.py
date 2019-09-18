@@ -6,6 +6,7 @@ from django.urls import reverse
 from django.db import models
 from django.db.models.signals import pre_save
 from django.utils import timezone
+from datetime import date, timedelta
 from django.utils.text import slugify
 
 
@@ -40,6 +41,10 @@ class Bug(models.Model):
         instance = self
         content_type = ContentType.objects.get_for_model(instance.__class__)
         return content_type
+
+    @property
+    def is_recent(self):
+        return (self.published_date.date() + timedelta(days=2)) > date.today()
 
 
 def create_slug(instance, new_slug=None):
