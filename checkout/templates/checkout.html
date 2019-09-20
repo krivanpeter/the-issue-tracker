@@ -8,13 +8,11 @@
         Stripe.publishableKey = '{{ publishable }}';
     //]]>
 
-
-
 </script>
 <script type="text/javascript" src="{% static 'js/stripe.js' %}"></script>
 {% endblock %}
 {% block content %}
-<div class="container news-container">
+<div class="content container news-container">
     <div class="row">
         {% for item in cart_items %}
         <div align="center" class="col-12 col-md-6 col-lg-4">
@@ -50,11 +48,12 @@
                     {{ message }}
                 </div>
                 {% endfor %}
+                {% csrf_token %}
+                <div align="center" class="form-group">
+                    <input class="btn bugs-button" id="submit_payment_btn" name="commit" type="submit"
+                           value="Submit Payment">
+                </div>
             </div>
-        </div>
-        {% csrf_token %}
-        <div align="center" class="form-group">
-            <input class="btn bugs-button" id="submit_payment_btn" name="commit" type="submit" value="Submit Payment">
         </div>
     </form>
 </div>

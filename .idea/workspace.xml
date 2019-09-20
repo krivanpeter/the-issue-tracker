@@ -3,13 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="87ce0953-7b2c-41c1-be27-93881aa7f7a8" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/templates/editprofile.html" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/templates/editprofile.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/accounts/templates/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/templates/profile.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/test_forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/test_forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/test_views.py" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/test_views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/attractor/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/attractor/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/checkout/templates/checkout.html" beforeDir="false" afterPath="$PROJECT_DIR$/checkout/templates/checkout.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/templates/packages.html" beforeDir="false" afterPath="$PROJECT_DIR$/packages/templates/packages.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -99,11 +96,6 @@
       <updated>1558245788273</updated>
     </task>
     <servers />
-  </component>
-  <component name="TestHistory">
-    <history-entry file="Unittests_for_accounts_test_forms_EditProfileFormTests_test_edit_profile - 2019.07.14 at 08h 08m 41s.xml">
-      <configuration name="Unittests for accounts.test_forms.EditProfileFormTests.test_edit_profile" configurationId="tests" />
-    </history-entry>
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
