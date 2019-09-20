@@ -229,13 +229,16 @@ a.bug-link{
     margin-top: 25px;
 }
 
+.paginator{
+    padding-bottom: 60px;
+}
+/*-------------PROFILE------------*/
 .profile-feature {
     padding: 10px;
     background-color: #F0F0F0;
     border-radius: 5px;
     border: 1px solid #C0C0C0;
 }
-
 #profile-upvoted-bugs,
 #profile-asked-features,
 #profile-upvoted-features{
@@ -309,7 +312,7 @@ a.bug-link{
     margin: 0;
     border-radius: 0;
 }
-
+/*-------------STATISTIC------------*/
 .graph{
     margin-bottom: 25px;
 }
@@ -317,7 +320,7 @@ a.bug-link{
 .statistic-container{
     padding-bottom: 50px;
 }
-
+/*-------------CART------------*/
 .cart-summary{
     background-color: #F0F0F0;
     padding: 10px;
@@ -329,9 +332,6 @@ a.bug-link{
     margin-bottom: 30px;
 }
 
-.paginator{
-    padding-bottom: 60px;
-}
 /*--------------------------------------*/
 #id_password,
 #id_images,
