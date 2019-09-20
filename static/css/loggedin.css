@@ -308,6 +308,17 @@ a.bug-link{
 .statistic-container{
     padding-bottom: 50px;
 }
+
+.cart-summary{
+    background-color: #F0F0F0;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #C0C0C0;
+}
+
+.summary{
+    margin-bottom: 30px;
+}
 /*--------------------------------------*/
 #id_password,
 #id_images,

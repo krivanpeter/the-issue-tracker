@@ -14,47 +14,63 @@
 {% block content %}
 <div class="content container news-container">
     <div class="row">
-        {% for item in cart_items %}
-        <div align="center" class="col-12 col-md-6 col-lg-4">
-            <h4>{{ item.package.title }}</h4>
-            <div class="package">
-                <div>Upvotes worth: {{ item.package.worth_upvotes }}</div>
-                <div>Price: £ {{ item.package.price }}</div>
-                <br>
-            </div>
-        </div>
-        {% endfor %}
-    </div>
-    <div class="row">
-        <div class="col-12">
-            <div class="float-right">
-                <span>Total £ {{ total }}</span>
-            </div>
-        </div>
-    </div>
-    <form role="form" method="post" id="payment-form" action="{% url 'checkout' %}">
-        <legend>Payment Details</legend>
-        <div class="row">
-            <div class="form-group col-12 col-md-6">
-                {{ order_form|as_bootstrap }}
-            </div>
-            <div class="form-group col-12 col-md-6">
-                {{ payment_form|as_bootstrap }}
-                <div id="credit-card-errors" style="display: none;">
-                    <div class="alert alert-danger" id="stripe-error-message"></div>
+        <div class="col-sm-12 col-md-8 col-lg-6">
+            <form role="form" method="post" id="payment-form" action="{% url 'checkout' %}">
+                <div class="row">
+                    <div class="col-12 col-md-12 col-lg-6">
+                        <h4>Billing details</h4>
+                        {{ order_form|as_bootstrap }}
+                    </div>
+                    <div class="col-12 col-md-12 col-lg-6">
+                        <h4>Payment details</h4>
+                        {{ payment_form|as_bootstrap }}
+                        <div id="credit-card-errors" style="display: none;">
+                            <div class="alert alert-danger" id="stripe-error-message"></div>
+                        </div>
+                        {% for message in messages %}
+                        <div class="alert alert-secondary">
+                            {{ message }}
+                        </div>
+                        {% endfor %}
+                    </div>
                 </div>
-                {% for message in messages %}
-                <div class="alert alert-secondary">
-                    {{ message }}
-                </div>
-                {% endfor %}
                 {% csrf_token %}
-                <div align="center" class="form-group">
+                <div align="center" class="title">
                     <input class="btn bugs-button" id="submit_payment_btn" name="commit" type="submit"
                            value="Submit Payment">
                 </div>
+            </form>
+        </div>
+        <div class="col-sm-12 col-md-4 offset-lg-1 col-lg-5">
+            <div class="cart-summary">
+                <legend class="summary" align="center">
+                    <i class="fas fa-shopping-cart">
+                        <span>Cart summary</span>
+                    </i>
+                </legend>
+                {% for item in cart_items %}
+                <div>
+                    <strong>
+                        <span>{{item.quantity}} x {{ item.package.title }}</span>
+                    </strong>
+                    <strong class="float-right">
+                        <span>£ {% widthratio item.package.price 1 item.quantity %}</span>
+                    </strong>
+                    <div>
+                        <div>Upvotes worth: {{ item.package.worth_upvotes }}</div>
+                    </div>
+                </div>
+                <hr>
+                {% endfor %}
+                <div class="row">
+                    <div class="col-12">
+                        <strong class="float-right">
+                            <span>Total £ {{ total }}</span>
+                        </strong>
+                    </div>
+                </div>
             </div>
         </div>
-    </form>
+    </div>
 </div>
 {% endblock%}
