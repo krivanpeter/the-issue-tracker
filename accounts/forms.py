@@ -103,10 +103,6 @@ class EditProfileForm(UserChangeForm):
 
 
 class EditUserForm(forms.ModelForm):
-    GENDER_CHOICES = (
-        ('M', 'Male'),
-        ('F', 'Female')
-    )
     avatar = forms.ImageField(
         required=False,
         label='Avatar',
@@ -115,19 +111,11 @@ class EditUserForm(forms.ModelForm):
                 'name': 'images'
             })
     )
-    gender = forms.ChoiceField(
-        choices=GENDER_CHOICES,
-        label='Gender',
-        widget=forms.Select(
-            attrs={
-                'class': 'form-control bug-input'})
-    )
 
     class Meta:
         model = UserProfile
         fields = (
             'avatar',
-            'gender'
         )
 
 

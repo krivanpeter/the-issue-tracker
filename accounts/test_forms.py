@@ -68,13 +68,11 @@ class EditUserTests(TestCase):
     def test_edit_user_no_avatar(self):
         self.user = User.objects.create_user(username='testuser', email='testuser@testuser.com', password='12345')
         test_form = EditUserForm({'avatar': '',
-                                  'gender': 'M',
                                   })
         self.assertTrue(test_form.is_valid())
 
     def test_edit_user_avatar(self):
         self.user = User.objects.create_user(username='testuser', email='testuser@testuser.com', password='12345')
         test_form = EditUserForm({'avatar': '../media/profile_images/avatar.png',
-                                  'gender': 'M',
                                   })
         self.assertTrue(test_form.is_valid())

@@ -6,7 +6,7 @@
         {% csrf_token %}
         <div class="row title">
             <div align="center" class="col-3 col-md-2">
-                <img class="thumbnail-img img-circle" src="{{ MEDIA_URL }}{{ user.userprofile.avatar }}"
+                <img height="250" src="{{ MEDIA_URL }}{{ user.userprofile.avatar }}"
                      alt="Picture can not be loaded">
                 {% for field in profile_form %}
                 {% if field.label == 'Avatar' %}

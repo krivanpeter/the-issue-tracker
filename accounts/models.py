@@ -5,11 +5,6 @@ from django.db.models.signals import post_save
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    GENDER_CHOICES = (
-        ('M', 'Male'),
-        ('F', 'Female')
-    )
-    gender = models.CharField(max_length=1, choices=GENDER_CHOICES, null=True, blank=True)
     avatar = models.ImageField(upload_to='profile_images', default='../media/profile_images/male_def.png')
     available_upvotes = models.PositiveIntegerField(default=0)
 

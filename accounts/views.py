@@ -162,14 +162,7 @@ def edit_profile(request):
             user_form = EditProfileForm(request.POST, instance=request.user)
             profile_form = EditUserForm(request.POST, request.FILES, instance=request.user.userprofile)
             if user_form.is_valid() and profile_form.is_valid():
-                if (user.userprofile.avatar == "../media/profile_images/male_def.png" or
-                        user.userprofile.avatar == "../media/profile_images/female_def.png"):
-                    if profile_form.cleaned_data['gender'] == "F":
-                        user.userprofile.avatar = "../media/profile_images/female_def.png"
-                    elif profile_form.cleaned_data['gender'] == "M":
-                        user.userprofile.avatar = "../media/profile_images/male_def.png"
-                else:
-                    profile_form.avatar = profile_form.cleaned_data['avatar']
+                profile_form.avatar = profile_form.cleaned_data['avatar']
                 user_form.save()
                 profile_form.save()
                 messages.success(request, 'Your profile has been updated.')
@@ -193,10 +186,7 @@ def delete_avatar(request):
     """A view that deletes the avatar of the user"""
     if request.user.is_authenticated:
         user = request.user.userprofile
-        if user.gender == "F":
-            user.avatar = "../media/profile_images/female_def.png"
-        else:
-            user.avatar = "../media/profile_images/male_def.png"
+        user.avatar = "../media/profile_images/male_def.png"
         user.save()
         messages.success(request, 'Your avatar has been deleted.', fail_silently=True)
         return redirect('view_profile', username=request.user.userprofile)

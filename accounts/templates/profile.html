@@ -33,10 +33,6 @@
                     <div role="gridcell" class="table-cell"><b>E-mail:</b></div>
                     <div role="gridcell" class="table-cell">{{ user.user.email }}</div>
                 </div>
-                <div role="row" class="table-row">
-                    <div role="gridcell" class="table-cell"><b>Gender:</b></div>
-                    <div role="gridcell" class="table-cell">{{ user.gender }}</div>
-                </div>
                 {% if request.user.userprofile == user %}
                 <div role="row" class="table-row">
                     <div role="gridcell" class="table-cell"><b>Available Upvotes:</b></div>

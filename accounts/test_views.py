@@ -42,7 +42,6 @@ class TestViews(TestCase):
     def test_delete_avatar(self):
         self.user = User.objects.create_user(username='testuser', password='12345')
         self.user.userprofile.avatar = "../media/profile_images/test.png"
-        self.user.userprofile.gender = "M"
         self.client.login(username='testuser', password='12345')
         self.factory = RequestFactory()
         request = self.factory.get('/accounts/delete-avatar/')
