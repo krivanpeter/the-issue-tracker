@@ -1,9 +1,11 @@
 {% extends "base_logged_in.html" %}
 {% load static %}
 {% block content %}
-{% for message in messages %}
-<div align="center" style="margin-bottom: 10px;">{{ message }}</div>
-{% endfor %}
+<div align="center" class="alert alert-primary">
+    {% for message in messages %}
+    {{ message }}
+    {% endfor %}
+</div>
 <div class="container profile-container">
     <div class="row">
         <div class="col-12 col-md-4 profile-feature">
@@ -40,10 +42,10 @@
         </div>
         <div class="col-12 col-md-8 profile-feature">
             <div align="center" class="col-12">
-                    <button id="reported-bugs-btn" class="btn btn-dark">Reported Bugs</button>
-                    <button id="upvoted-bugs-btn" class="btn">Upvoted Bugs</button>
-                    <button id="asked-features-btn" class="btn">Asked Features</button>
-                    <button id="upvoted-features-btn" class="btn">Upvotes Features</button>
+                <button id="reported-bugs-btn" class="btn btn-dark">Reported Bugs</button>
+                <button id="upvoted-bugs-btn" class="btn">Upvoted Bugs</button>
+                <button id="asked-features-btn" class="btn">Asked Features</button>
+                <button id="upvoted-features-btn" class="btn">Upvotes Features</button>
             </div>
             <hr>
             <div class="col-12 bugs-feature-container">

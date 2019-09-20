@@ -53,6 +53,7 @@ def checkout(request):
                         user.available_upvotes += quantity * package.worth_upvotes
                         user.save()
                     request.session['cart'] = {}
+                    messages.success(request, 'Your purchase has been successful.', fail_silently=True)
                     return redirect('view_profile', username=request.user)
                 else:
                     messages.error(request, 'Unable to take payment.')

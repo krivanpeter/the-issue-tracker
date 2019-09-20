@@ -158,7 +158,6 @@ def edit_profile(request):
     """A view that lets a logged in user to change the profile"""
     if request.user.is_authenticated:
         if request.method == "POST":
-            user = request.user
             user_form = EditProfileForm(request.POST, instance=request.user)
             profile_form = EditUserForm(request.POST, request.FILES, instance=request.user.userprofile)
             if user_form.is_valid() and profile_form.is_valid():
@@ -170,9 +169,11 @@ def edit_profile(request):
             else:
                 return redirect('/profile/edit')
         else:
+            user = UserProfile.objects.get(user__username=request.user)
             user_form = EditProfileForm(instance=request.user)
             profile_form = EditUserForm(instance=request.user.userprofile)
             args = {
+                'user': user,
                 'user_form': user_form,
                 'profile_form': profile_form
             }
@@ -205,10 +206,15 @@ def change_password(request):
                 auth.logout(request)
                 return redirect('/index/')
             else:
-                return redirect('/profile/change-password/')
+                messages.error(request, "Something went wrong, please try again!")
+                return redirect('/change-password/')
         else:
+            user = UserProfile.objects.get(user__username=request.user)
             form = PasswordChangeCustomForm(user=request.user)
-            args = {'form': form}
+            args = {
+                'user': user,
+                'form': form
+            }
             return render(request, 'change_password.html', args)
     else:
         return redirect('index')

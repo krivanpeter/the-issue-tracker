@@ -1,65 +1,68 @@
 {% extends "base_logged_in.html" %}
 {% load static %}
 {% block content %}
-<div class="container news-container">
+<div class="container profile-container">
     <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-        <div class="row title">
-            <div align="center" class="col-3 col-md-2">
-                <img height="250" src="{{ MEDIA_URL }}{{ user.userprofile.avatar }}"
-                     alt="Picture can not be loaded">
-                {% for field in profile_form %}
-                {% if field.label == 'Avatar' %}
-                <button type="button" class="btn btn-outline-secondary"
-                        id="avatar-picker"><span>New Avatar</span>
-                </button>
-                <a role="button" class="btn btn-outline-danger" href="{% url 'delete_avatar' %}">
-                    <span>Delete Avatar</span>
-                </a>
-                {{ field }}
-                {% endif %}
-                {% endfor %}
-            </div>
-            <div class="bug-wrapper col-9 col-md-10">
+        <div class="row">
+            <div class="col-12 col-md-4 profile-feature">
                 <div class="row">
-                    {% for field in user_form %}
-                    {% if field.label != 'Password' %}
                     <div class="col-12">
-                        <span>{{ field.label }} {{ field }} </span>
-                    </div>
-                    {% else %}
-                    <div class="col-12">
-                        <div>
-                            <span>{{ field.label }}</span>
-                            <div class="bug-input">
-                                <span>Raw passwords are not stored, so there is no way to see the password, but you can change it using</span>
-                                <a href="{% url 'change_password' %}">this form.</a>
+                        <div align="center" class="col-12">
+                            <div align="center" class="col-12">
+                                <img src="{{ user.avatar.url }}" height="150">
                             </div>
-                        </div>
-                    </div>
-                    {% endif %}
-                    {% endfor %}
-                    {% for field in profile_form %}
-                    {% if field.label != 'Avatar' %}
-                    <div class="col-12">
-                        <span>{{ field.label }} {{ field }}</span>
-                    </div>
-                    {% endif %}
-                    {% endfor %}
-                    <div class="image-and-submit-row col-12">
-                        <div class="row">
-                            <div class="col-3 col-md-2">
-                                <button type="submit" class="btn bugs-button">Save Profile</button>
+                            <div align="center" class="col-12">
+                                <div>@{{ user }}</div>
+                            </div>
+                            <div class="col-12">
+                                {% for field in profile_form %}
+                                {% if field.label == 'Avatar' %}
+                                <button type="button" class="btn btn-outline-secondary"
+                                        id="avatar-picker">
+                                    <span>New Avatar</span>
+                                </button>
+                                <a role="button" class="btn btn-outline-danger" href="{% url 'delete_avatar' %}">
+                                    <span>Delete Avatar</span>
+                                </a>
+                                {{ field }}
+                                {% endif %}
+                                {% endfor %}
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <div class="col-12 col-md-8 profile-feature">
+                {% for field in user_form %}
+                {% if field.label != 'Password' %}
+                <div class="col-12">
+                    <span>{{ field.label }} {{ field }} </span>
+                </div>
+                {% else %}
+                <div class="col-12">
+                    <div>
+                        <span>{{ field.label }}</span>
+                        <div class="bug-input">
+                            <span>Raw passwords are not stored, so there is no way to see the password, but you can change it using</span>
+                            <a href="{% url 'change_password' %}">this form.</a>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                {% endfor %}
+                {% for field in profile_form %}
+                {% if field.label != 'Avatar' %}
+                <div class="col-12">
+                    <span>{{ field.label }} {{ field }}</span>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+            <button type="submit" class="btn bugs-button">Save Profile</button>
         </div>
     </form>
-    <div class="row">
-        <button type="button" class="btn btn-back">Back</button>
-    </div>
+    <button type="button" class="btn btn-back">Back</button>
 </div>
 {% endblock %}
 {% block scripts %}
