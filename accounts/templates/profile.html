@@ -1,172 +1,157 @@
 {% extends "base_logged_in.html" %}
+{% load static %}
 {% block content %}
-<div align="center" class="content container justify-content-center">
-    <div class="profile-feature">
-        {% for message in messages %}
-        <div align="center" style="margin-bottom: 10px;">{{ message }}</div>
-        {% endfor %}
-        <div class="row justify-content-center">
-            <div class="col-md-6 col-lg-4">
-                <img src="{{ user.avatar.url }}" height="250">
-                {% if request.user.userprofile == user %}
-                <div class="title">
-                    <a class="btn btn-dark" type="button" href="{% url 'edit_profile' %}">
-                        <span>Edit Profile</span>
-                    </a>
-                </div>
-                {% endif %}
-            </div>
-            <div>
-                <div role="row" class="table-row">
-                    <div role="gridcell" class="table-cell"><b>Username:</b></div>
-                    <div role="gridcell" class="table-cell">{{ user }}</div>
-                </div>
-                <div role="row" class="table-row">
-                    <div role="gridcell" class="table-cell"><b>First name:</b></div>
-                    <div role="gridcell" class="table-cell">{{ user.user.first_name }}</div>
-                </div>
-                <div role="row" class="table-row">
-                    <div role="gridcell" class="table-cell"><b>Last name:</b></div>
-                    <div role="gridcell" class="table-cell">{{ user.user.last_name }}</div>
-                </div>
-                <div role="row" class="table-row">
-                    <div role="gridcell" class="table-cell"><b>E-mail:</b></div>
-                    <div role="gridcell" class="table-cell">{{ user.user.email }}</div>
-                </div>
-                {% if request.user.userprofile == user %}
-                <div role="row" class="table-row">
-                    <div role="gridcell" class="table-cell"><b>Available Upvotes:</b></div>
-                    <div role="gridcell" class="table-cell">{{ user.available_upvotes }}</div>
-                </div>
-                {% endif %}
-            </div>
-        </div>
-    </div>
-</div>
-<!-- REPORTED BUGS -->
-<div class="container">
+{% for message in messages %}
+<div align="center" style="margin-bottom: 10px;">{{ message }}</div>
+{% endfor %}
+<div class="container profile-container">
     <div class="row">
-        {% if reported_bugs %}
-        <div align="center" class="col-12 col-md-6">
-            <h2 align="center" class="title">Reported Bugs</h2>
-            <div role="grid" class="profile-feature" style="width: 100%; display: table;">
-                {% for bug in reported_bugs %}
-                <div role="row" class="table-row">
-                    <div role="gridcell" class="table-cell">
-                        {% if bug.open is True %}
-                        <i class="fas fa-exclamation-circle" style="color: green;"></i>
-                        {% else %}
-                        <i class="fas fa-check" style="color: green;"></i>
-                        {% endif %}
+        <div class="col-12 col-md-4 profile-feature">
+            <div class="row">
+                <div class="col-12">
+                    <div align="center" class="col-12">
+                        <img src="{{ user.avatar.url }}" height="150">
                     </div>
-                    <a role="gridcell" class="no-decor table-cell" href="{{ bug.get_absolute_url }}">{{ bug.title }}</a>
-                    <div role="gridcell" class="d-none d-md-block table-cell">
-                        <span>
-                            {% if bug.is_recent %}
-                            {{ bug.published_date|timesince}} ago
-                            {% else %}
-                            {{ bug.published_date|date:"d M Y" }}
-                            {% endif %}
-                        </span>
+                    <div align="center" class="col-12">
+                        <div>@{{ user }}</div>
+                        <div>{{ user.user.first_name }} {{ user.user.last_name }}</div>
                     </div>
+                    {% if request.user.userprofile == user %}
+                    <div align="center" class="col-12">
+                        <div class="title">
+                            <a class="btn btn-dark" type="button" href="{% url 'edit_profile' %}">
+                                <span>Edit Profile</span>
+                            </a>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% if request.user.userprofile == user %}
+                    <div class="col-12">
+                        <strong>E-mail:</strong>
+                        <span>{{ user.user.email }}</span>
+                    </div>
+                    <div class="col-12">
+                        <strong>Available Upvotes:</strong>
+                        <span>{{ user.available_upvotes }}</span>
+                    </div>
+                    {% endif %}
                 </div>
-                {% endfor %}
             </div>
         </div>
-        {% endif %}
-        <!-- UPVOTED BUGS -->
-        {% if upvoted_bugs %}
-        <div align="center" class="col-12 col-md-6">
-            <h2 align="center" class="title">Upvoted Bugs</h2>
-            <div role="grid" class="profile-feature" style="width: 100%; display: table;">
-                {% for bug in upvoted_bugs %}
-                <div role="row" class="table-row">
-                    <div role="gridcell" class="table-cell">
-                        {% if bug.open is True %}
-                        <i class="fas fa-exclamation-circle" style="color: green;"></i>
-                        {% else %}
-                        <i class="fas fa-check" style="color: green;"></i>
-                        {% endif %}
+        <div class="col-12 col-md-8 profile-feature">
+            <div align="center" class="col-12">
+                    <button id="reported-bugs-btn" class="btn btn-dark">Reported Bugs</button>
+                    <button id="upvoted-bugs-btn" class="btn">Upvoted Bugs</button>
+                    <button id="asked-features-btn" class="btn">Asked Features</button>
+                    <button id="upvoted-features-btn" class="btn">Upvotes Features</button>
+            </div>
+            <hr>
+            <div class="col-12 bugs-feature-container">
+                <div id="profile-reported-bugs">
+                    {% if reported_bugs %}
+                    <div align="center" class="col-12">
+                        <div>
+                            {% for bug in reported_bugs %}
+                            <p>
+                                {% if bug.open is True %}
+                                <i class="fas fa-exclamation-circle" style="color: green;"></i>
+                                {% else %}
+                                <i class="fas fa-check" style="color: green;"></i>
+                                {% endif %}
+                                <a class="no-decor" href="{{ bug.get_absolute_url }}">
+                                    {{ bug.title }}
+                                </a>
+                                {% if bug.is_recent %}
+                                {{ bug.published_date|timesince}} ago
+                                {% else %}
+                                {{ bug.published_date|date:"d M Y" }}
+                                {% endif %}
+                                {% endfor %}
+                            </p>
+                        </div>
                     </div>
-                    <a role="gridcell" class="no-decor table-cell" href="{{ bug.get_absolute_url }}">{{ bug.title }}</a>
-                    <div role="gridcell" class="d-none d-md-block table-cell">
-                        <span>
-                            {% if bug.is_recent %}
-                            {{ bug.published_date|timesince}} ago
-                            {% else %}
-                            {{ bug.published_date|date:"d M Y" }}
-                            {% endif %}
-                        </span>
-                    </div>
+                    {% endif %}
                 </div>
-                {% endfor %}
+                <div id="profile-upvoted-bugs">
+                    {% if upvoted_bugs %}
+                    <div align="center" class="col-12">
+                        <div>
+                            {% for bug in upvoted_bugs %}
+                            <p>
+                                {% if bug.open is True %}
+                                <i class="fas fa-exclamation-circle" style="color: green;"></i>
+                                {% else %}
+                                <i class="fas fa-check" style="color: green;"></i>
+                                {% endif %}
+                                <a class="no-decor" href="{{ bug.get_absolute_url }}">
+                                    {{ bug.title }}
+                                </a>
+                                {% if bug.is_recent %}
+                                {{ bug.published_date|timesince}} ago
+                                {% else %}
+                                {{ bug.published_date|date:"d M Y" }}
+                                {% endif %}
+                                {% endfor %}
+                            </p>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+                <div id="profile-asked-features">
+                    {% if asked_features %}
+                    <div align="center" class="col-12">
+                        <div>
+                            {% for feature in asked_features %}
+                            <p>
+                                {% if feature.open is True %}
+                                <i class="fas fa-exclamation-circle" style="color: green;"></i>
+                                {% else %}
+                                <i class="fas fa-check" style="color: green;"></i>
+                                {% endif %}
+                                <a class="no-decor" href="{{ bug.get_absolute_url }}">
+                                    {{ feature.title }}
+                                </a>
+                                {% if feature.is_recent %}
+                                {{ feature.published_date|timesince}} ago
+                                {% else %}
+                                {{ feature.published_date|date:"d M Y" }}
+                                {% endif %}
+                                {% endfor %}
+                            </p>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+                <div id="profile-upvoted-features">
+                    {% if upvoted_features %}
+                    <div align="center" class="col-12">
+                        <div>
+                            {% for feature in upvoted_features %}
+                            <p>
+                                {% if feature.open is True %}
+                                <i class="fas fa-exclamation-circle" style="color: green;"></i>
+                                {% else %}
+                                <i class="fas fa-check" style="color: green;"></i>
+                                {% endif %}
+                                <a class="no-decor" href="{{ bug.get_absolute_url }}">
+                                    {{ feature.title }}
+                                </a>
+                                {% if feature.is_recent %}
+                                {{ feature.published_date|timesince}} ago
+                                {% else %}
+                                {{ feature.published_date|date:"d M Y" }}
+                                {% endif %}
+                                {% endfor %}
+                            </p>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
             </div>
         </div>
-        {% endif %}
     </div>
 </div>
-<!-- ASKED FEATURES -->
-<div class="container">
-    <div class="row">
-        {% if asked_features %}
-        <div align="center" class="col-12 col-md-6">
-            <h2 align="center" class="title">Asked Features</h2>
-            <div role="grid" class="profile-feature" style="width: 100%; display: table;">
-                {% for feature in asked_features %}
-                <div role="row" class="table-row">
-                    <div role="gridcell" class="table-cell">
-                        {% if feature.open is True %}
-                        <i class="fas fa-exclamation-circle" style="color: green;"></i>
-                        {% else %}
-                        <i class="fas fa-check" style="color: green;"></i>
-                        {% endif %}
-                    </div>
-                    <a role="gridcell" class="no-decor table-cell" href="{{ feature.get_absolute_url }}">
-                        {{ feature.title }}</a>
-                    <div role="gridcell" class="d-none d-md-block table-cell">
-                        <span>
-                            {% if feature.is_recent %}
-                            {{ feature.published_date|timesince}} ago
-                            {% else %}
-                            {{ feature.published_date|date:"d M Y" }}
-                            {% endif %}
-                        </span>
-                    </div>
-                </div>
-                {% endfor %}
-            </div>
-        </div>
-        {% endif %}
-        <!-- UPVOTED FEATURES -->
-        {% if upvoted_features %}
-        <div align="center" class="col-12 col-md-6">
-            <h2 align="center" class="title">Upvoted Features</h2>
-            <div role="grid" class="profile-feature" style="width: 100%; display: table;">
-                {% for feature in upvoted_features %}
-                <div role="row" class="table-row">
-                    <div role="gridcell" class="table-cell">
-                        {% if feature.open is True %}
-                        <i class="fas fa-exclamation-circle" style="color: green;"></i>
-                        {% else %}
-                        <i class="fas fa-check" style="color: green;"></i>
-                        {% endif %}
-                    </div>
-                    <a role="gridcell" class="no-decor table-cell" href="{{ feature.get_absolute_url }}">
-                        {{ feature.title }}</a>
-                    <div role="gridcell" class="d-none d-md-block table-cell">
-                        <span>
-                            {% if bug.is_recent %}
-                            {{ bug.published_date|timesince}} ago
-                            {% else %}
-                            {{ bug.published_date|date:"d M Y" }}
-                            {% endif %}
-                        </span>
-                    </div>
-                </div>
-                {% endfor %}
-            </div>
-        </div>
-        {% endif %}
-    </div>
-</div>
+{% endblock %}
+{% block scripts %}
+<script src="{% static 'js/profile.js'%}"></script>
 {% endblock %}
