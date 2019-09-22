@@ -135,24 +135,26 @@
                                         <p class="actual-comment">{{ comment.content }}</p>
                                         <div class="container">
                                             <div class="row">
-                                                <div class="col-6 col-md-3">
+                                                <div class="col-8 col-md-3">
                                                     <a class="comment-reply-btn no-decor" href="#">
-                                                        <i class="fas fa-reply"></i>
+                                                         <span>
+                                                             <i class="fas fa-reply"></i>
                                                         {% if comment.children.count > 0 %}
-                                                        <span>Comment{% if comment.children.count > 1 %}s{% endif %}
-                                                                {{ comment.children.count }}</span>
+                                                            <span>Comment{% if comment.children.count > 1 %}s{% endif %}</span>
+                                                             <span>{{ comment.children.count }}</span>
                                                         {% else %}
-                                                        <span>Reply</span>
+                                                            <span>Reply</span>
                                                         {% endif %}
+                                                         </span>
                                                     </a>
                                                 </div>
                                                 {% if comment.user.user == user %}
-                                                <div class="col-6 col-md-3">
+                                                <div class="col-4 col-md-3">
                                                     <input type="hidden" class="comment_id" name="comment_id"
                                                            value="{{comment.id}}">
                                                     <a class="comment-delete-btn no-decor" data-dismiss="modal"
                                                        data-toggle="modal" href="#">
-                                                        <i class="fas fa-trash"> Delete</i>
+                                                        <i class="fas fa-trash">Delete</i>
                                                     </a>
                                                 </div>
                                                 {% endif %}

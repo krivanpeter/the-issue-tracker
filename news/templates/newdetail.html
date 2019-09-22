@@ -3,8 +3,9 @@
 {% block content %}
 <!--SMALL SCREEN-->
 <div class="container news-container d-block d-lg-none">
+    <h2>{{ new.title }}</h2>
     <div class="row">
-        <a href="{% url 'new_detail' new.id %}"><img class="news_image col-12" src="{{ MEDIA_URL }}{{ new.image }}"
+        <a href="{% url 'new_detail' new.id %}"><img class="col-12" src="{{ MEDIA_URL }}{{ new.image }}"
                                                      alt="{{new.title}}"></a>
         <div class="col-12">
             <div class="newdetail-content">{{ new.content|linebreaks}}</div>

@@ -92,7 +92,7 @@ body{
 .news-detail-image{
     width:500px;
     max-height:auto;
-    margin: 0;
+    margin: 0 10px 0 0;
 }
 
 .newdetail-content p{
@@ -307,6 +307,11 @@ a.bug-link{
     color: #990000;
 }
 
+.thumbnail-img {
+    width:75px;
+    height:75px;
+}
+
 .form-control-sm{
     padding: 0;
     margin: 0;
@@ -350,8 +355,8 @@ a.bug-link{
         list-style-type: none;
     }
     .img-thumbnail{
-      cursor: pointer;
-      transition: 0.3s;
+        cursor: pointer;
+        transition: 0.3s;
     }
     .img-thumbnail:hover{
         opacity: 0.8;
