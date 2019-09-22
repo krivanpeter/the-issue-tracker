@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/krivanpeter/the-issue-tracker.svg?branch=master)](https://travis-ci.org/krivanpeter/the-issue-tracker)
 
-# The Unicorn Attractor
+# The Issue Tracker
 
 I'm a student at Code Institute and I've reached my fifth and also my last milestone project which was to create this webapplication.
 I needed to use all of my knowledge I got through the course.
@@ -105,22 +105,25 @@ SQLite3 database was used in development and Heroku Postgres in deployment.
 The most of the code was tested using django's built in testing tools, where not it was tested manually. 
 #### Manual Testing
 * Cart:
-    * Modify Quantity
+    * Modify Quantity:
+     - Delete item
+     - Modify quantity to 0
+     - Modify quantity to a character
     * Remove Item
 * Checkout
-    * Checkout
-    * MakePaymentForm
+    * Checkout:
+    - Try to submit without any field filled
+    - STRIPE handles payment form
 * Comment
-    * Reply
-    * Delete
-    * CommentForm
+    * Reply to comment
+    * Delete a comment
+    * Try to submit form without content
 * Features
-    * FeatureReportForm  
-* Packages
-    * All packages(view)
+    * Try to submit form without content  
 * Statistic
-    * Page
-    * API
+    * API:
+    - Check statistics
+    - Add new feature, statistic refreshes
 
 Site viewed and tested in the following browsers:
 * Google Chrome

@@ -204,6 +204,10 @@ def change_password(request):
             if form.is_valid():
                 form.save()
                 auth.logout(request)
+                messages.success(
+                    request,
+                    "Your password has been updated. Please sign in again with your new password",
+                    fail_silently=True)
                 return redirect('/index/')
             else:
                 messages.error(request, "Something went wrong, please try again!")

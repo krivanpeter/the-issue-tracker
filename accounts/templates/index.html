@@ -78,8 +78,12 @@
         <h1><strong>Software Development</strong></h1>
         <p class="lead"><b>We love coding, we love building new features, and we love solving bugs</b></p>
         <p class="lead"><b>Join our community and support us</b></p>
-        <p><button type="button" class="btn btn-primary btn-lg btn-sign-up" data-toggle="modal" data-target="#registerModal">Sign
-            Up!</button></p>
+        <p>
+            <button type="button" class="btn btn-primary btn-lg btn-sign-up" data-toggle="modal"
+                    data-target="#registerModal">Sign
+                Up!
+            </button>
+        </p>
         <p class="text-muted"><small class="white-text">We promise never to share, trade, sell, deliver, reveal,
             publicize, or market your email address in any way, shape, or form.</small></p>
     </div>
@@ -170,7 +174,15 @@
             </div>
             <form method="POST" class="loginform">
                 <fieldset class="form-group">
-                    {% csrf_token %} {{ login_form | as_bootstrap }}
+                    {% csrf_token %}
+                    {{ login_form | as_bootstrap }}
+                    {% if messages %}
+                    <div align="center" class="alert alert-primary">
+                        {% for message in messages %}
+                        {{ message }}
+                        {% endfor %}
+                    </div>
+                    {% endif %}
                     <div class="alert alert-danger" role="alert" id="username_or_password_error" style="display:none;">
                         Your username or password are incorrect
                     </div>
