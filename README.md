@@ -102,7 +102,16 @@ SQLite3 database was used in development and Heroku Postgres in deployment.
 [Database Schema](https://raw.githubusercontent.com/krivanpeter/the-issue-tracker/master/static/img/IssueTrackerdb.png) - this is a representation of the Database Schema.
 
 ## Testing
-The most of the code was tested using django's built in testing tools, where not it was tested manually. 
+The most of the code was tested using django's built in testing tools, where not it was tested manually.
+Seperated tests were written for all applications.
+They can be found in all files with the starting name of ,,test_xy.py"
+
+How to run the tests:
+1. Download the project(files)
+2. Open a terminal/command prompt (make sure you have python installed)
+3. Run the ,,python manage.py test" command
+
+
 #### Manual Testing
 * Cart:
     * Modify Quantity:
@@ -112,14 +121,10 @@ The most of the code was tested using django's built in testing tools, where not
     * Remove Item
 * Checkout
     * Checkout:
-    - Try to submit without any field filled
     - STRIPE handles payment form
 * Comment
     * Reply to comment
     * Delete a comment
-    * Try to submit form without content
-* Features
-    * Try to submit form without content  
 * Statistic
     * API:
     - Check statistics
@@ -130,8 +135,6 @@ Site viewed and tested in the following browsers:
 * Microsoft Edge
 * Mozilla Firefox  
 
-
-LEFT TO FILL
 ## Deployment
 LEFT TO FILL
 ## Credits

@@ -4,15 +4,10 @@
     <list default="true" id="87ce0953-7b2c-41c1-be27-93881aa7f7a8" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/templates/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/templates/profile.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/attractor/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/attractor/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cart/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/cart/tests.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tests.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/statistic/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/statistic/tests.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/registration/password_reset_complete.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/registration/password_reset_complete.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/registration/password_reset_confirm.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/registration/password_reset_confirm.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/checkout/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/checkout/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/checkout/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/checkout/tests.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/comments/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/comments/tests.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
