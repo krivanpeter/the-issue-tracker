@@ -102,15 +102,14 @@ SQLite3 database was used in development and Heroku Postgres in deployment.
 [Database Schema](https://raw.githubusercontent.com/krivanpeter/the-issue-tracker/master/static/img/IssueTrackerdb.png) - this is a representation of the Database Schema.
 
 ## Testing
-The most of the code was tested using django's built in testing tools, where not it was tested manually.
-Seperated tests were written for all applications.
-They can be found in all files with the starting name of ,,test_xy.py"
+Most of the page has been tested using django's built in testing tools, where not it was tested manually.
+Separated tests were written for all applications.
+They can be found in all files with the name of ,,test_xy.py"
 
-How to run the tests:
-1. Download the project(files)
-2. Open a terminal/command prompt (make sure you have python installed)
-3. Run the ,,python manage.py test" command
-
+### How to run the tests
+After [Deployment](#Deployment) run the command below:
+    
+    python manage.py test
 
 #### Manual Testing
 * Cart:
@@ -138,10 +137,10 @@ Site viewed and tested in the following browsers:
 ## Deployment
 LEFT TO FILL
 ## Credits
-LEFT TO FILL  
-#### Content
-The text for section Y was copied from the Wikipedia article Z
+This Project has solely educational purpose. 
 #### Media
-The photos used in this site were obtained from ...
+The images for news page were obtained from [Pexels](https://www.pexels.com)
+The default avatar used for profile application were obtained from [WikiMedia](wikimedia.org)
+The photos used in the shop application were obtained from [FatSoundRecords](www.fatsoundrecords.com)
 #### Acknowledgements
-I received inspiration for this project from X
+I received inspiration for this project from students of Code Institute.
