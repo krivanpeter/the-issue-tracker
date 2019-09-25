@@ -18,7 +18,10 @@ class Bug(models.Model):
     published_date = models.DateTimeField(blank=True, null=True, default=timezone.now)
     open = models.BooleanField(default=True)
     reported_by = models.ForeignKey(UserProfile, on_delete=models.CASCADE, null=True)
-    upvotes = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True, related_name='bug_likes')
+    upvotes = models.ManyToManyField(
+        settings.AUTH_USER_MODEL,
+        blank=True,
+        related_name='bug_likes')
     slug = models.SlugField(unique=True)
 
     def __str__(self):
@@ -54,7 +57,7 @@ def create_slug(instance, new_slug=None):
     qs = Bug.objects.filter(slug=slug).order_by('-id')
     exists = qs.exists()
     if exists:
-        new_slug = "%s-%s" %(slug, qs.first().id)
+        new_slug = "%s-%s" % (slug, qs.first().id)
         return create_slug(instance, new_slug=new_slug)
     return slug
 
@@ -65,7 +68,11 @@ def pre_save_bug_receiver(sender, instance, *args, **kwargs):
 
 
 class BugImages(models.Model):
-    bug = models.ForeignKey(Bug, on_delete=models.CASCADE, related_name='images', default="None")
+    bug = models.ForeignKey(
+        Bug,
+        on_delete=models.CASCADE,
+        related_name='images',
+        default="None")
     image = models.ImageField(upload_to="bugs_images", null=True, blank=True)
 
     def __str__(self):

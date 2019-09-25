@@ -266,12 +266,6 @@ def register(request):
         raise Http404()
 
 
-"""
-View that checks the hash in a password reset link and presents a
-form for entering a new password.
-(Code from django's webpage.
-Slightly changed: login form added to it)
-"""
 @sensitive_post_parameters()
 @never_cache
 def password_reset_confirm(request, uidb64=None, token=None,
@@ -280,6 +274,12 @@ def password_reset_confirm(request, uidb64=None, token=None,
                            set_password_form=SetPasswordForm,
                            post_reset_redirect=None,
                            current_app=None, extra_context=None):
+    """
+    View that checks the hash in a password reset link and presents a
+    form for entering a new password.
+    (Code from django's webpage.
+    Slightly changed: login form added to it)
+    """
     login_form = UserLoginForm()
     UserModel = get_user_model()
     assert uidb64 is not None and token is not None  # checked by URLconf

@@ -1,6 +1,10 @@
 from django import forms
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserCreationForm, UserChangeForm, ReadOnlyPasswordHashField, PasswordChangeForm
+from django.contrib.auth.forms import (
+    UserCreationForm,
+    UserChangeForm,
+    ReadOnlyPasswordHashField,
+    PasswordChangeForm)
 from django.core.exceptions import ValidationError
 from django_countries.fields import CountryField
 from django_countries.widgets import CountrySelectWidget
@@ -16,10 +20,18 @@ class UserLoginForm(forms.Form):
 
 # User Registration Form
 class UserRegistrationForm(UserCreationForm):
-    email = forms.EmailField(required=True, label='Email', widget=forms.TextInput(
-        attrs={'id': 'id_registration_email', 'type': 'email'}))
-    password1 = forms.CharField(label='Password', widget=forms.PasswordInput, required=True)
-    password2 = forms.CharField(label='Password Confirmation', widget=forms.PasswordInput, required=True)
+    email = forms.EmailField(
+        required=True, label='Email',
+        widget=forms.TextInput(
+            attrs={'id': 'id_registration_email', 'type': 'email'}))
+    password1 = forms.CharField(
+        label='Password',
+        widget=forms.PasswordInput,
+        required=True)
+    password2 = forms.CharField(
+        label='Password Confirmation',
+        widget=forms.PasswordInput,
+        required=True)
 
     def __init__(self, *args, **kwargs):
         super(UserRegistrationForm, self).__init__(*args, **kwargs)
@@ -167,7 +179,10 @@ class EditUserForm(forms.ModelForm):
     class Meta:
         model = UserProfile
         fields = (
-            'avatar', 'country', 'county', 'town_or_city', 'postcode', 'street_address1', 'street_address2', 'phone_number'
+            'avatar', 'country',
+            'county', 'town_or_city',
+            'postcode', 'street_address1',
+            'street_address2', 'phone_number'
         )
 
 
@@ -176,4 +191,3 @@ class PasswordChangeCustomForm(PasswordChangeForm):
         super(PasswordChangeCustomForm, self).__init__(user, *args, **kwargs)
         for field in self.fields:
             self.fields[field].widget.attrs['class'] = 'form-control bug-input'
-

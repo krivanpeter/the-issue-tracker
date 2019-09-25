@@ -6,7 +6,9 @@ from django_countries.fields import CountryField
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    avatar = models.ImageField(upload_to='profile_images', default='../media/profile_images/male_def.png')
+    avatar = models.ImageField(
+        upload_to='profile_images',
+        default='../media/profile_images/male_def.png')
     available_upvotes = models.PositiveIntegerField(default=0)
     country = CountryField(blank_label='(Select Country)', null=True)
     phone_number = models.CharField(max_length=20, blank=True)

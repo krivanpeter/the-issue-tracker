@@ -61,7 +61,8 @@ def new_detail(request, slug=None):
                 content=content_data,
                 parent=parent_obj,
             )
-            return HttpResponseRedirect(new_comment.content_object.get_absolute_url())
+            return HttpResponseRedirect(
+                new_comment.content_object.get_absolute_url())
         args = {
             'new': new,
             'comments': comments,

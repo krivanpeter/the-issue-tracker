@@ -75,4 +75,3 @@ class ChartData(APIView):
             "spent_money": spent_money,
         }
         return Response(data)
-

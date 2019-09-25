@@ -1,5 +1,4 @@
 from datetime import timedelta, date
-
 from django.conf import settings
 from accounts.models import UserProfile
 from comments.models import Comment
@@ -25,10 +24,22 @@ class Feature(models.Model):
     title = models.TextField(max_length=60, default="")
     content = models.TextField()
     created_date = models.DateTimeField(auto_now_add=True)
-    published_date = models.DateTimeField(blank=True, null=True, default=timezone.now)
-    open = models.CharField(max_length=11, choices=FEATURE_CHOICES, default=OPEN)
-    reported_by = models.ForeignKey(UserProfile, on_delete=models.CASCADE, null=True)
-    upvoted_by = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True, related_name='feature_likes')
+    published_date = models.DateTimeField(
+        blank=True,
+        null=True,
+        default=timezone.now)
+    open = models.CharField(
+        max_length=11,
+        choices=FEATURE_CHOICES,
+        default=OPEN)
+    reported_by = models.ForeignKey(
+        UserProfile,
+        on_delete=models.CASCADE,
+        null=True)
+    upvoted_by = models.ManyToManyField(
+        settings.AUTH_USER_MODEL,
+        blank=True,
+        related_name='feature_likes')
     upvotes = models.PositiveSmallIntegerField(default=0)
     needed_upvotes = models.PositiveIntegerField(default=50)
     slug = models.SlugField(unique=True, max_length=60)
@@ -66,7 +77,7 @@ def create_slug(instance, new_slug=None):
     qs = Feature.objects.filter(slug=slug).order_by('-id')
     exists = qs.exists()
     if exists:
-        new_slug = "%s-%s" %(slug, qs.first().id)
+        new_slug = "%s-%s" % (slug, qs.first().id)
         return create_slug(instance, new_slug=new_slug)
     return slug
 

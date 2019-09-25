@@ -14,5 +14,7 @@ def cart_contents(request):
         package_count += quantity
         cart_items.append({'id': id, 'quantity': quantity, 'package': package})
 
-    return {'cart_items': cart_items, 'total': total, 'package_count': package_count}
-
+    return {
+        'cart_items': cart_items,
+        'total': total,
+        'package_count': package_count}

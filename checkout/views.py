@@ -53,7 +53,9 @@ def checkout(request):
                         user.available_upvotes += quantity * package.worth_upvotes
                         user.save()
                     request.session['cart'] = {}
-                    messages.success(request, 'Your purchase has been successful.', fail_silently=True)
+                    messages.success(
+                        request, 'Your purchase has been successful.',
+                        fail_silently=True)
                     return redirect('view_profile', username=request.user)
                 else:
                     messages.error(request, 'Unable to take payment.')
@@ -61,7 +63,9 @@ def checkout(request):
                 messages.error(request, "An error occurred")
                 return redirect("checkout")
         else:
-            messages.error(request, 'We were unable to take a payment with that card!')
+            messages.error(
+                request,
+                'We were unable to take a payment with that card!')
     else:
         if not request.session.get('cart', {}):
             return redirect(reverse('view_cart'))
@@ -80,4 +84,3 @@ def checkout(request):
         'order_form': order_form,
         'payment_form': payment_form,
         'publishable': settings.STRIPE_PUBLISHABLE})
-

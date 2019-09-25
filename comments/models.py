@@ -13,7 +13,9 @@ class CommentManager(models.Manager):
     def filter_by_instance(self, instance):
         content_type = ContentType.objects.get_for_model(instance.__class__)
         obj_id = instance.id
-        qs = super(CommentManager, self).filter(content_type=content_type, object_id=obj_id).filter(parent=None)
+        qs = super(CommentManager, self).filter(
+            content_type=content_type,
+            object_id=obj_id).filter(parent=None)
         return qs
 
 
@@ -23,9 +25,15 @@ class Comment(models.Model):
     object_id = models.PositiveIntegerField()
     content_object = GenericForeignKey('content_type', 'object_id')
     content = models.CharField(max_length=255)
-    published_date = models.DateTimeField(blank=True, null=True, default=timezone.now)
+    published_date = models.DateTimeField(
+        blank=True,
+        null=True,
+        default=timezone.now)
     objects = CommentManager()
-    parent = models.ForeignKey("self", on_delete=models.CASCADE, null=True, blank=True)
+    parent = models.ForeignKey(
+        "self",
+        on_delete=models.CASCADE,
+        null=True, blank=True)
 
     class Meta:
         ordering = ['-published_date']

@@ -107,7 +107,8 @@ def report_feature(request):
             else:
                 messages.error(
                     request,
-                    'You do not have enough available upvotes to ask a new feature', fail_silently=True
+                    'You do not have enough available upvotes to ask a new feature',
+                    fail_silently=True
                 )
                 return redirect('features')
     else:
