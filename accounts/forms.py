@@ -2,6 +2,8 @@ from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm, ReadOnlyPasswordHashField, PasswordChangeForm
 from django.core.exceptions import ValidationError
+from django_countries.fields import CountryField
+from django_countries.widgets import CountrySelectWidget
 from accounts.models import UserProfile
 import re
 
@@ -51,17 +53,17 @@ class UserRegistrationForm(UserCreationForm):
 
 # User Profile EditForm
 class EditProfileForm(UserChangeForm):
-    first_name = forms.CharField(widget=forms.Textarea(
+    first_name = forms.CharField(widget=forms.TextInput(
         attrs={
             'class': 'form-control bug-input',
             'rows': '1'}),
         label='First Name')
-    last_name = forms.CharField(widget=forms.Textarea(
+    last_name = forms.CharField(widget=forms.TextInput(
         attrs={
             'class': 'form-control bug-input',
             'rows': '1'}),
         label='Last Name')
-    email = forms.CharField(widget=forms.Textarea(
+    email = forms.CharField(widget=forms.TextInput(
         attrs={
             'class': 'form-control bug-input',
             'rows': '1'}),
@@ -111,11 +113,61 @@ class EditUserForm(forms.ModelForm):
                 'name': 'images'
             })
     )
+    country = CountryField(blank=True).formfield(
+        required=False,
+        label='Country',
+        widget=CountrySelectWidget(
+            attrs={
+                'class': 'form-control lazyselect',
+            })
+        )
+    phone_number = forms.CharField(
+        required=False,
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control bug-input',
+                'rows': '1'}),
+        label='Phone Number')
+    postcode = forms.CharField(
+        required=False,
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control bug-input',
+                'rows': '1'}),
+        label='Postcode')
+    town_or_city = forms.CharField(
+        required=False,
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control bug-input',
+                'rows': '1'}),
+        label='Town or City')
+    street_address1 = forms.CharField(
+        required=False,
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control bug-input',
+                'rows': '1'}),
+        label='Street Address')
+    street_address2 = forms.CharField(
+        required=False,
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control bug-input',
+                'rows': '1'}),
+        label='Street Address 2')
+    county = forms.CharField(
+        required=False,
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control bug-input',
+                'rows': '1'}),
+        label='County')
 
     class Meta:
         model = UserProfile
         fields = (
-            'avatar',
+            'avatar', 'country', 'county', 'town_or_city', 'postcode', 'street_address1', 'street_address2', 'phone_number'
         )
 
 

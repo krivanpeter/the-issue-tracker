@@ -337,6 +337,9 @@ a.bug-link{
     margin-bottom: 30px;
 }
 
+#flag_id_country{
+    display: none;
+}
 /*--------------------------------------*/
 #id_password,
 #id_images,

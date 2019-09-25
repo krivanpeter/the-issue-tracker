@@ -88,7 +88,8 @@ Users also can speak to each other via comments under every piece of news, bugs 
 
 ### Packages/Modules
 * [Pillow](https://pillow.readthedocs.io/en/stable/) - Imaging Library for Python  
-* [Stripe](https://stripe.com/gb) - Used to securely process online payments  
+* [Stripe](https://stripe.com/gb) - Used to securely process online payments
+* [Django Countries](https://pypi.org/project/django-countries/) - A Django application that provides country choices for use with forms, flag icons static files, and a country field for models.  
 * [Dj Database URL](https://pypi.org/project/dj-database-url/) - a package that allows us to connect to a database url, allow to use DATABASE_URL environment variable to configure our Django application.  
 * [Gunicorn](https://gunicorn.org/) - WSGI HTTP Server for UNIX  
 * [AWS S3 services](https://aws.amazon.com/s3/) - used to store media and static files in deployment  

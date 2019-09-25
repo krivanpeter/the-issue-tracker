@@ -38,6 +38,34 @@
                         <strong>Available Upvotes:</strong>
                         <span>{{ user.available_upvotes }}</span>
                     </div>
+                    <div class="col-12">
+                        <strong>Country:</strong>
+                        <span>{{ user.country.name }}&nbsp<img src="{{ user.country.flag }}"></span>
+                    </div>
+                    <div class="col-12">
+                        <strong>County:</strong>
+                        <span>{{ user.county }}</span>
+                    </div>
+                    <div class="col-12">
+                        <strong>Town or city:</strong>
+                        <span>{{ user.town_or_city }}</span>
+                    </div>
+                    <div class="col-12">
+                        <strong>Postcode:</strong>
+                        <span>{{ user.postcode }}</span>
+                    </div>
+                    <div class="col-12">
+                        <strong>Street address:</strong>
+                        <span>{{ user.street_address1 }}</span>
+                    </div>
+                    <div class="col-12">
+                        <strong>Street Address 2:</strong>
+                        <span>{{ user.street_address2 }}</span>
+                    </div>
+                    <div class="col-12">
+                        <strong>Phone Number:</strong>
+                        <span>{{ user.phone_number }}</span>
+                    </div>
                     {% endif %}
                 </div>
             </div>
