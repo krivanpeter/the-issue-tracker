@@ -107,9 +107,9 @@ Separated tests were written for all applications.
 They can be found in all files with the name of ,,test_xy.py"
 
 ### How to run the tests
-After [Deployment](#Deployment) run the command below:
-    
-    python manage.py test
+After [Local Deployment](https://github.com/krivanpeter/the-issue-tracker/deployment.md) you need to run the following command:
+
+    python manage.py test  
 
 #### Manual Testing
 * Cart:
@@ -135,7 +135,11 @@ Site viewed and tested in the following browsers:
 * Mozilla Firefox  
 
 ## Deployment
-LEFT TO FILL
+You need to have Python installed.
+You can download it from [here](https://www.python.org/)
+
+You can view how to get the application up and running [here](https://github.com/krivanpeter/the-issue-tracker/deployment.md)
+
 ## Credits
 This Project has solely educational purpose. 
 #### Media
