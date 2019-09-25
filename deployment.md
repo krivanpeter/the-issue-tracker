@@ -82,7 +82,7 @@
 3. You will need a SendGrid account. If you don't have one, go and create it [here](https://sendgrid.com/)
 4. You will need an AWS account. If you don't have one, go and create it [here](https://aws.amazon.com/)
 5. You need to install [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
-5. You need to install [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli)
+6. You need to install [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli)
 
 You need to have the first 3 steps of [Local](#Local) be done.
  
