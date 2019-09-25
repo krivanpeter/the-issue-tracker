@@ -103,8 +103,8 @@ SQLite3 database was used in development and Heroku Postgres in deployment.
 
 ## Testing
 Most of the page has been tested using django's built in testing tools, where not it was tested manually.
-Separated tests were written for all applications.
-They can be found in all files with the name of ,,test_xy.py"
+Separated test files were written for all applications.
+They can be found in files with the name of ,,test_xy.py"
 
 ### How to run the tests
 After [Local Deployment](https://github.com/krivanpeter/the-issue-tracker/blob/master/deployment.md) you need to run the following command:
@@ -113,10 +113,10 @@ After [Local Deployment](https://github.com/krivanpeter/the-issue-tracker/blob/m
 
 #### Manual Testing
 * Cart:
-    * Modify Quantity:
+    * Modifying Quantity:
      - Delete item
-     - Modify quantity to 0
-     - Modify quantity to a character
+     - Modifying quantity to 0
+     - Modifying quantity to a character
     * Remove Item
 * Checkout
     * Checkout:
