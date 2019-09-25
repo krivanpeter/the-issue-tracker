@@ -121,7 +121,7 @@ class EditUserForm(forms.ModelForm):
 
 class PasswordChangeCustomForm(PasswordChangeForm):
     def __init__(self, user, *args, **kwargs):
-        super(PasswordChangeCustomForm, self).__init__(user,*args, **kwargs)
+        super(PasswordChangeCustomForm, self).__init__(user, *args, **kwargs)
         for field in self.fields:
             self.fields[field].widget.attrs['class'] = 'form-control bug-input'
 

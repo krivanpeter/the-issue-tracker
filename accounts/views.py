@@ -199,8 +199,13 @@ def delete_avatar(request):
 def change_password(request):
     """A view that lets a logged in user to change the password"""
     if request.user.is_authenticated:
+        form = PasswordChangeCustomForm(data=request.POST or None, user=request.user)
+        user = UserProfile.objects.get(user__username=request.user)
+        args = {
+            'user': user,
+            'form': form
+        }
         if request.method == "POST":
-            form = PasswordChangeCustomForm(data=request.POST, user=request.user)
             if form.is_valid():
                 form.save()
                 auth.logout(request)
@@ -209,17 +214,7 @@ def change_password(request):
                     "Your password has been updated. Please sign in again with your new password",
                     fail_silently=True)
                 return redirect('/index/')
-            else:
-                messages.error(request, "Something went wrong, please try again!")
-                return redirect('/change-password/')
-        else:
-            user = UserProfile.objects.get(user__username=request.user)
-            form = PasswordChangeCustomForm(user=request.user)
-            args = {
-                'user': user,
-                'form': form
-            }
-            return render(request, 'change_password.html', args)
+        return render(request, 'change_password.html', args)
     else:
         return redirect('index')
 
