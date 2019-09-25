@@ -144,8 +144,8 @@ You can view how to get the application up and running [here](https://github.com
 ## Credits
 This Project has solely educational purpose. 
 #### Media
-The images for news page were obtained from [Pexels](https://www.pexels.com)
-The default avatar used for profile application were obtained from [WikiMedia](wikimedia.org)
+The images for news page were obtained from [Pexels](https://www.pexels.com)  
+The default avatar used for profile application were obtained from [WikiMedia](wikimedia.org)  
 The photos used in the shop application were obtained from [FatSoundRecords](www.fatsoundrecords.com)
 #### Acknowledgements
 I received inspiration for this project from students of Code Institute.
